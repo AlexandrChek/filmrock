@@ -23,9 +23,7 @@ p {
 p:hover {
     color: #1dda2c;
     background-color: rgb(44, 44, 44);
-    border: 2px solid #1dda2c;
-    font-weight: 800;
-    z-index: 3;
+    border: 1px solid #1dda2c;
 }
 @media (max-width: 991px) {
     p {

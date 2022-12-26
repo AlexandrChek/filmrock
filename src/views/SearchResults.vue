@@ -121,12 +121,17 @@ export default {
                     this.selectPages()
                 }
             }
+            
+            if (this.allSearchedMovies.length <= 2) {
+                this.heightControl()
+            }
         })
 
-        if (this.allSearchedMovies.length <= 2) {
-            this.heightControl()
+        window.onresize = () => {
+            if (this.allSearchedMovies.length <= 2) {
+                this.heightControl()
+            }
         }
-        window.onresize = () => {this.heightControl()}
     },
     methods: {
         heightControl () {

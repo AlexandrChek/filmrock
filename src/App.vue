@@ -30,8 +30,6 @@
       MyFooter
     },
     mounted () {
-      this.$router.push('/')
-      
       let user = localStorage.getItem('user')
       if (user) {
         this.$store.state.user = user
