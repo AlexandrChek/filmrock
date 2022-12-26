@@ -46,7 +46,7 @@
                 <div class="d-inline-flex align-items-center justify-content-center w-100">
                     <ArrowLeftBtn @click="goLeft" v-if="position"/>
                     <div class="d-inline-flex justify-content-center">
-                        <a v-for="film in shortList" :href="'/' + film.id" :key="film" class="d-inline-flex movie-item">
+                        <router-link v-for="film in shortList" :to="'/' + film.id" :key="film" class="d-inline-flex movie-item">
                             <div>
                                 <img :src="film.src" :alt="film.title" class="img-fluid">
                                 <div class="title-small">{{film.title}}</div>
@@ -54,7 +54,7 @@
                                     {{film.genre}}, {{film.genre2}}
                                 </FilmGenres>
                             </div>
-                        </a>
+                        </router-link>
                     </div>
                     <ArrowRightBtn @click="goRight" v-if="position < 10 - shortListLength"/>
                 </div>
