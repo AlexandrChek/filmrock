@@ -1,0 +1,120 @@
+<template>
+  <LineHeader class="text-center">Contacts</LineHeader>
+  <div class="tel-wrapper">
+    <div class="contacts tel">
+      Telephone: +38(066)9072641
+    </div>
+    <div class="d-inline-flex contacts tel">
+      <MyMessengers/>
+    </div>
+  </div>
+  <div class="text-center p-3 contacts">E-mail: chekcheev.alex@gmail.com</div>
+  <div class="p-3 gmt-wrapper">
+    <div class="gmt-3">
+      <span class="contacts">Timezone:&ensp;</span>
+      <div class="time-season">daylight savings time - <span class="contacts">GMT+3,&ensp;</span></div>
+    </div>
+    <div class="gmt-2 mb-2">
+      <div class="time-season">winter time - <span class="contacts">GMT+2</span></div>
+    </div>
+  </div>
+  <div class="p-3 offer">
+    <div class="mb-3">Making websites</div>
+    <div>Adaptive layout based on Vue.js & Bootstrap</div>
+  </div>
+  <div class="d-inline-flex justify-content-center w-100 my-4">
+    <AdvertPlace></AdvertPlace>
+  </div>
+</template>
+
+<script>
+import LineHeader from '../components/LineHeader.vue'
+import MyMessengers from '../components/MyMessengers.vue'
+import AdvertPlace from '../components/AdvertPlace.vue'
+
+export default {
+  name: 'ContactsView',
+  components: {
+    LineHeader,
+    MyMessengers,
+    AdvertPlace
+  }
+}
+</script>
+
+<style scoped>
+.tel-wrapper {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  padding: 40px 0 20px;
+}
+.contacts {
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 5.5px;
+  color: #1dda2c;
+  text-align: center;
+}
+.gmt-wrapper {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+.gmt-3 {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.time-season {
+  font-size: 20px;
+  color: #1dda2c;
+}
+.offer {
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 5px;
+}
+@media (max-width: 1199px) {
+  .tel-wrapper {
+    flex-direction: column;
+  }
+  .tel {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 991px) {
+  .gmt-wrapper {
+    flex-direction: column;
+  }
+  .gmt-3, .gmt-2 {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 767px) {
+  .gmt-3 {
+    flex-direction: column;
+  }
+}
+@media (max-width: 575px) {
+  .tel-wrapper {
+  padding: 20px 0 20px;
+}
+  .contacts {
+    font-size: 5.2vw;
+    letter-spacing: 1vw;
+  }
+  .time-season {
+  font-size: 4.7vw;
+}
+  .offer {
+  font-size: 4vw;
+  letter-spacing: .7vw;
+}
+}
+</style>
