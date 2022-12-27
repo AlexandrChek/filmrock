@@ -288,13 +288,19 @@ export default {
         this.getShortListLength()
         window.onresize = () => {this.getShortListLength()}
     },
+    watch: {
+        $route(from, to) {
+            console.log(from.params.id + '-' + to.params.id)
+            document.location.reload()
+        }
+    },
     computed: {
         shortList () {
             let start = this.position
             let end = start + this.shortListLength
             return this.suitableMovies.slice(start, end)
-    }
-  },
+        }
+    },
     methods: {
         rateFilm () {
             if (this.$store.state.user) {
