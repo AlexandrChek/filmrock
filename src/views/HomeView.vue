@@ -133,7 +133,7 @@ export default {
       let ratedFilms = []
       let currYear = new Date().getFullYear()
       for (let i = 0; i < filmsArr.length; i++) {
-        if (filmsArr[i].year === currYear && recentFilms.length < 10) {
+        if (filmsArr[i].year === currYear) {
           recentFilms.push(filmsArr[i])
         }
         if(filmsArr[i].rating) {
@@ -150,8 +150,8 @@ export default {
         }
         lastYear = lastYear.sort((a,b) => {
           return b.id - a.id
-        })
-        this.newMovies = recentFilms + lastYear.slice(0, r)
+        }).slice(0, r)
+        this.newMovies = [...recentFilms, ...lastYear]
       } else {
         this.newMovies = recentFilms.sort((a,b) => {
           return b.id - a.id
