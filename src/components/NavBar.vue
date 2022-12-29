@@ -127,8 +127,11 @@ nav a.router-link-exact-active {
   .burger-lines {
     font-size: 28px;
   }
+  .vert {
+    right: calc(4% + 20px);
+  }
   nav a {
-    font-size: 4.5vw;
+    font-size: 4.9vw;
   }
 }
 </style>

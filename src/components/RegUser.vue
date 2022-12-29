@@ -115,7 +115,7 @@ export default {
         width: 14%;
     }
     .exit-button {
-        top: 15px;
+        top: 5px;
         left: 45vw;
     }
     #exit {
