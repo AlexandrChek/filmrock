@@ -36,8 +36,8 @@ p {
 }
 @media (max-width: 575px) {
     p {
-        font-size: 2.97vw;
-        letter-spacing: .13vw;
+        font-size: 3.3vw;
+        letter-spacing: .12vw;
     }
 }
 </style>

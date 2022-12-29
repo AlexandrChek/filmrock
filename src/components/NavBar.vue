@@ -87,7 +87,7 @@ p {
   font-size: 31px;
 }
 .cross {
-  color: red;
+  color: rgb(250, 40, 40);
   background-color: black;
   font-size: 20px;
 }

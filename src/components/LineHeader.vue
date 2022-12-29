@@ -31,7 +31,7 @@ p {
 }
 @media (max-width: 575px) {
   p {
-    font-size: 3.4vw;
+    font-size: 3.5vw;
     letter-spacing: 5.3px;
     word-spacing: 3px;
     padding-left: 13px;

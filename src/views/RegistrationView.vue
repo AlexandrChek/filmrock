@@ -156,7 +156,7 @@ label {
         width: 68%;
     }
     label {
-        font-size: 3.4vw;
+        font-size: 3.5vw;
     }
 }
 </style>
