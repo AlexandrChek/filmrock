@@ -102,6 +102,9 @@ export default {
                             this.allSearchedMovies.push(filmsArr[i])  
                         }
                     }
+                    this.allSearchedMovies.sort((a,b) => {
+                        return a.year - b.year
+                    })
                 }
             }
             if (this.allSearchedMovies.length <= 10) {
