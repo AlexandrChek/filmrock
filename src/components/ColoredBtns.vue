@@ -48,8 +48,8 @@ export default {
 }
 @media (max-width: 575px) {
     .movie-button, .trailer-button {
-        width: 14.5vw;
-        font-size: 3.4vw;
+        width: 17vw;
+        font-size: 3.5vw;
         
     }
 }

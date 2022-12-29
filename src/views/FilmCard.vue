@@ -42,7 +42,7 @@
         </div>
         <div class="row d-flex justify-content-center mx-1 mt-4">
             <div class="col-xxl-11 col-12">
-                <LineHeader>You might be interested with:</LineHeader>
+                <LineHeader>This might interest you:</LineHeader>
                 <div class="d-inline-flex align-items-center justify-content-center w-100">
                     <ArrowLeftBtn @click="goLeft" v-if="position"/>
                     <div class="d-inline-flex justify-content-center">

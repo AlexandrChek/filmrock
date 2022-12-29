@@ -76,7 +76,7 @@ p {
   align-items: flex-start;
   position: absolute;
   right: calc(3.5% + 20px);
-  top: 2.2vw;
+  top: 9px;
   z-index: 2;
   border: .1px solid wheat;
 }
@@ -127,11 +127,8 @@ nav a.router-link-exact-active {
   .burger-lines {
     font-size: 28px;
   }
-  .vert {
-    top: 6.35vw;
-  }
   nav a {
-    font-size: 4vw;
+    font-size: 4.5vw;
   }
 }
 </style>

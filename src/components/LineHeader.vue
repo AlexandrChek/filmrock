@@ -32,8 +32,9 @@ p {
 @media (max-width: 575px) {
   p {
     font-size: 3.4vw;
-    letter-spacing: 6px;
-    word-spacing: 7.5px;
+    letter-spacing: 5.3px;
+    word-spacing: 3px;
+    padding-left: 13px;
   }
 }
 </style>

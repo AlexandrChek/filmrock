@@ -54,9 +54,4 @@
     padding-right: 0;
   }
 }
-@media (max-width: 575px) {
-  .sticky-top {
-    padding-top: 10px;
-  }
-}
 </style>
