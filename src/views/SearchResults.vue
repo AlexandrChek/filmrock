@@ -32,10 +32,10 @@
         <SimplArrowBtn v-if="currentPage > 1" @click="scrollLeft">&ensp; &#171; &ensp;</SimplArrowBtn>
         <PageNumbers v-for="n in pages" :key="n" @click="changePage(n)">
             <div>
-                <div v-if="n === currentPage">&#10699;</div>
+                <div v-if="n === currentPage" id="arrow-up">&#9650;</div>
                 <div v-else id="void">A</div>
             </div>
-            {{n}}
+            <div :class="{'current-number': n === currentPage}">{{n}}</div>
         </PageNumbers>
         <SimplArrowBtn v-if="currentPage < numberOfPages" @click="scrollRight">&ensp; &#187; &ensp;</SimplArrowBtn>
         </div>
@@ -225,10 +225,14 @@ export default {
 .movie-item:hover {
     background-color: rgb(44, 44, 44);
 }
-span {
+span, #arrow-up {
     color: #1dda2c;
 }
 #void {
     color: black;
+}
+.current-number {
+    color: #1dda2c;
+    font-weight: 1000;
 }
 </style>

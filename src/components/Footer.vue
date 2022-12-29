@@ -15,6 +15,9 @@ export default {
 </script>
 
 <style scoped>
+div {
+    background-color: black;
+}
 span {
     font-family: URW Chancery L, cursive;
     font-size: 2vw;

@@ -7,7 +7,7 @@
         <div class="d-flex justify-content-end">
             <p class="rounded cross" @click="removeButton">&#10060;</p>
         </div>
-        <MyButton @click="logOut" class="m-2">Log Out</MyButton>
+        <MyButton @click="logOut" id="exit">Log Out</MyButton>
     </div>
 </template>
 
@@ -54,8 +54,8 @@ export default {
     background-color: black;
     z-index: 3;
     position: absolute;
-    top: 5.1vw;
-    left: 29.5vw;
+    top: calc(16px + 4.15vw);
+    left: 33.45vw;
 }
 .cross {
     color: red;
@@ -63,20 +63,25 @@ export default {
     padding: 0 7px;
     cursor: pointer;
 }
+#exit {
+    margin: 0 9px;
+}
 @media (max-width: 1399px) {
     .exit-button {
-        top: 5.5vw;
+        top: 5.68vw;
+        left: 33.1vw;
     }
 }
 @media (max-width: 1199px) {
     img {
-        width: 23%;
+        width: 50%;
     }
     .user {
         font-size: 14px;
     }
     .exit-button {
-        left: 29vw;
+        top: calc(15px + 4.78vw);
+        left: 32.45vw;
     }
 }
 @media (max-width: 991px) {
@@ -84,8 +89,7 @@ export default {
         font-size: 13px;
     }
     .exit-button {
-        top: 5.8vw;
-        left: 27.5vw;
+        left: 31.37vw;
     }
     .cross {
         font-size: 14px; 
@@ -93,14 +97,14 @@ export default {
 }
 @media (max-width: 767px) {
     img {
-        width: 8%;
+        width: 12%;
     }
     .user {
         font-size: 12px;
     }
     .exit-button {
-        top: 7.3vw;
-        left: 42.5vw;
+        top: calc(14px + 5.95vw);
+        left: 46.47vw;
     }
     .cross {
         font-size: 13px; 
@@ -108,11 +112,14 @@ export default {
 }
 @media (max-width: 575px) {
     img {
-        width: 11%;
+        width: 14%;
     }
     .exit-button {
-        top: 10.17vw;
-        left: 40.7vw;
+        top: 15px;
+        left: 45vw;
+    }
+    #exit {
+        margin: 0 2px;
     }
 }
 </style>

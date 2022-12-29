@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
-        <div class="row d-flex justify-content-center m-2">
-            <div class="col-xxl-3 col-md-3 col-sm-4 col-5 text-center">
+        <div class="row d-flex justify-content-center mx-1 my-2">
+            <div class="col-xxl-3 col-md-3 col-sm-4 col-5 text-center img-wrapper">
                 <img :src="currentFilm.src" :alt="currentFilm.title" class="img-fluid">
             </div>
             <div class="col-xxl-8 col-md-9 col-sm-8 col-7">
@@ -371,6 +371,9 @@ export default {
 </script>
 
 <style scoped>
+.img-wrapper {
+    padding-right: 4px;
+}
 span, .rated, .review-head {
     color: #1dda2c;
 }
@@ -409,6 +412,9 @@ span, .rated, .review-head {
     }
 }
 @media (max-width: 575px) {
+    .img-wrapper {
+        padding-right: 2px;
+    }
     .title-small {
         font-size: 3.15vw;
     }

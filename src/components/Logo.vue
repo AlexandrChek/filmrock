@@ -49,7 +49,7 @@ p {
 }
 @media (max-width: 575px) {
     img {
-        margin-left: 11px;
+        width: 32px;
     }
     p {
         font-size: 7vw;

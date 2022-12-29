@@ -1,8 +1,8 @@
 <template>
     <div class="btn-wrapper">
-        <p v-if="show" id="up">&#9195;</p>
+        <p v-if="show" id="up">&#9650;</p>
         <div class="advanced-options-btn">Advanced search</div>
-        <p v-if="!show" id="down">&#9196;</p>
+        <p v-if="!show" id="down">&#9660;</p>
     </div>
 </template>
 

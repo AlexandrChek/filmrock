@@ -1,13 +1,13 @@
 <template>
   <div class="container-fluid sticky-top">
-    <div class="row">
-      <div class="col-md-3 col-3 p-0">
+    <div class="row pt-1">
+      <div class="col-md-4 col-sm-4 col-4 p-0">
         <LogoType/>
       </div>
-      <div class="col-md-2 col-6 d-flex flex-column justify-content-center" v-if="$store.state.user">
+      <div class="col-md-1 col-sm-5 col-5 d-flex flex-column justify-content-center px-0" v-if="$store.state.user">
         <RegUser/>
       </div>
-      <div class="col-md-7 col-3 d-inline-flex align-items-center justify-content-end">
+      <div class="col-md-7 col-sm-3 col-3 d-inline-flex justify-content-center menu-wrapper">
         <NavBar/>
       </div>
     </div>
@@ -47,5 +47,16 @@
 }
 .sticky-top {
   background-color: black;
+}
+@media (max-width: 991px) {
+  .menu-wrapper {
+    padding-left: 24px;
+    padding-right: 0;
+  }
+}
+@media (max-width: 575px) {
+  .sticky-top {
+    padding-top: 10px;
+  }
 }
 </style>

@@ -60,6 +60,7 @@ nav a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  margin-left: 60px;
 }
 .burger {
   display: none;
@@ -74,7 +75,7 @@ p {
   flex-direction: column;
   align-items: flex-start;
   position: absolute;
-  right: 7%;
+  right: calc(3.5% + 20px);
   top: 2.2vw;
   z-index: 2;
   border: .1px solid wheat;
@@ -94,6 +95,9 @@ nav a.router-link-exact-active {
   color: #1dda2c;
 }
 @media (max-width: 991px) {
+  .horiz {
+    margin-left: 14px;
+  }
   nav a {
   font-size: 2.1vw;
   }
@@ -124,8 +128,10 @@ nav a.router-link-exact-active {
     font-size: 28px;
   }
   .vert {
-    right: 8%;
-    top: 3vw;
+    top: 6.35vw;
+  }
+  nav a {
+    font-size: 4vw;
   }
 }
 </style>

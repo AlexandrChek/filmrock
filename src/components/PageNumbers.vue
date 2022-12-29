@@ -16,10 +16,6 @@ p {
     font-size: x-large;
     cursor: pointer;
 }
-p:hover {
-    color: #1dda2c;
-    font-weight: 1000;
-}
 @media (max-width: 991px) {
     p {
         font-size: large; 
@@ -32,7 +28,7 @@ p:hover {
 }
 @media (max-width: 575px) {
     p {
-        font-size: 4.5vw;
+        font-size: 5vw;
     }
 }
 </style>
