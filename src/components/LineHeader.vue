@@ -12,8 +12,7 @@ export default {
 p {
   font-size: 21px;
   font-weight: 900;
-  letter-spacing: 7px;
-  word-spacing: 11px;
+  letter-spacing: 4.5px;
   margin-bottom: 5px;
   padding-left: 20px;
   background-color: wheat;
@@ -32,8 +31,7 @@ p {
 @media (max-width: 575px) {
   p {
     font-size: 3.5vw;
-    letter-spacing: 5.3px;
-    word-spacing: 3px;
+    letter-spacing: 3.5px;
     padding-left: 13px;
   }
 }

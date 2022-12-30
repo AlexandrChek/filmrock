@@ -1,6 +1,6 @@
 <template>
     <div class="m-1">
-        <InputReg type="text" placeholder="matrix" @enterValue="saveValue"/>
+        <InputReg type="text" placeholder="matrix" @enterValue="saveValue" ref="title"/>
     </div>
     <div class="text-end mx-1">
         <MyButton @click="search">Search</MyButton>
@@ -33,6 +33,7 @@ export default {
         },
         search () {
             this.$emit('searchMovie', this.searchedValue)
+            this.$refs.title.cleanValue()
         }
     }
 }

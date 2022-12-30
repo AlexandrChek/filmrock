@@ -18,6 +18,10 @@ export default {
     methods: {
         updateModelValue (val) {
             this.$emit('enterValue', val)
+        },
+        //for cleaning from parent:
+        cleanValue () {
+            this.value = ''
         }
     }
 }
