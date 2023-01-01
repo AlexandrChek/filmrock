@@ -142,15 +142,15 @@ export default {
             let wrapper = document.querySelector('.big-wrapper')
             let deductions = 0
             if (windowWidth >= 1400) {
-                deductions = 168
+                deductions = 172
             } else if (windowWidth < 1400 && windowWidth >= 1200) {
-                deductions = 144
+                deductions = 148
             } else if (windowWidth < 1200 && windowWidth >= 992) {
-                deductions = 120.5
+                deductions = 125
             } else if (windowWidth < 992 && windowWidth >= 768) {
-                deductions = 97
+                deductions = 101
             } else if (windowWidth < 576) {
-                deductions = 87
+                deductions = 89.4
             }
             if (this.allSearchedMovies.length <= 1) {
                 if (deductions > 0) {

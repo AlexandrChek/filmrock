@@ -96,7 +96,7 @@ nav a.router-link-exact-active {
 }
 @media (max-width: 991px) {
   .horiz {
-    margin-left: 14px;
+    margin-left: 10px;
   }
   nav a {
   font-size: 2.1vw;
