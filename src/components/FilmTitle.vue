@@ -27,7 +27,7 @@ div {
 }
 @media (max-width: 575px) {
     div {
-        font-size: 4.5vw;
+        font-size: 5.4vw;
     }
 }
 </style>

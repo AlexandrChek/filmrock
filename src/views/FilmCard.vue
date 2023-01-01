@@ -391,6 +391,9 @@ span, .rated, .review-head {
     text-decoration: none;
     width: 100%;
 }
+.movie-item:hover {
+  background-color: rgb(44, 44, 44);
+}
 .title-small {
     font-weight: bold;
     color: #1dda2c;

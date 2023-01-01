@@ -221,6 +221,9 @@ export default {
 </script>
 
 <style scoped>
+.big-wrapper {
+    overflow-y: scroll;
+}
 .movie-item {
     text-decoration: none;
     color: wheat;
