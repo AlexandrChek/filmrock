@@ -1,5 +1,10 @@
 # filmrock
 
+## Dedcription
+```
+Fully responsive web-application for search and watch movies. Based on vue-cli 3 & Bootstrap.
+```
+
 ## Project setup
 ```
 npm install
@@ -14,11 +19,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
