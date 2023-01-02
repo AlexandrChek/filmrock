@@ -1,9 +1,10 @@
 # filmrock
 
 ## Dedcription
-```
-Fully responsive web-application for search and watch movies. Based on vue-cli 3 & Bootstrap.
-```
+
+### Fully responsive web-application for search and watch movies. Based on vue-cli 3 & Bootstrap.
+---
+<
 
 ## Project setup
 ```
