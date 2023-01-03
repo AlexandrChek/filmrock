@@ -35,7 +35,10 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(process.env.NODE_ENV),
-  routes
+  routes,
+  scrollBehavior() {
+    return {top: 0}
+  }
 })
 
 export default router
