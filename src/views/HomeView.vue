@@ -140,7 +140,7 @@ export default {
         if (filmsArr[i].year === currYear) {
           recentFilms.push(filmsArr[i])
         }
-        if(filmsArr[i].rating) {
+        if (filmsArr[i].rating) {
           ratedFilms.push(filmsArr[i])
         }
       }
@@ -229,8 +229,8 @@ export default {
         this.notFound = true
       } else {
         sessionStorage.setItem('searchedTitle', val)
-        if (sessionStorage.getItem('selectedIds')) {
-          sessionStorage.removeItem('selectedIds')
+        if (sessionStorage.getItem("searchedFilms")) {
+          sessionStorage.removeItem("searchedFilms")
         }
         this.$router.push('/searchres')
       }
@@ -278,14 +278,14 @@ export default {
     advancedSearch () {
       let searchedFilms = []
       if (this.title && !this.year && !this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return e.title.toLowerCase().includes(this.title.toLowerCase())
         })
         if (searchedFilms.length === 0) {
           this.notFound2 = true
         }
       } else if (this.title && this.year && !this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.title.toLowerCase().includes(this.title.toLowerCase()) &&
             e.year == this.year
@@ -295,7 +295,7 @@ export default {
           this.notFound2 = true
         }
       } else if (this.title && !this.year && this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.title.toLowerCase().includes(this.title.toLowerCase()) &&
             e.year >= this.yearFrom &&
@@ -306,7 +306,7 @@ export default {
           this.notFound2 = true
         }
       } else if (this.title && this.year && !this.yearFrom && this.selectedGenre && !this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.title.toLowerCase().includes(this.title.toLowerCase()) &&
             e.year == this.year &&
@@ -317,7 +317,7 @@ export default {
           this.notFound2 = true
         }
       } else if (this.title && !this.year && this.yearFrom && this.selectedGenre && !this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.title.toLowerCase().includes(this.title.toLowerCase()) &&
             e.year >= this.yearFrom &&
@@ -329,7 +329,7 @@ export default {
           this.notFound2 = true
         }
       } else if (this.title && this.year && !this.yearFrom && this.selectedGenre && this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return(
             e.title.toLowerCase().includes(this.title.toLowerCase()) &&
             e.year == this.year &&
@@ -341,7 +341,7 @@ export default {
           this.notFound2 = true
         }
       } else if (this.title && !this.year && this.yearFrom && this.selectedGenre && this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.title.toLowerCase().includes(this.title.toLowerCase()) &&
             e.year >= this.yearFrom &&
@@ -354,7 +354,7 @@ export default {
           this.notFound2 = true
         }
       } else if (this.title && !this.year && !this.yearFrom && this.selectedGenre && !this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.title.toLowerCase().includes(this.title.toLowerCase()) &&
             (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre)
@@ -364,7 +364,7 @@ export default {
           this.notFound2 = true
         }
       } else if (this.title && !this.year && !this.yearFrom && this.selectedGenre && this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.title.toLowerCase().includes(this.title.toLowerCase()) &&
             (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre) &&
@@ -375,7 +375,7 @@ export default {
           this.notFound2 = true
         }
       } else if (this.title && !this.year && !this.yearFrom && !this.selectedGenre && this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.title.toLowerCase().includes(this.title.toLowerCase()) &&
             e.country == this.selectedCountry
@@ -385,14 +385,14 @@ export default {
           this.notFound2 = true
         }
       } else if (!this.title && this.year && !this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return e.year == this.year
         })
         if (searchedFilms.length === 0) {
           this.notFound2 = true
         }
       } else if (!this.title && !this.year && this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.year >= this.yearFrom &&
             e.year <= this.yearTo
@@ -402,7 +402,7 @@ export default {
           this.notFound2 = true
         }
       } else if (!this.title && this.year && !this.yearFrom && this.selectedGenre && !this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.year == this.year &&
             (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre)
@@ -412,7 +412,7 @@ export default {
           this.notFound2 = true
         }
       } else if (!this.title && !this.year && this.yearFrom && this.selectedGenre && !this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.year >= this.yearFrom &&
             e.year <= this.yearTo &&
@@ -423,7 +423,7 @@ export default {
           this.notFound2 = true
         }
       } else if (!this.title && this.year && !this.yearFrom && this.selectedGenre && this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.year == this.year &&
             (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre) &&
@@ -434,7 +434,7 @@ export default {
           this.notFound2 = true
         }
       } else if (!this.title && !this.year && this.yearFrom && this.selectedGenre && this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.year >= this.yearFrom &&
             e.year <= this.yearTo &&
@@ -446,7 +446,7 @@ export default {
           this.notFound2 = true
         }
       } else if (!this.title && this.year && !this.yearFrom && !this.selectedGenre && this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.year == this.year &&
             e.country == this.selectedCountry
@@ -456,7 +456,7 @@ export default {
           this.notFound2 = true
         }
       } else if (!this.title && !this.year && this.yearFrom && !this.selectedGenre && this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             e.year >= this.yearFrom &&
             e.year <= this.yearTo &&
@@ -467,14 +467,14 @@ export default {
           this.notFound2 = true
         }
       } else if (!this.title && !this.year && !this.yearFrom && this.selectedGenre && !this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre)
         })
         if (searchedFilms.length === 0) {
           this.notFound2 = true
         }
       } else if (!this.title && !this.year && !this.yearFrom && this.selectedGenre && this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return (
             (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre) &&
             e.country == this.selectedCountry
@@ -484,7 +484,7 @@ export default {
           this.notFound2 = true
         }
       } else if (!this.title && !this.year && !this.yearFrom && !this.selectedGenre && this.selectedCountry) {
-        searchedFilms = this.filmsArr.filter((e) => {
+        searchedFilms = this.filmsArr.filter(e => {
           return e.country == this.selectedCountry
         })
         if (searchedFilms.length === 0) {
@@ -497,12 +497,7 @@ export default {
         this.dontPush = false
       }
       if (searchedFilms.length > 0 && !this.dontPush) {
-        let idsArr = []
-        for (let i = 0; i < searchedFilms.length; i++) {
-          idsArr.push(searchedFilms[i].id)
-        }
-        let selectedIds = idsArr.join(',')
-        sessionStorage.setItem('selectedIds', selectedIds)
+        sessionStorage.setItem("searchedFilms", JSON.stringify(searchedFilms))
         if (sessionStorage.getItem('searchedTitle')) {
           sessionStorage.removeItem('searchedTitle')
         }

@@ -80,32 +80,15 @@ export default {
             let filmsArr = Object.values(finalObj)
             if (sessionStorage.getItem('searchedTitle')) {
                 let searchedTitle = sessionStorage.getItem('searchedTitle').toLowerCase()
-                this.allSearchedMovies = filmsArr.filter((e) => {
+                this.allSearchedMovies = filmsArr.filter(e => {
                     let title = e.title.toLowerCase()
                     return title.includes(searchedTitle)
                 })
-            } else if (sessionStorage.getItem('selectedIds')) {
-                let idsString = sessionStorage.getItem('selectedIds')
-                let idsStringsArr = idsString.split(',')
-                let idsArr = []
-                for (let id of idsStringsArr) {
-                    idsArr.push(Number(id))
-                }
-                let idsSet = new Set(idsArr)
-                if (idsArr.length === 1) {
-                    this.allSearchedMovies = filmsArr.filter((e) => {
-                        return e.id == idsArr[0]
-                    })
-                } else {
-                    for (let i = 0; i < filmsArr.length; i++) {
-                        if (idsSet.has(filmsArr[i].id)) {
-                            this.allSearchedMovies.push(filmsArr[i])  
-                        }
-                    }
-                    this.allSearchedMovies.sort((a,b) => {
-                        return a.year - b.year
-                    })
-                }
+            } else if (sessionStorage.getItem("searchedFilms")) {
+                this.allSearchedMovies = JSON.parse(sessionStorage.getItem("searchedFilms"))
+                this.allSearchedMovies.sort((a,b) => {
+                    return a.year - b.year
+                })
             }
             if (this.allSearchedMovies.length <= 10) {
                 this.searchedMovies = this.allSearchedMovies
