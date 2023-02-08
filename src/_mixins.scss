@@ -1,0 +1,39 @@
+@import 'variables';
+
+@mixin arrow-btn($side) {
+    border-radius: 50%;
+    border-width: .5px;
+    background-color: white;
+    opacity: .6;
+    z-index: 2;
+    font-size: 33px;
+    font-weight: bold;
+    padding: .4vw;
+    position: relative;
+    #{$side}: -1.2vw;
+    &:hover {
+        opacity: .8;
+        color: $toxic-green;
+        #{$side}: -0.9vw;
+    }
+    @media (max-width: 1199px) {
+        font-size: 27px;
+    }
+    @media (max-width: 991px) {
+        font-size: 26px;
+        #{$side}: -1.7vw;
+        &:hover {
+            #{$side}: -1.4vw;
+        }
+    }
+    @media (max-width: 767px) {
+        font-size: 32px;
+        #{$side}: -2.3vw;
+        &:hover {
+            #{$side}: -2vw;
+        }
+    }
+    @media (max-width: 575px) {
+        font-size: 33px;
+    }
+}

@@ -8,9 +8,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../variables';
 .not-found {
   font-weight: bold;
-  color: #1dda2c;
+  color: $toxic-green;
 }
 </style>

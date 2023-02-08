@@ -19,9 +19,9 @@
         Wrong username or password. Correct them or register, please!
     </ModalInfo>
     <div class="d-flex justify-content-center m-2">
-        <div class="d-flex go-to-reg">
+        <div class="d-flex justify-content-evenly align-items-center go-to-reg">
             <p>If you have no an account, you should register.</p>
-            <button class="btn btn-primary mx-3" id="btn-2" @click="registration">Registration</button>
+            <button class="btn btn-primary" id="btn-2" @click="registration">Registration</button>
         </div>
     </div>
     <div class="d-flex justify-content-center mt-5 mb-3">
@@ -93,46 +93,19 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../extends';
 form, .go-to-reg {
-    width: 40%;
-    margin-top: 3vw;
+    @extend %reg-block-size;
 }
 label, p {
-    color: #1dda2c;
-    margin: 5px;
-    font-weight: 550;
+    @extend %label-reg;
 }
-@media (max-width: 991px) {
-    form, .go-to-reg {
-        width: 50%;
-    }
-}
-@media (max-width: 767px) {
-    label, p {
-        margin: 3px;
-    }
-    form, .go-to-reg {
-        width: 63%;
-    }
-}
+
 @media (max-width: 575px) {
-    form, .go-to-reg {
-        width: 75%;
-    }
-    label {
-        font-size: 3.4vw;
-    }
-    p {
-        margin: 0px;
-        font-size: 2.9vw;
-    }
     #btn-2 {
         width: 35%;
-        font-size: 3.1vw;
-    }
-    #userName, #password {
-        width: 95%;
+        font-size: 3.2vw;
     }
 }
 </style>

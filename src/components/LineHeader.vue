@@ -8,7 +8,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../variables';
+
 p {
   font-size: 21px;
   font-weight: 900;
@@ -16,23 +18,17 @@ p {
   margin-bottom: 5px;
   padding-left: 20px;
   background-color: wheat;
-  color: rgb(143, 25, 25);
-}
-@media (max-width: 991px) {
-  p {
+  color: $burgundy;
+  @media (max-width: 991px) {
     font-size: 18px;
   }
-}
-@media (max-width: 767px) {
-  p {
-    font-size: 17px;
+  @media (max-width: 767px) {
+      font-size: 17px;
   }
-}
-@media (max-width: 575px) {
-  p {
-    font-size: 3.5vw;
-    letter-spacing: 3.5px;
-    padding-left: 13px;
+  @media (max-width: 575px) {
+      font-size: 3.5vw;
+      letter-spacing: 3.5px;
+      padding-left: 13px;
   }
 }
 </style>

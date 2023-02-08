@@ -10,30 +10,26 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../variables';
+
 p {
     margin: 17px 0;
     text-align: center;
     font-size: 25px;
     letter-spacing: 4px;
     color: white;
-}
-a {
-    color: #1dda2c;
-}
-@media (max-width: 1199px) {
-    p {
-        font-size: 23px;  
+    a {
+        color: $toxic-green;
     }
-}
-@media (max-width: 991px) {
-    p {
+    @media (max-width: 1199px) {
+        font-size: 23px;
+    }
+    @media (max-width: 991px) {
         font-size: 20px;
-        margin: 45px 0;  
+        margin: 45px 0;
     }
-}
-@media (max-width: 767px) {
-    p {
+    @media (max-width: 767px) {
         margin: 17px 0;
         font-size: 3.35vw;
     }

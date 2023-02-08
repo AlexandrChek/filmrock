@@ -203,25 +203,24 @@ export default {
 }
 </script>
 
-<style scoped>
-.big-wrapper {
-    overflow-y: scroll;
-}
+<style scoped lang="scss">
+@import '../variables';
 .movie-item {
     text-decoration: none;
     color: wheat;
+    &:hover {
+        background-color: $black-light;
+    }
 }
-.movie-item:hover {
-    background-color: rgb(44, 44, 44);
+span {
+    color: $toxic-green;
+    font-weight: bold; 
 }
-span, #arrow-up {
-    color: #1dda2c;
+#arrow-up, .current-number {
+    color: $toxic-green;
+    font-weight: 1000;
 }
 #void {
     color: black;
-}
-.current-number {
-    color: #1dda2c;
-    font-weight: 1000;
 }
 </style>

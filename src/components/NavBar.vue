@@ -42,7 +42,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../variables';
+
 nav a {
   font-size: 2vw;
   letter-spacing: .2vw;
@@ -52,9 +54,12 @@ nav a {
   border: .5px solid wheat;
   margin: .7vw;
   padding: 2px 7px;
-}
-nav a:hover {
-  background-color: rgb(44, 44, 44);
+  &:hover {
+    background-color: $black-light;
+  }
+  &.router-link-exact-active {
+    color: $toxic-green;
+  }
 }
 .horiz {
   display: inline-flex;
@@ -81,7 +86,7 @@ p {
   border: .1px solid wheat;
 }
 .burger-lines {
-  color: #1dda2c;
+  color: $toxic-green;
   background-color: black;
   font-weight: bold;
   font-size: 31px;
@@ -91,9 +96,7 @@ p {
   background-color: black;
   font-size: 20px;
 }
-nav a.router-link-exact-active {
-  color: #1dda2c;
-}
+
 @media (max-width: 991px) {
   .horiz {
     margin-left: 10px;

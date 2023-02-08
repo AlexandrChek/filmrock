@@ -127,36 +127,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../extends';
+@import '../variables';
+
 form {
-    width: 40%;
-    margin-top: 3vw;
+    @extend %reg-block-size;
 }
 label {
-    color: #1dda2c;
-    margin: 5px;
-    font-weight: 550;
+    @extend %label-reg;
 }
 .prompt {
     font-size: 13px;
-    color: #1dda2c;
-}
-@media (max-width: 991px) {
-    form {
-        width: 50%;
-    }
-}
-@media (max-width: 767px) {
-    label {
-        margin: 3px;
-    }
-}
-@media (max-width: 575px) {
-    form {
-        width: 68%;
-    }
-    label {
-        font-size: 3.5vw;
-    }
+    color: $toxic-green;
 }
 </style>

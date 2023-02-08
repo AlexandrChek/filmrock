@@ -42,12 +42,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../variables';
 .tel-wrapper {
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  @extend .gmt-3;
   width: 100%;
   padding: 40px 0 20px;
 }
@@ -55,14 +53,11 @@ export default {
   font-size: 30px;
   font-weight: bold;
   letter-spacing: 5.5px;
-  color: #1dda2c;
+  color: $toxic-green;
   text-align: center;
 }
 .gmt-wrapper {
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  @extend .gmt-3;
   width: 100%;
 }
 .gmt-3 {
@@ -73,7 +68,7 @@ export default {
 }
 .time-season {
   font-size: 20px;
-  color: #1dda2c;
+  color: $toxic-green;
 }
 .offer {
   text-align: center;

@@ -370,12 +370,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../variables';
 .img-wrapper {
     padding-right: 4px;
+    @media (max-width: 575px) {
+        padding-right: 2px;
+    }
 }
 span, .rated, .review-head {
-    color: #1dda2c;
+    color: $toxic-green;
 }
 .wrapper-static {
     padding: 4px;
@@ -384,43 +388,31 @@ span, .rated, .review-head {
     background-color: orange;
 }
 .wrapper-burgundy {
-    background-color: rgb(145, 20, 20);
+    background-color: $burgundy;
 }
 .movie-item {
     margin-left: .3vw;
     text-decoration: none;
     width: 100%;
-}
-.movie-item:hover {
-  background-color: rgb(44, 44, 44);
+    &:hover {
+        background-color: $black-light;
+    }
 }
 .title-small {
     font-weight: bold;
-    color: #1dda2c;
+    color: $toxic-green;
     margin-left: .5vw;
-}
-@media (max-width: 1199px) {
-    .title-small {
+    @media (max-width: 1199px) {
         font-size: 1.3vw;
     }
-}
-@media (max-width: 991px) {
-    .title-small {
+    @media (max-width: 991px) {
         font-size: 1.5vw;
     }
-}
-@media (max-width: 767px) {
-    .title-small {
+    @media (max-width: 767px) {
         font-size: 2.3vw;
     }
-}
-@media (max-width: 575px) {
-    .img-wrapper {
-        padding-right: 2px;
-    }
-    .title-small {
+    @media (max-width: 575px) {
         font-size: 3.15vw;
     }
-    
 }
 </style>

@@ -10,13 +10,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 div {
   color: wheat;
   margin-left: .5vw;
-}
-@media (max-width: 1199px) {
-  div {
+  @media (max-width: 1199px) {
     font-size: smaller;
   }
 }

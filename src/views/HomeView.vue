@@ -508,17 +508,19 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../variables';
+
 select {
   margin: 0 8px;
   width: 44.5%;
   color: rgb(5, 112, 5);
-}
-select:focus {
-  border: none;
-  outline: 3px solid #1dda2c;
-  border-radius: .1px;
-  background-color: beige;
+  &:focus {
+    border: none;
+    outline: 3px solid $toxic-green;
+    border-radius: .1px;
+    background-color: $backlight;
+  }
 }
 .movie-lines {
   border: .1px solid wheat;
@@ -530,13 +532,13 @@ select:focus {
   margin-left: .3vw;
   text-decoration: none;
   width: 100%;
-}
-.movie-item:hover {
-  background-color: rgb(44, 44, 44);
+  &:hover {
+    background-color: $black-light;
+  }
 }
 .title-small {
   font-weight: bold;
-  color: #1dda2c;
+  color: $toxic-green;
   margin-left: .5vw;
 }
 @media (max-width: 1199px) {

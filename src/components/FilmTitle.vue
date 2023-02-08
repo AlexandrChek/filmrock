@@ -10,23 +10,19 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../variables';
+
 div {
     font-size: 3vw;
-    color: #1dda2c;
-}
-@media (max-width: 1199px) {
-    div {
+    color: $toxic-green;
+    @media (max-width: 1199px) {
         font-size: 3.7vw;
     }
-}
-@media (max-width: 991px) {
-    div {
+    @media (max-width: 991px) {
         font-size: 3.8vw;
     }
-}
-@media (max-width: 575px) {
-    div {
+    @media (max-width: 575px) {
         font-size: 5.4vw;
     }
 }

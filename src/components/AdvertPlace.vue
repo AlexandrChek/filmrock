@@ -43,7 +43,7 @@ export default {
 }
 #inscription {
 	position: absolute;
-	top: 0px;
+	top: 0;
 	left: 31%;
 	height: 44.5%;
 	font-size: 1.5vw;

@@ -90,7 +90,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../variables';
+
 #year {
     margin: 0 8px;
     width: 6.7vw;
@@ -104,8 +106,8 @@ export default {
 }
 #year:focus, #from:focus, #to:focus {
     border: none;
-    outline: 3px solid #1dda2c;
-    background-color: beige;
+    outline: 3px solid $toxic-green;
+    background-color: $backlight;
     border-radius: 2px;
 }
 @media (max-width: 1199px) {

@@ -1,13 +1,15 @@
 <template>
-    <div class="text-center user-icon" @click="getExitButton">
-        <img src="../assets/user.png" alt="User" class="img-fluid rounded-circle">
-    </div>
-    <div class="text-center user">{{$store.state.user}}</div>
-    <div class="rounded exit-button" v-if="exitButton">
-        <div class="d-flex justify-content-end">
-            <p class="rounded cross" @click="removeButton">&#10060;</p>
+    <div class="d-flex flex-column w-100">
+        <div class="user-wrapper" @click="getExitButton">
+            <img src="../assets/user.png" alt="User" class="rounded-circle">
+            <div class="text-center user">{{$store.state.user}}</div>
         </div>
-        <MyButton @click="logOut" id="exit">Log Out</MyButton>
+        <div class="rounded exit-button" v-if="exitButton">
+            <div class="d-flex justify-content-end">
+                <p class="rounded cross" @click="removeButton">&#10060;</p>
+            </div>
+            <MyButton @click="logOut" id="exit">Log Out</MyButton>
+        </div>
     </div>
 </template>
 
@@ -37,24 +39,34 @@ export default {
 }
 </script>
 
-<style scoped>
-.user {
-    font-size: 15px;
-    color: white;
-}
-.user-icon {
-    opacity: .7;
+<style scoped lang="scss">
+@import '../variables';
+
+.user-wrapper {
+    width: 49%;
+    margin-left: 25.5%;
     cursor: pointer;
-}
-.user-icon:hover {
-    opacity: 1;
+    img {
+        width: 100%;
+        opacity: .7;
+    }
+    .user {
+        font-size: 15px;
+        color: white;
+    }
+    &:hover img {
+        opacity: 1;
+    }
+    &:hover .user {
+        color: $toxic-green;
+    }
 }
 .exit-button {
     border: 1px solid wheat;
     background-color: black;
     z-index: 3;
     position: absolute;
-    top: calc(16px + 4.15vw);
+    top: calc(19px + 4.3vw);
     left: 33.45vw;
 }
 .cross {
@@ -68,19 +80,16 @@ export default {
 }
 @media (max-width: 1399px) {
     .exit-button {
-        top: 5.68vw;
+        top: 5.85vw;
         left: 33.1vw;
     }
 }
 @media (max-width: 1199px) {
-    img {
-        width: 50%;
-    }
     .user {
         font-size: 14px;
     }
     .exit-button {
-        top: calc(15px + 4.78vw);
+        top: calc(18px + 4.7vw);
         left: 32.45vw;
     }
 }
@@ -96,14 +105,15 @@ export default {
     }
 }
 @media (max-width: 767px) {
-    img {
+    .user-wrapper {
         width: 12%;
+        margin-left: 44%;
     }
     .user {
         font-size: 12px;
     }
     .exit-button {
-        top: calc(14px + 5.95vw);
+        top: calc(16px + 6vw);
         left: 46.47vw;
     }
     .cross {
@@ -111,8 +121,9 @@ export default {
     }
 }
 @media (max-width: 575px) {
-    img {
+    .user-wrapper {
         width: 14%;
+        margin-left: 43%;
     }
     .exit-button {
         top: 5px;

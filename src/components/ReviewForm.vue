@@ -76,18 +76,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../variables';
+
 textarea {
     width: 50%;
-}
-textarea:focus {
-    border: none;
-    outline: 3px solid #1dda2c;
-    background-color: beige;
-}
-@media (max-width: 767px) {
-    textarea {
+    &:focus {
+        border: none;
+        outline: 3px solid $toxic-green;
+        background-color: $backlight;
+    }
+    @media (max-width: 767px) {
         width: 100%;
-    } 
+    }
 }
 </style>

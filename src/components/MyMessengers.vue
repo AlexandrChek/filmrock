@@ -17,19 +17,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 img {
   margin: 5px;
   max-height: 41px;
   border-radius: 9px;
+  @media (max-width: 575px) {
+    margin: 4px;
+    width: 7.8vw;
+  }
 }
 .not-gsm {
     margin-left: 5px;
-}
-@media (max-width: 575px) {
-    img {
-        margin: 4px;
-        width: 7.8vw;
-    }
 }
 </style>

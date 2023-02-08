@@ -27,18 +27,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../variables';
+
 input {
     width: 100%;
     font-size: x-large;
-}
-input:focus {
-    border: none;
-    outline: 3px solid #1dda2c;
-    background-color: beige;
-}
-@media (max-width: 575px) {
-    input {
+    &:focus {
+        border: none;
+        outline: 3px solid $toxic-green;
+        background-color: $backlight;
+    }
+    @media (max-width: 575px) {
         font-size: 21.5px;
     }
 }
