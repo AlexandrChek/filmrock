@@ -223,4 +223,9 @@ span {
 #void {
     color: black;
 }
+@media (hover: none) and (pointer: coarse) {
+    .big-wrapper {
+        overflow-y: scroll;
+    }
+}
 </style>
