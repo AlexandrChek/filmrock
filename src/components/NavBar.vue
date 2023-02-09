@@ -119,10 +119,12 @@ p {
     border: none;
     font-size: 3.7vw;
     padding: auto 1.5vw;
+    display: block;
+    margin: 0 .7vw;
   }
   nav {
     width: 100%;
-    background-color: #333333;
+    background-color: $black-light;
     border-bottom: .1px dotted wheat;
   }
 }
