@@ -9,17 +9,13 @@
           <div v-if="advancedOptions" class="period-genre-country"> 
             <SearchPeriod @yearEntered="saveYear" @periodEntered="savePeriod"/>
             <div class="my-3 w-100 genre-country">
-              <div class="d-inline-flex my-2 w-100">
+              <div class="d-inline-flex my-3 w-100">
                 <label for="genre">Genre</label>
-                <select id="genre" @focus="getGenres" v-model="selectedGenre">
-                  <option v-for="genre in genres" :key="genre">{{genre}}</option>
-                </select>
+                <MySelect id="genre" @focus="getGenres" :values="genres" @selectedItem="saveGenre"/>
               </div>
               <div class="d-inline-flex my-3 w-100">
                 <label for="country">Country</label>
-                <select id="country" @focus="getCountries" v-model="selectedCountry">
-                  <option v-for="country in countries" :key="country">{{country}}</option>
-                </select>
+                <MySelect id="country" @focus="getCountries" :values="countries" @selectedItem="saveCountry"/>
               </div>
             </div>
           </div>
@@ -74,6 +70,7 @@
 // @ is an alias to /src
 import MyButton from '../components/MyButton.vue'
 import NotFound from '../components/NotFound.vue'
+import MySelect from '../components/MySelect.vue'
 import AdvancedOptions from '../components/AdvancedOptions.vue'
 import AdvertPlace from '../components/AdvertPlace.vue'
 import LineHeader from '../components/LineHeader.vue'
@@ -96,6 +93,7 @@ export default {
     SearchPeriod,
     MyButton,
     NotFound,
+    MySelect,
     AdvancedOptions,
     AdvertPlace,
     TrailersLink
@@ -258,6 +256,12 @@ export default {
       }
       this.countries = [...new Set(grossCountries)]
       this.countries.unshift('')
+    },
+    saveGenre (val) {
+      this.selectedGenre = val
+    },
+    saveCountry (val) {
+      this.selectedCountry = val
     },
     getOptionsState () {
       if (this.allowAdwancedOptions) {
@@ -511,17 +515,6 @@ export default {
 <style scoped lang="scss">
 @import '../variables';
 
-select {
-  margin: 0 8px;
-  width: 44.5%;
-  color: rgb(5, 112, 5);
-  &:focus {
-    border: none;
-    outline: 3px solid $toxic-green;
-    border-radius: .1px;
-    background-color: $backlight;
-  }
-}
 .movie-lines {
   border: .1px solid wheat;
 }
