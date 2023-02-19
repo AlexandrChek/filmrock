@@ -25,14 +25,14 @@ export default {
 @import '../variables';
 
 select {
-  margin: 0 8px;
-  width: 44.5%;
-  color: rgb(5, 112, 5);
-  &:focus {
+    margin: 0 8px;
+    width: 44.5%;
+    color: rgb(5, 112, 5);
     border: none;
-    outline: 3px solid $toxic-green;
-    border-radius: .1px;
-    background-color: $backlight;
-  }
+    border-radius: 2px;
+    &:focus {
+        border: 3px solid $toxic-green;
+        background-color: $backlight;
+    }
 }
 </style>

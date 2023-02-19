@@ -22,6 +22,9 @@ p {
     a {
         color: $toxic-green;
     }
+    a:hover {
+        background: radial-gradient(at bottom, $burgundy, black 83%);
+    }
     @media (max-width: 1199px) {
         font-size: 23px;
     }

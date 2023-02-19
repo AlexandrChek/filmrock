@@ -30,33 +30,13 @@
         <LineHeader>New movies</LineHeader>
         <div class="d-inline-flex align-items-center justify-content-center w-100">
           <ArrowLeftBtn @click="goLeft" v-if="position"/>
-          <div class="d-inline-flex justify-content-center line-wrapper">
-              <router-link v-for="film in shortList" :to="'/' + film.id" :key="film" class="d-inline-flex movie-item">
-                <div>
-                  <img :src="film.src" :alt="film.title" class="img-fluid">
-                  <div class="title-small">{{film.title}}</div>
-                  <FilmGenres>
-                    {{film.genre}}, {{film.genre2}}
-                  </FilmGenres>
-                </div>
-              </router-link>
-          </div>
+          <MovieLine :list="shortList"/>
           <ArrowRightBtn @click="goRight" v-if="position < 10 - shortListLength"/>
         </div>
         <LineHeader>Top rated movies</LineHeader>
         <div class="d-inline-flex align-items-center justify-content-center w-100">
           <ArrowLeftBtn @click="goLeftTop" v-if="positionTop"/>
-          <div class="d-inline-flex justify-content-center">
-            <router-link v-for="film in shortListTop" :to="'/' + film.id" :key="film" class="d-inline-flex movie-item">
-              <div>
-                <img :src="film.src" :alt="film.title" class="img-fluid">
-                <div class="title-small">{{film.title}}</div>
-                <FilmGenres>
-                  {{film.genre}}, {{film.genre2}}
-                </FilmGenres>
-              </div>
-            </router-link>
-          </div>
+          <MovieLine :list="shortListTop"/>
           <ArrowRightBtn @click="goRightTop" v-if="positionTop < 10 - shortListLength"/>
         </div>
       </div>
@@ -76,7 +56,7 @@ import AdvertPlace from '../components/AdvertPlace.vue'
 import LineHeader from '../components/LineHeader.vue'
 import ArrowLeftBtn from '../components/ArrowLeftBtn.vue'
 import ArrowRightBtn from '../components/ArrowRightBtn.vue'
-import FilmGenres from '../components/FilmGenres.vue'
+import MovieLine from '../components/MovieLine.vue'
 import SearchFilm from '../components/SearchFilm.vue'
 import SearchPeriod from '../components/SearchPeriod.vue'
 import TrailersLink from '../components/TrailersLink.vue'
@@ -88,7 +68,7 @@ export default {
     LineHeader,
     ArrowLeftBtn,
     ArrowRightBtn,
-    FilmGenres,
+    MovieLine,
     SearchFilm,
     SearchPeriod,
     MyButton,
@@ -518,22 +498,7 @@ export default {
 .movie-lines {
   border: .1px solid wheat;
 }
-.line-wrapper {
-  margin-right: .5vw;
-}
-.movie-item {
-  margin-left: .3vw;
-  text-decoration: none;
-  width: 100%;
-  &:hover {
-    background-color: $black-light;
-  }
-}
-.title-small {
-  font-weight: bold;
-  color: $toxic-green;
-  margin-left: .5vw;
-}
+
 @media (max-width: 1199px) {
   label {
     font-size: 15px;
@@ -554,9 +519,6 @@ export default {
   }
   .btn-wrapper {
     margin: 15px 0;
-  }
-  .movie-item {
-    margin-left: .7vw;
   }
 }
 @media (max-width: 575px) {

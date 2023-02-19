@@ -93,25 +93,22 @@ export default {
 <style scoped lang="scss">
 @import '../variables';
 
-#year {
-    margin: 0 8px;
+input {
+    margin: 0 10px;
     width: 6.7vw;
+    border-radius: 2px;
+    border: none;
+    &:focus {
+        outline: 3px solid $toxic-green;
+        background-color: $backlight;
+    }
 }
 .to-wrapper {
     margin: 0 10px;
 }
-#from, #to {
-    margin: 0 10px;
-    width: 6.7vw;
-}
-#year:focus, #from:focus, #to:focus {
-    border: none;
-    outline: 3px solid $toxic-green;
-    background-color: $backlight;
-    border-radius: 2px;
-}
+
 @media (max-width: 1199px) {
-    #year, #from, #to {
+    input {
         width: 7.1vw;
     }
     .to-wrapper {
@@ -122,17 +119,17 @@ export default {
     }
 }
 @media (max-width: 991px) {
-    #year, #from, #to {
+    input {
         width: 9.9vw;
     }
 }
 @media (max-width: 767px) {
-    #year, #from, #to {
+    input {
         width: 13.9vw;
     }
 }
 @media (max-width: 575px) {
-    #year, #from, #to {
+    input {
         width: 19vw;
     }
     label, input, .period {

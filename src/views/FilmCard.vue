@@ -45,17 +45,7 @@
                 <LineHeader>This might interest you:</LineHeader>
                 <div class="d-inline-flex align-items-center justify-content-center w-100">
                     <ArrowLeftBtn @click="goLeft" v-if="position"/>
-                    <div class="d-inline-flex justify-content-center">
-                        <router-link v-for="film in shortList" :to="'/' + film.id" :key="film" class="d-inline-flex movie-item">
-                            <div>
-                                <img :src="film.src" :alt="film.title" class="img-fluid">
-                                <div class="title-small">{{film.title}}</div>
-                                <FilmGenres>
-                                    {{film.genre}}, {{film.genre2}}
-                                </FilmGenres>
-                            </div>
-                        </router-link>
-                    </div>
+                    <MovieLine :list="shortList"/>
                     <ArrowRightBtn @click="goRight" v-if="position < 10 - shortListLength"/>
                 </div>
             </div>
@@ -85,7 +75,7 @@ import ColoredBtns from '../components/ColoredBtns.vue'
 import LineHeader from '../components/LineHeader.vue'
 import ArrowLeftBtn from '../components/ArrowLeftBtn.vue'
 import ArrowRightBtn from '../components/ArrowRightBtn.vue'
-import FilmGenres from '../components/FilmGenres.vue'
+import MovieLine from '../components/MovieLine.vue'
 import ReviewForm from '../components/ReviewForm.vue'
 import {getDatabase, ref, set, onValue} from 'firebase/database'
 
@@ -101,7 +91,7 @@ export default {
         LineHeader,
         ArrowLeftBtn,
         ArrowRightBtn,
-        FilmGenres,
+        MovieLine,
         ReviewForm
     },
     data () {
@@ -146,113 +136,11 @@ export default {
                             this.suitableMovies.push(filmsArr[i])
                         }
                     }
-                    for (let i = 0; i < filmsArr.length; i++) {
-                        let id = filmsArr[i].id
-                        if (filmsArr[i].genre === this.currentFilm.genre &&
-                        filmsArr[i].genre2 === this.currentFilm.genre2 &&
-                        id !== this.currentFilm.id) {
-                            if (this.suitableMovies) {
-                                let q = 0
-                                for (let i = 0; i < this.suitableMovies.length; i++) {
-                                    if (this.suitableMovies[i].id === id) {q++}
-                                }
-                                if (q === 0) {
-                                    this.suitableMovies.push(filmsArr[i])
-                                }
-                            } else {
-                                this.suitableMovies.push(filmsArr[i])
-                            }
-                        } else if (filmsArr[i].genre === this.currentFilm.genre2 &&
-                        filmsArr[i].genre2 === this.currentFilm.genre &&
-                        id !== this.currentFilm.id) {
-                            if (this.suitableMovies) {
-                                let q = 0
-                                for (let i = 0; i < this.suitableMovies.length; i++) {
-                                    if (this.suitableMovies[i].id === id) {q++}
-                                }
-                                if (q === 0) {
-                                    this.suitableMovies.push(filmsArr[i])
-                                }
-                            } else {
-                                this.suitableMovies.push(filmsArr[i])
-                            }
-                        }
-                    }
-                    for (let i = 0; i < filmsArr.length; i++) {
-                        let id = filmsArr[i].id
-                        if (filmsArr[i].genre === this.currentFilm.genre ||
-                        filmsArr[i].genre === this.currentFilm.genre2 ||
-                        filmsArr[i].genre2 === this.currentFilm.genre ||
-                        filmsArr[i].genre2 === this.currentFilm.genre2 &&
-                        id !== this.currentFilm.id) {
-                            if (this.suitableMovies) {
-                                let q = 0
-                                for (let i = 0; i < this.suitableMovies.length; i++) {
-                                    if (this.suitableMovies[i].id === id) {q++}
-                                }
-                                if (q === 0) {
-                                    this.suitableMovies.push(filmsArr[i])
-                                }
-                            } else {
-                                this.suitableMovies.push(filmsArr[i])
-                            }
-                        }
-                    }
+                    this.getSuitablesByGenre(filmsArr)
                 } else {
-                    for (let i = 0; i < filmsArr.length; i++) {
-                        let id = filmsArr[i].id
-                        if (filmsArr[i].genre === this.currentFilm.genre &&
-                        filmsArr[i].genre2 === this.currentFilm.genre2 &&
-                        id !== this.currentFilm.id) {
-                            if (this.suitableMovies) {
-                                let q = 0
-                                for (let i = 0; i < this.suitableMovies.length; i++) {
-                                    if (this.suitableMovies[i].id === id) {q++}
-                                }
-                                if (q === 0) {
-                                    this.suitableMovies.push(filmsArr[i])
-                                }
-                            } else {
-                                this.suitableMovies.push(filmsArr[i])
-                            }
-                        } else if (filmsArr[i].genre === this.currentFilm.genre2 &&
-                        filmsArr[i].genre2 === this.currentFilm.genre &&
-                        id !== this.currentFilm.id) {
-                            if (this.suitableMovies) {
-                                let q = 0
-                                for (let i = 0; i < this.suitableMovies.length; i++) {
-                                    if (this.suitableMovies[i].id === id) {q++}
-                                }
-                                if (q === 0) {
-                                    this.suitableMovies.push(filmsArr[i])
-                                }
-                            } else {
-                                this.suitableMovies.push(filmsArr[i])
-                            }
-                        }
-                    }
-                    for (let i = 0; i < filmsArr.length; i++) {
-                        let id = filmsArr[i].id
-                        if (filmsArr[i].genre === this.currentFilm.genre ||
-                        filmsArr[i].genre === this.currentFilm.genre2 ||
-                        filmsArr[i].genre2 === this.currentFilm.genre ||
-                        filmsArr[i].genre2 === this.currentFilm.genre2 &&
-                        id !== this.currentFilm.id) {
-                            if (this.suitableMovies) {
-                                let q = 0
-                                for (let i = 0; i < this.suitableMovies.length; i++) {
-                                    if (this.suitableMovies[i].id === id) {q++}
-                                }
-                                if (q === 0) {
-                                    this.suitableMovies.push(filmsArr[i])
-                                }
-                            } else {
-                                this.suitableMovies.push(filmsArr[i])
-                            }
-                        }
-                    }
+                    this.getSuitablesByGenre(filmsArr)
                 }
-            } 
+            }
 
             if (this.currentFilm.reviews) {
                 let unsorted = Object.values(this.currentFilm.reviews)
@@ -302,6 +190,60 @@ export default {
         }
     },
     methods: {
+        getSuitablesByGenre(filmsArr) {
+            for (let i = 0; i < filmsArr.length; i++) {
+                let id = filmsArr[i].id
+                if (filmsArr[i].genre === this.currentFilm.genre &&
+                filmsArr[i].genre2 === this.currentFilm.genre2 &&
+                id !== this.currentFilm.id) {
+                    if (this.suitableMovies) {
+                        let q = 0
+                        for (let i = 0; i < this.suitableMovies.length; i++) {
+                            if (this.suitableMovies[i].id === id) {q++}
+                        }
+                        if (q === 0) {
+                            this.suitableMovies.push(filmsArr[i])
+                        }
+                    } else {
+                        this.suitableMovies.push(filmsArr[i])
+                    }
+                } else if (filmsArr[i].genre === this.currentFilm.genre2 &&
+                filmsArr[i].genre2 === this.currentFilm.genre &&
+                id !== this.currentFilm.id) {
+                    if (this.suitableMovies) {
+                        let q = 0
+                        for (let i = 0; i < this.suitableMovies.length; i++) {
+                            if (this.suitableMovies[i].id === id) {q++}
+                        }
+                        if (q === 0) {
+                            this.suitableMovies.push(filmsArr[i])
+                        }
+                    } else {
+                        this.suitableMovies.push(filmsArr[i])
+                    }
+                }
+            }
+            for (let i = 0; i < filmsArr.length; i++) {
+                let id = filmsArr[i].id
+                if (filmsArr[i].genre === this.currentFilm.genre ||
+                filmsArr[i].genre === this.currentFilm.genre2 ||
+                filmsArr[i].genre2 === this.currentFilm.genre ||
+                filmsArr[i].genre2 === this.currentFilm.genre2 &&
+                id !== this.currentFilm.id) {
+                    if (this.suitableMovies) {
+                        let q = 0
+                        for (let i = 0; i < this.suitableMovies.length; i++) {
+                            if (this.suitableMovies[i].id === id) {q++}
+                        }
+                        if (q === 0) {
+                            this.suitableMovies.push(filmsArr[i])
+                        }
+                    } else {
+                        this.suitableMovies.push(filmsArr[i])
+                    }
+                }
+            }
+        },
         rateFilm () {
             if (this.$store.state.user) {
                 this.showModalRate = true
@@ -389,30 +331,5 @@ span, .rated, .review-head {
 }
 .wrapper-burgundy {
     background-color: $burgundy;
-}
-.movie-item {
-    margin-left: .3vw;
-    text-decoration: none;
-    width: 100%;
-    &:hover {
-        background-color: $black-light;
-    }
-}
-.title-small {
-    font-weight: bold;
-    color: $toxic-green;
-    margin-left: .5vw;
-    @media (max-width: 1199px) {
-        font-size: 1.3vw;
-    }
-    @media (max-width: 991px) {
-        font-size: 1.5vw;
-    }
-    @media (max-width: 767px) {
-        font-size: 2.3vw;
-    }
-    @media (max-width: 575px) {
-        font-size: 3.15vw;
-    }
 }
 </style>

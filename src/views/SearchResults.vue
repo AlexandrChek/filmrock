@@ -33,7 +33,7 @@
         <PageNumbers v-for="n in pages" :key="n" @click="changePage(n)">
             <div>
                 <div v-if="n === currentPage" id="arrow-up">&#9650;</div>
-                <div v-else id="void">A</div>
+                <div v-else id="void">.</div>
             </div>
             <div :class="{'current-number': n === currentPage}">{{n}}</div>
         </PageNumbers>

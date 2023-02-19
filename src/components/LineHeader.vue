@@ -21,6 +21,7 @@ p {
   color: $burgundy;
   @media (max-width: 991px) {
     font-size: 18px;
+    letter-spacing: 4px;
   }
   @media (max-width: 767px) {
       font-size: 17px;

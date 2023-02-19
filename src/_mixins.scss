@@ -14,7 +14,7 @@
     &:hover {
         opacity: .8;
         color: $toxic-green;
-        #{$side}: -0.9vw;
+        #{$side}: -1vw;
     }
     @media (max-width: 1199px) {
         font-size: 27px;
@@ -23,7 +23,7 @@
         font-size: 26px;
         #{$side}: -1.7vw;
         &:hover {
-            #{$side}: -1.4vw;
+            #{$side}: -1.5vw;
         }
     }
     @media (max-width: 767px) {

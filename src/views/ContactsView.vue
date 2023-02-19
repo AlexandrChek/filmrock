@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="p-3 offer">
-    <div class="mb-3">Making websites</div>
+    <div>Making websites</div>
     <div>Adaptive layout based on Vue.js & Bootstrap</div>
   </div>
   <div class="d-inline-flex justify-content-center w-100 my-4">
@@ -61,7 +61,6 @@ export default {
   width: 100%;
 }
 .gmt-3 {
-  display: -webkit-flex;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -70,10 +69,13 @@ export default {
   font-size: 20px;
   color: $toxic-green;
 }
-.offer {
+.offer div {
   text-align: center;
   font-size: 20px;
   letter-spacing: 5px;
+  margin: 5px 0;
+  line-height: 2.5;
+  background: radial-gradient(red 3%, black 65%);
 }
 @media (max-width: 1199px) {
   .tel-wrapper {
@@ -90,26 +92,36 @@ export default {
   .gmt-3, .gmt-2 {
     margin: 0 auto;
   }
+  .offer div {
+    background: radial-gradient(red 3%, black 79%);
+  }
 }
 @media (max-width: 767px) {
   .gmt-3 {
     flex-direction: column;
   }
+  .offer div {
+    margin: 9px 0;
+    padding: 0 25px;
+    letter-spacing: 3.5px;
+    line-height: 2;
+    background: radial-gradient(red 1%, black 81%);
+  }
 }
 @media (max-width: 575px) {
   .tel-wrapper {
-  padding: 20px 0 20px;
-}
+    padding: 20px 0 20px;
+  }
   .contacts {
     font-size: 5.2vw;
     letter-spacing: 1vw;
   }
   .time-season {
-  font-size: 4.7vw;
-}
-  .offer {
-  font-size: 4vw;
-  letter-spacing: .7vw;
-}
+    font-size: 4.7vw;
+  }
+  .offer div {
+    font-size: 3.9vw;
+    letter-spacing: .7vw;
+  }
 }
 </style>

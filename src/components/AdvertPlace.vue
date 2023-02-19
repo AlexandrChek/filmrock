@@ -71,7 +71,12 @@ export default {
 }
 @-o-keyframes falling {
 	0% {transform: translate(0, 0);}
-	85% {transform: translate(0, 400%);}
+	85% {transform: translate(0, 130%);}
+	100% {transform: rotate(30deg);}
+}
+@-moz-keyframes falling {
+	0% {transform: translate(0, 0);}
+	85% {transform: translate(0, 130%);}
 	100% {transform: rotate(30deg);}
 }
 
