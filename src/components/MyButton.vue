@@ -1,5 +1,5 @@
 <template>
-    <button class="rounded">
+    <button>
         <slot></slot>
     </button>
 </template>
@@ -22,7 +22,8 @@ button {
     font-size: 1.2vw;
     letter-spacing: .07vw;
     word-spacing: .35vw;
-    border-color: $dark-burgundy;
+    border-radius: 7px;
+    border: 2px solid $dark-burgundy;
     box-shadow: inset 0px -1.5px 3px 3px $dark-burgundy;
     &:hover {
         color: $backlight;

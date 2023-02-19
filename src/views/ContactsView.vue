@@ -18,7 +18,7 @@
       <div class="time-season">winter time - <span class="contacts">GMT+2</span></div>
     </div>
   </div>
-  <div class="p-3 offer">
+  <div class="offer">
     <div>Making websites</div>
     <div>Adaptive layout based on Vue.js & Bootstrap</div>
   </div>
