@@ -4,7 +4,7 @@
       <div class="col-md-4 col-sm-4 col-4 p-0">
         <LogoType/>
       </div>
-      <div class="col-md-1 col-sm-5 col-5 px-0" v-if="$store.state.user">
+      <div class="col-md-1 col-sm-5 col-5 px-0 d-flex flex-column justify-content-center" v-if="$store.state.user">
         <RegUser/>
       </div>
       <div class="col-md-7 col-sm-3 col-3 d-inline-flex justify-content-center menu-wrapper">
@@ -50,8 +50,7 @@
 }
 @media (max-width: 991px) {
   .menu-wrapper {
-    padding-left: 24px;
-    padding-right: 0;
+    padding: 0 0 0 24px;
   }
 }
 </style>

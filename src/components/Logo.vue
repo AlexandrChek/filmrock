@@ -25,7 +25,11 @@ img {
         width: calc(20px + 3vw);
     }
     @media (max-width: 767px) {
-        margin-left: 16px;
+        margin-left: 17px;
+    }
+    @media (max-width: 575px) {
+        width: calc(16px + 4vw);
+        margin-left: 15px;  
     }
 }
 p {
@@ -40,7 +44,7 @@ p {
         font-size: calc(20px + 3vw);
     }
     @media (max-width: 575px) {
-        font-size: calc(15px + 4vw);
+        font-size: calc(14px + 4vw);
     }
 }
 </style>

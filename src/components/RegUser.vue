@@ -1,15 +1,13 @@
 <template>
-    <div class="d-flex flex-column w-100">
-        <div class="user-wrapper" @click="getExitButton">
-            <img src="../assets/user.png" alt="User" class="rounded-circle">
-            <div class="text-center user">{{$store.state.user}}</div>
+    <div class="text-center user-wrapper" @click="getExitButton">
+        <img src="../assets/user.png" alt="User" class="rounded-circle">
+        <div class="text-center user">{{$store.state.user}}</div>
+    </div>
+    <div class="rounded exit-button" v-if="exitButton">
+        <div class="d-flex justify-content-end">
+            <p class="rounded cross" @click="removeButton">&#10060;</p>
         </div>
-        <div class="rounded exit-button" v-if="exitButton">
-            <div class="d-flex justify-content-end">
-                <p class="rounded cross" @click="removeButton">&#10060;</p>
-            </div>
-            <MyButton @click="logOut" id="exit">Log Out</MyButton>
-        </div>
+        <MyButton @click="logOut" id="exit">Log Out</MyButton>
     </div>
 </template>
 
@@ -43,8 +41,6 @@ export default {
 @import '../variables';
 
 .user-wrapper {
-    width: 49%;
-    margin: 10% 0 0 25.5%;
     cursor: pointer;
     &:hover img {
         opacity: 1;
@@ -54,8 +50,8 @@ export default {
     }
 }
 img {
-    width: 100%;
-    min-width: 21px;
+    width: calc(25px + 1.21vw);
+    max-width: 100%;
     opacity: .7;
 }
 .user {
@@ -67,7 +63,7 @@ img {
     background-color: black;
     z-index: 3;
     position: absolute;
-    top: calc(29px + 4.3vw);
+    top: calc(60px + 1.8vw);
     left: 33.45vw;
 }
 .cross {
@@ -90,6 +86,7 @@ img {
     }
     .exit-button {
         left: 32.45vw;
+        top: calc(50px + 2.1vw);
     }
 }
 @media (max-width: 991px) {
@@ -97,7 +94,7 @@ img {
         font-size: 13px;
     }
     .exit-button {
-        top: calc(24px + 4.1vw);
+        top: calc(42px + 2.1vw);
         left: 31.37vw;
     }
     .cross {
@@ -105,22 +102,20 @@ img {
     }
 }
 @media (max-width: 767px) {
-    .user-wrapper {
-        width: 12%;
-        margin: 2.5px 0 0 44%;
-    }
     .user {
         font-size: 12px;
     }
     .exit-button {
-        top: calc(15px + 5.5vw);
-        left: 46.47vw;
+        left: 46.45vw;
     }
     .cross {
         font-size: 13px; 
     }
 }
 @media (max-width: 575px) {
+    img {
+        width: calc(8.5px + 4vw);
+    }
     .exit-button {
         top: 2px;
         left: 45vw;
