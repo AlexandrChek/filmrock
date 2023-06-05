@@ -103,7 +103,7 @@ img {
 }
 @media (max-width: 767px) {
     .user {
-        font-size: 12px;
+        font-size: calc(8px + 0.76vw);
     }
     .exit-button {
         left: 46.45vw;

@@ -26,7 +26,7 @@ export default {
         background-color: $black-light;
     }
     div {
-        border-radius: 4px;
+        border-radius: 3.5px;
         background-color: $black-light;
     }
     &:active p, &:active div {
@@ -45,7 +45,7 @@ export default {
     .btn-wrapper {
         width: 20%;
         div {
-            font-size: calc(10px + 1vw);
+            font-size: calc(9.5px + 0.95vw);
         }
     }
 }
