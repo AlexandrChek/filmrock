@@ -1,5 +1,5 @@
 <template>
-    <LineHeader class="text-center">Registration</LineHeader>
+    <LineHeader class="head-center">Registration</LineHeader>
     <div class="d-flex justify-content-center">
         <form>
             <div class="mb-3">
@@ -131,6 +131,9 @@ export default {
 @import '../extends';
 @import '../variables';
 
+.head-center {
+  @extend %head-txt-center;
+}
 form {
     @extend %reg-block-size;
 }

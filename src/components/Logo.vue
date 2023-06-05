@@ -15,36 +15,32 @@ export default {
 @import '../variables';
 
 img {
-    width: 70px;
+    width: calc(35px + 2.5vw);
     margin-left: 40px;
-    @media (max-width: 1399px) {
-        width: 60px;
-    }
     @media (max-width: 1199px) {
-        width: 50px;
         margin-left: 30px;
+        width: calc(30px + 2.5vw);
     }
     @media (max-width: 991px) {
-        width: 43px;
+        width: calc(20px + 3vw);
     }
     @media (max-width: 767px) {
-        width: 37px;
-        margin-left: 17px;
-    }
-    @media (max-width: 575px) {
-        width: 32px;
+        margin-left: 16px;
     }
 }
 p {
     font-family: Impact, fantasy;
-    font-size: 4vw;
+    font-size: calc(35px + 2.5vw);
     color: $toxic-green;
-    margin: 0 2vw;
-    @media (max-width: 767px) {
-        font-size: 5vw; 
+    margin: 0 1.3vw;
+    @media (max-width: 1199px) {
+        font-size: calc(30px + 2.5vw);
+    }
+    @media (max-width: 991px) {
+        font-size: calc(20px + 3vw);
     }
     @media (max-width: 575px) {
-        font-size: 7vw;
+        font-size: calc(15px + 4vw);
     }
 }
 </style>

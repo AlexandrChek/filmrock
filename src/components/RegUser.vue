@@ -44,16 +44,8 @@ export default {
 
 .user-wrapper {
     width: 49%;
-    margin-left: 25.5%;
+    margin: 10% 0 0 25.5%;
     cursor: pointer;
-    img {
-        width: 100%;
-        opacity: .7;
-    }
-    .user {
-        font-size: 15px;
-        color: white;
-    }
     &:hover img {
         opacity: 1;
     }
@@ -61,12 +53,21 @@ export default {
         color: $toxic-green;
     }
 }
+img {
+    width: 100%;
+    min-width: 21px;
+    opacity: .7;
+}
+.user {
+    font-size: 15px;
+    color: white;
+}
 .exit-button {
     border: 1px solid wheat;
     background-color: black;
     z-index: 3;
     position: absolute;
-    top: calc(19px + 4.3vw);
+    top: calc(29px + 4.3vw);
     left: 33.45vw;
 }
 .cross {
@@ -80,7 +81,6 @@ export default {
 }
 @media (max-width: 1399px) {
     .exit-button {
-        top: 5.85vw;
         left: 33.1vw;
     }
 }
@@ -89,7 +89,6 @@ export default {
         font-size: 14px;
     }
     .exit-button {
-        top: calc(18px + 4.7vw);
         left: 32.45vw;
     }
 }
@@ -98,6 +97,7 @@ export default {
         font-size: 13px;
     }
     .exit-button {
+        top: calc(24px + 4.1vw);
         left: 31.37vw;
     }
     .cross {
@@ -107,13 +107,13 @@ export default {
 @media (max-width: 767px) {
     .user-wrapper {
         width: 12%;
-        margin-left: 44%;
+        margin: 2.5px 0 0 44%;
     }
     .user {
         font-size: 12px;
     }
     .exit-button {
-        top: calc(16px + 6vw);
+        top: calc(15px + 5.5vw);
         left: 46.47vw;
     }
     .cross {
@@ -121,12 +121,8 @@ export default {
     }
 }
 @media (max-width: 575px) {
-    .user-wrapper {
-        width: 14%;
-        margin-left: 43%;
-    }
     .exit-button {
-        top: 5px;
+        top: 2px;
         left: 45vw;
     }
     #exit {

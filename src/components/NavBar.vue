@@ -5,12 +5,8 @@
     </nav>
   </div>
   <div class="burger">
-    <div v-if="burger" class="burger-lines">
-      <p @click="openMenu">&#9776;</p>
-    </div>
-    <div v-else class="cross">
-      <p @click="closeMenu">&#10060;</p>
-    </div>
+    <p v-if="burger" class="burger-lines" @click="openMenu">&#9776;</p>
+    <p v-else class="cross" @click="closeMenu">&#10060;</p>
   </div>
 </template>
 
@@ -71,9 +67,7 @@ nav a {
   display: none;
   position: absolute;
   right: 3%;
-}
-p {
-  margin: 0px;
+  top: 28%;
 }
 .vert {
   display: none;
@@ -81,15 +75,19 @@ p {
   align-items: flex-start;
   position: absolute;
   right: calc(3.5% + 20px);
-  top: 9px;
+  top: 28%;
   z-index: 2;
   border: .1px solid wheat;
+}
+p {
+  margin: 0;
 }
 .burger-lines {
   color: $toxic-green;
   background-color: black;
   font-weight: bold;
   font-size: 31px;
+  line-height: calc(21px + 1vw);
 }
 .cross {
   color: red;
@@ -129,9 +127,6 @@ p {
   }
 }
 @media (max-width: 575px) {
-  .burger-lines {
-    font-size: 28px;
-  }
   .vert {
     right: calc(4% + 20px);
   }

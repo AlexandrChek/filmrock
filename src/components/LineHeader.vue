@@ -27,9 +27,9 @@ p {
       font-size: 17px;
   }
   @media (max-width: 575px) {
-      font-size: 3.5vw;
-      letter-spacing: 3.5px;
-      padding-left: 13px;
+      font-size: calc(8px + 1.8vw);
+      letter-spacing: 3px;
+      padding-left: 12px;
   }
 }
 </style>

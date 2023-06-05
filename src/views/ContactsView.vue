@@ -1,10 +1,10 @@
 <template>
-  <LineHeader class="text-center">Contacts</LineHeader>
+  <LineHeader class="head-center">Contacts</LineHeader>
   <div class="tel-wrapper">
-    <div class="contacts tel">
+    <div class="contacts">
       Telephone: +38(066)9072641
     </div>
-    <div class="d-inline-flex contacts tel">
+    <div class="d-flex contacts">
       <MyMessengers/>
     </div>
   </div>
@@ -12,7 +12,9 @@
   <div class="p-3 gmt-wrapper">
     <div class="gmt-3">
       <span class="contacts">Timezone:&ensp;</span>
-      <div class="time-season">daylight savings time - <span class="contacts">GMT+3,&ensp;</span></div>
+      <div class="time-season">
+        daylight savings time - <span class="contacts">GMT+3,&ensp;</span>
+      </div>
     </div>
     <div class="gmt-2 mb-2">
       <div class="time-season">winter time - <span class="contacts">GMT+2</span></div>
@@ -20,7 +22,7 @@
   </div>
   <div class="offer">
     <div>Making websites</div>
-    <div>Adaptive layout based on Vue.js & Bootstrap</div>
+    <div>Adaptive layout based on Vue.js or JS</div>
   </div>
   <div class="d-inline-flex justify-content-center w-100 my-4">
     <AdvertPlace></AdvertPlace>
@@ -44,6 +46,11 @@ export default {
 
 <style scoped lang="scss">
 @import '../variables';
+@import '../extends';
+
+.head-center {
+  @extend %head-txt-center;
+}
 .tel-wrapper {
   @extend .gmt-3;
   width: 100%;
@@ -72,16 +79,16 @@ export default {
 .offer div {
   text-align: center;
   font-size: 20px;
-  letter-spacing: 5px;
+  letter-spacing: 3.5px;
   margin: 5px 0;
   line-height: 2.5;
-  background: radial-gradient(red 3%, black 65%);
+  background: radial-gradient(red 1%, black 81%);
 }
 @media (max-width: 1199px) {
   .tel-wrapper {
     flex-direction: column;
   }
-  .tel {
+  .tel-wrapper div {
     margin: 0 auto;
   }
 }
@@ -92,20 +99,13 @@ export default {
   .gmt-3, .gmt-2 {
     margin: 0 auto;
   }
-  .offer div {
-    background: radial-gradient(red 3%, black 79%);
-  }
 }
 @media (max-width: 767px) {
   .gmt-3 {
     flex-direction: column;
   }
   .offer div {
-    margin: 9px 0;
-    padding: 0 25px;
-    letter-spacing: 3.5px;
-    line-height: 2;
-    background: radial-gradient(red 1%, black 81%);
+    line-height: 2.7;
   }
 }
 @media (max-width: 575px) {
@@ -120,8 +120,8 @@ export default {
     font-size: 4.7vw;
   }
   .offer div {
-    font-size: 3.9vw;
-    letter-spacing: .7vw;
+    font-size: calc(8px + 1.8vw);
+    letter-spacing: .3vw;
   }
 }
 </style>
