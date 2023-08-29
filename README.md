@@ -1,4 +1,4 @@
-# ![FR](/dist/favic.png) FilmRock
+# ![FR](/dist/favicons/favicon.svg) FilmRock
 
 ## Description
 
