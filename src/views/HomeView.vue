@@ -110,36 +110,20 @@ export default {
     onValue(filmsObj, (snapshot) => {
       let finalObj = snapshot.val()
       this.filmsArr = Object.values(finalObj)
-      let filmsArr = this.filmsArr
-      let recentFilms = []
-      let ratedFilms = []
-      let currYear = new Date().getFullYear()
-      for (let i = 0; i < filmsArr.length; i++) {
-        if (filmsArr[i].year === currYear) {
-          recentFilms.push(filmsArr[i])
-        }
-        if (filmsArr[i].rating) {
-          ratedFilms.push(filmsArr[i])
-        }
-      }
-      if (recentFilms.length < 10) {
-        let r = 10 - recentFilms.length
-        let lastYear = []
-        for (let i = 0; i < filmsArr.length; i++) {
-          if (filmsArr[i].year === currYear - 1) {
-            lastYear.push(filmsArr[i])
-          }
-        }
-        lastYear = lastYear.sort((a,b) => {
-          return b.id - a.id
-        }).slice(0, r)
-        this.newMovies = [...recentFilms, ...lastYear]
-      } else {
-        this.newMovies = recentFilms.sort((a,b) => {
-          return b.id - a.id
-        }).slice(0, 10)
-      }
+      
+      let sortedByYear = this.filmsArr.sort((a,b) => {
+        return b.year - a.year
+      }).slice(0, 10)
+      this.newMovies = sortedByYear.sort((a,b) => {
+        return b.id - a.id
+      })
 
+      let ratedFilms = []
+      for (let i = 0; i < this.filmsArr.length; i++) {
+        if (this.filmsArr[i].rating) {
+          ratedFilms.push(this.filmsArr[i])
+        }
+      }
       this.topMovies = ratedFilms.sort((a,b) => {
         return b.rating - a.rating
       }).slice(0, 10)
