@@ -47,7 +47,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import MyButton from '../components/MyButton.vue'
 import NotFound from '../components/NotFound.vue'
 import MySelect from '../components/MySelect.vue'
@@ -114,16 +113,38 @@ export default {
       let sortedByYear = this.filmsArr.sort((a,b) => {
         return b.year - a.year
       }).slice(0, 10)
-      this.newMovies = sortedByYear.sort((a,b) => {
-        return b.id - a.id
-      })
+      let newYears = []
+      sortedByYear.forEach(item => {newYears.push(item.year)})
+      let uniqueYears = [...new Set(newYears)]
+      if(uniqueYears.length === 1) {
+        this.newMovies = sortedByYear.sort((a,b) => {
+          return b.id - a.id
+        })
+      } else {
+        uniqueYears.forEach(year => {
+          let yearItems = []
+          sortedByYear.forEach(item => {
+            if(item.year === year) {
+              yearItems.push(item)
+            }
+          })
+          let sortedYearItems = yearItems.sort((a,b) => {
+            return b.id - a.id
+          })
+          if(!this.newMovies.length) {
+            this.newMovies = [...sortedYearItems]
+          } else {
+            this.newMovies = [...this.newMovies, ...sortedYearItems]
+          }
+        })
+      }
 
       let ratedFilms = []
-      for (let i = 0; i < this.filmsArr.length; i++) {
-        if (this.filmsArr[i].rating) {
-          ratedFilms.push(this.filmsArr[i])
+      this.filmsArr.forEach(item => {
+        if(item.rating) {
+          ratedFilms.push(item)
         }
-      }
+      })
       this.topMovies = ratedFilms.sort((a,b) => {
         return b.rating - a.rating
       }).slice(0, 10)
