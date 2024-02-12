@@ -13,13 +13,13 @@
 export default {
     name: 'ModalRegWarning',
     methods: {
-        logIn () {
+        logIn() {
             this.$router.push('/logIn')
         },
-        register () {
+        register() {
             this.$router.push('/registration')
         },
-        close () {
+        close() {
             this.$emit('closewarning')
         }
     }
@@ -35,13 +35,13 @@ p {
     @extend %modal-p;
 }
 button {
-    width: 25%;
+    width: 27%;
+    padding: 5px 0;
     @media (max-width: 767px) {
-        width: 27%;
+        width: 29%;
     }
     @media (max-width: 575px) {
         font-size: 14px;
-        padding: 3px 2px;
     }
 }
 </style>

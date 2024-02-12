@@ -1,90 +1,99 @@
 <template>
-    <div>
-        <label for="year" class="mt-5 mb-3">Year</label>
-        <input type="number" id="year" v-model="year" @blur="handleYear">
-        /
-        <div>
-            <div class="mb-1 period">Period:</div>
-            <div class="d-inline-flex">
-                <div class="d-inline-flex">
-                    <label for="from">from</label>
-                    <input type="number" id="from" v-model="from" @blur="handlePeriod">
-                </div>
-                <div class="d-inline-flex to-wrapper">
-                    <label for="to">to</label>
-                    <input type="number" id="to" v-model="to" @blur="handlePeriod">
-                </div>
+    <div class="period-wrapper">
+        <label>Year</label>
+        <InputYear id="year" @valueEntered="updateYear"/>&ensp; /
+        <div class="period">Period:</div>
+        <div class="d-inline-flex">
+            <div class="d-inline-flex from-wrapper">
+                <label>from</label>
+                <InputYear id="from" @valueEntered="updateFrom"/>
             </div>
+            <label>to</label>
+            <InputYear id="to" @valueEntered="updateTo"/>
         </div>
-    </div>
-    <ModalInfo v-if="modFromMoreThanTo" @pressclose="closeModFromMoreThanTo">
-        An opening year must be more than closing year.
-    </ModalInfo>
-    <ModalInfo v-if="modUnfilledFrom" @pressclose="closeModUnfilledFrom">
-        If you entering a period, an opening year must be filled (xxxx).
+    </div>        
+    <ModalInfo v-if="modalShown" @pressclose="closeModal">
+        {{ modalMessage }}
     </ModalInfo>
 </template>
 
 <script>
+import InputYear from './InputYear.vue'
 import ModalInfo from './ModalInfo.vue'
 
 export default {
     name: 'SearchPeriod',
-    components: {ModalInfo},
-    data () {
+    components: {
+        InputYear,
+        ModalInfo
+    },
+    data() {
         return {
             year: null,
             from: null,
             to: null,
-            modFromMoreThanTo: false,
-            modUnfilledFrom: false,
+            modalShown: false,
+            modalMessage: '',
             currentYear: new Date().getFullYear()
         }
     },
     emits: ['yearEntered', 'periodEntered'],
     methods: {
-        handleYear () {
-            let from = document.querySelector('#from')
-            let to = document.querySelector('#to')
+        updateYear(year) {
+            this.year = year
+            this.handleYear()
+        },
+        updateFrom(from) {
+            this.from = from
+            this.handlePeriod()
+        },
+        updateTo(to) {
+            this.to = to
+            this.handlePeriod()
+        },
+        handleYear() {
+            const from = document.querySelector('#from')
+            const to = document.querySelector('#to')
+
             if(this.year) {
                 from.disabled = true
                 to.disabled = true
                 this.$emit('yearEntered', this.year)
             } else {
                 this.$emit('yearEntered', 0)
-                if (from.disabled) {
+                if(from.disabled) {
                     from.removeAttribute('disabled')
                     to.removeAttribute('disabled')
                 }
             }
         },
-        handlePeriod () {
-            let year = document.querySelector('#year')
-            if (this.from && this.to) {
+        handlePeriod() {
+            const year = document.querySelector('#year')
+
+            if(this.from && this.to) {
                 year.setAttribute('disabled', true)
-                if (this.from > this.to) {
-                    this.modFromMoreThanTo = true
+                if(this.from > this.to) {
+                    this.modalMessage = 'The ending year must be more than starting year.'
+                    this.modalShown = true
                 } 
                 this.$emit('periodEntered', this.from, this.to)
-            } else if (!this.from && this.to) {
-                this.modUnfilledFrom = true
+            } else if(!this.from && this.to) {
+                this.modalMessage = 'If you enter a period, the starting year must be filled (xxxx).'
+                this.modalShown = true
                 year.setAttribute('disabled', true)
                 this.$emit('periodEntered', 0, 0)
-            } else if (this.from && !this.to) {
+            } else if(this.from && !this.to) {
                 year.setAttribute('disabled', true)
                 this.$emit('periodEntered', this.from, this.currentYear)
             } else {
                 this.$emit('periodEntered', 0, 0)
-                if (year.disabled) {
+                if(year.disabled) {
                     year.removeAttribute('disabled')
                 }
             }
         },
-        closeModFromMoreThanTo () {
-            this.modFromMoreThanTo = false
-        },
-        closeModUnfilledFrom () {
-            this.modUnfilledFrom = false
+        closeModal() {
+            this.modalShown = false
         }
     }
 }
@@ -92,48 +101,22 @@ export default {
 
 <style scoped lang="scss">
 @import '../variables';
+@import '../extends';
 
-input {
-    margin: 0 10px;
-    width: 6.7vw;
-    border-radius: 2px;
-    border: none;
-    &:focus {
-        outline: 3px solid $toxic-green;
-        background-color: $backlight;
+    .period-wrapper {
+        margin-bottom: 17px;
+        @media (max-width: 767px) and (min-width: 576px) {
+            margin: 0;
+        }
     }
-}
-.to-wrapper {
-    margin: 0 10px;
-}
-
-@media (max-width: 1199px) {
-    input {
-        width: 7.1vw;
+    label {
+        @extend %label-search;
     }
-    .to-wrapper {
-    margin: 0 9px;
+    .period {
+        margin: 12px 0 2px 0;
+        font-size: $search-label-f-size;
     }
-    label, input, .period {
-        font-size: 15px;
+    .from-wrapper {
+        margin-right: calc(20px + .12vw);
     }
-}
-@media (max-width: 991px) {
-    input {
-        width: 9.9vw;
-    }
-}
-@media (max-width: 767px) {
-    input {
-        width: 13.9vw;
-    }
-}
-@media (max-width: 575px) {
-    input {
-        width: 19vw;
-    }
-    label, input, .period {
-        font-size: smaller;
-    }
-}
 </style>

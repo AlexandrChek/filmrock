@@ -11,7 +11,7 @@
 export default {
     name: 'ModalInfo',
     methods: {
-        close () {
+        close() {
             this.$emit('pressclose')
         }
     }
@@ -27,7 +27,7 @@ p {
     @extend %modal-p;
 }
 button {
-    width: 25%;
+    width: 28%;
     @media (max-width: 991px) {
         width: 35%;
     }

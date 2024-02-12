@@ -54,19 +54,14 @@ input {
     text-align: center;
     color: blue;
     font-weight: 900;
-    font-size: 40px;
+    font-size: calc(27px + 1.2vw);
     margin-bottom: 1vw;
-    @media (max-width: 991px) {
-        font-size: 32px;
-    }
-    @media (max-width: 767px) {
-        font-size: 30px;  
-    }
 }
 button {
-    width: 27%;
+    width: 29%;
+    padding-inline: 4px;
     @media (max-width: 767px) {
-        width: 30%;
+        width: 33%;
     }
 }
 </style>

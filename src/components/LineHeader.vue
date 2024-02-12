@@ -12,23 +12,14 @@ export default {
 @import '../variables';
 
 p {
-  font-size: 21px;
+  font-size: calc(13.5px + .58vw);
   font-weight: 900;
-  letter-spacing: 4.5px;
+  letter-spacing: 1.2px;
   margin-bottom: 5px;
   padding-left: 20px;
   background-color: wheat;
   color: $burgundy;
-  @media (max-width: 991px) {
-    font-size: 18px;
-    letter-spacing: 4px;
-  }
-  @media (max-width: 767px) {
-      font-size: 17px;
-  }
   @media (max-width: 575px) {
-      font-size: calc(8px + 1.8vw);
-      letter-spacing: 3px;
       padding-left: 12px;
   }
 }

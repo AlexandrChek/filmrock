@@ -1,21 +1,37 @@
 <template>
-    <div class="d-inline-flex justify-content-center">
-        <router-link v-for="film in list" :to="'/' + film.id" :key="film" class="d-inline-flex movie-item">
-            <div class="w-100">
-                <img :src="film.src" :alt="film.title" class="img-fluid w-100">
-                <div class="title-small">{{film.title}}</div>
-                <div class="genres">
-                    {{film.genre}}, {{film.genre2}}
+    <div class="d-inline-flex align-items-center justify-content-center w-100">
+        <ArrowLeftBtn @click="goLeft" v-if="position"/>
+        <div class="d-inline-flex justify-content-center">
+            <router-link v-for="film in list" :to="'/' + film.id" :key="film.id" class="d-inline-flex movie-item">
+                <div class="w-100">
+                    <img :src="film.src" :alt="film.title" class="img-fluid w-100">
+                    <div class="title-small">{{film.title}}</div>
+                    <div class="genres">
+                        {{film.genre}}, {{film.genre2}}
+                    </div>
                 </div>
-            </div>
-        </router-link>
+            </router-link>
+        </div>
+        <ArrowRightBtn @click="goRight" v-if="rightArrowShown"/>
     </div>
 </template>
 
 <script>
+import ArrowRightBtn from './ArrowRightBtn.vue'
+import ArrowLeftBtn from './ArrowLeftBtn.vue'
+
 export default {
     name: 'MovieLine',
-    props: ['list']
+    props: ['list', 'position', 'rightArrowShown'],
+    components: {ArrowRightBtn, ArrowLeftBtn},
+    methods: {
+        goLeft() {
+            this.$emit('leftArrowClicked')
+        },
+        goRight() {
+            this.$emit('rightArrowClicked')
+        }
+    }
 }
 </script>
 
@@ -24,15 +40,15 @@ export default {
 
 .movie-item {
     box-sizing: content-box;
-    margin-left: .3vw;
+    margin-left: .35vw;
     text-decoration: none;
     width: 100%;
-    animation: scroll .3s linear;
+    animation: appearance .3s linear;
     &:hover {
         background-color: $black-light;
     }
     @media (max-width: 767px) {
-        margin-left: .7vw;
+        margin-left: .78vw;
     }
 }
 .title-small {
@@ -59,7 +75,7 @@ export default {
     }
 }
 
-@keyframes scroll {
+@keyframes appearance {
     0% {scale: 0;}
     100% {scale: 1;}
 }

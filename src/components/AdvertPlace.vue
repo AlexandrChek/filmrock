@@ -13,132 +13,85 @@
 
 <script>
 export default {
-    name: 'AdvertPlace'
+    name: 'AdvertPlace',
+	mounted() {
+		this.$router.afterEach(
+			this.$nextTick(() => {
+				const timer = setInterval(() => {
+					if(document.querySelector('.animation').offsetWidth) {
+						this.setFontSize()
+						clearInterval(timer)
+					}
+				}, 10)
+			})
+		)
+		window.addEventListener('resize', this.setFontSize)
+	},
+	methods: {
+		setFontSize() {
+			const animation = document.querySelector('.animation')
+			const inscription = document.querySelector('#inscription')
+			inscription.style.fontSize = animation.offsetWidth * 0.064 + 'px'
+		}
+	}
 }
 </script>
 
-<style scoped>
-.animation {
-    position: relative;
-}
-.planet {
-    position: absolute;
-	left: 3px;
-	top: 0;
-}
-#planet {
-    border-radius: 100%;
-    width: 1.5vw;
-    animation: rotation 14s linear infinite;
-	transform-origin: 270% 120% 0;
-}
-.star {
-	position: absolute;
-	left: 7%;
-	top: 42%;
-}
-#star {
-	border-radius: 40%;
-	animation: fading 4s linear infinite;
-}
-#inscription {
-	position: absolute;
-	top: 0;
-	left: 31%;
-	height: 44.5%;
-	font-size: 1.5vw;
-	font-weight: bold;
-	animation: falling 5s linear infinite;
-}
-@keyframes rotation {
-	0% {transform: rotate(0deg);}
-	100% {transform: rotate(360deg);}
-}
-@keyframes fading {
-	0% {opacity: .2;}
-	50% {opacity: .75;}
-	100% {opacity: .2;}
-}
-@keyframes falling {
-	0% {transform: translate(0, 0);}
-	85% {transform: translate(0, 130%);}
-	100% {transform: rotate(30deg);}
-}
-@-webkit-keyframes falling {
-	0% {transform: translate(0, 0);}
-	85% {transform: translate(0, 130%);}
-	100% {transform: rotate(30deg);}
-}
-@-o-keyframes falling {
-	0% {transform: translate(0, 0);}
-	85% {transform: translate(0, 130%);}
-	100% {transform: rotate(30deg);}
-}
-@-moz-keyframes falling {
-	0% {transform: translate(0, 0);}
-	85% {transform: translate(0, 130%);}
-	100% {transform: rotate(30deg);}
-}
+<style scoped lang="scss">
+@import '../mixins';
 
-@media (max-width: 1399px) {
+	.animation {
+		position: relative;
+		@media (max-width: 767px) {
+			margin-top: 50px;
+		}
+	}
+	.planet {
+		position: absolute;
+		left: 8.5px;
+		top: 0;
+	}
+	#planet {
+		border-radius: 100%;
+		width: calc(12.5px + .585vw);
+		transform-origin: 240% 90% 0;
+		@include animation(rotation 14s linear infinite);
+		@media (max-width: 767px) {
+			width: calc(17px + .8vw);
+			transform-origin: 240% 170% 0;
+		}
+	}
+	.star {
+		position: absolute;
+		left: 7%;
+		top: 42%;
+	}
 	#star {
-		width: 80%;
+		border-radius: 40%;
+		@include animation(fading 4s linear infinite);
 	}
 	#inscription {
-		font-size: 1.46vw;
-	}
-}
-@media (max-width: 1199px) {
-	#star {
-		width: 75%;
-	}
-	#inscription {
-		font-size: 1.9vw;
-		font-stretch: condensed;
+		position: absolute;
+		top: 0;
+		left: 31%;
+		height: 15%;
+		margin: 0;
 		font-weight: bold;
-		letter-spacing: .5vw;
-		line-height: 1;
+		@include animation(falling 5s linear infinite);
 	}
-	#planet {
-		width: 1.7vw;
-		transform-origin: 270% 110% 0;
+
+	@include keyframes(rotation) {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(360deg);}
 	}
-}
-@media (max-width: 991px) {
-	#inscription {
-		font-size: 2.38vw;
-		letter-spacing: 0;
+	@include keyframes(fading) {
+		0% {opacity: .2;}
+		50% {opacity: .75;}
+		100% {opacity: .2;}
 	}
-	#planet {
-		width: 2.27vw;
+	@include keyframes(falling) {
+		0% {transform: translate(0, 0);}
+		85% {transform: translate(0, 400%);}
+		100% {transform: rotate(21deg);}
 	}
-}
-@media (max-width: 767px) {
-	.animation {
-		margin-top: 57px;
-	}
-	#planet {
-		width: 3.25vw;
-		transform-origin: 280% 50% 0;
-	}
-	#star {
-		width: 100%;
-	}
-	#inscription {
-		height: 47%;
-		font-size: 3.85vw;
-		font-stretch: normal;
-	}
-}
-@media (max-width: 575px) {
-	.animation {
-		margin-top: 78px;
-	}
-	#planet {
-		width: 4.45vw;
-	}
-	#inscription {
-		font-size: 4.9vw;
-	}
-}
 </style>

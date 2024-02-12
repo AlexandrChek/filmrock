@@ -1,6 +1,6 @@
 <template>
     <div class="m-1">
-        <InputReg type="text" placeholder="matrix" @enterValue="saveValue" ref="title"/>
+        <InputReg type="search" placeholder="matrix" @enterValue="saveValue" ref="title"/>
     </div>
     <div class="text-end mx-1">
         <MyButton @click="search">Search</MyButton>
@@ -17,22 +17,22 @@ export default {
         InputReg,
         MyButton
     },
-    data () {
+    data() {
         return {
             searchedValue: ''
         }
     },
     emits: [
         'gotTitleForAdwSearch',
-        'searchMovie'
+        'searchTitleClicked'
     ],
     methods: {
-        saveValue (val) {
+        saveValue(val) {
             this.searchedValue = val
             this.$emit('gotTitleForAdwSearch', val)
         },
-        search () {
-            this.$emit('searchMovie', this.searchedValue)
+        search() {
+            this.$emit('searchTitleClicked', this.searchedValue)
             this.$refs.title.cleanValue()
         }
     }

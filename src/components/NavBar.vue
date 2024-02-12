@@ -1,19 +1,21 @@
 <template>
-  <div class="horiz" :class="{'vert': isMenuActive}">
-    <nav v-for="item in menu" :key="item">
-      <router-link :to="item.to" class="rounded" @click="closeMenu">{{item.name}}</router-link> 
+  <div v-if="inlineMenu || isMenuActive" :class="{'horiz': inlineMenu, 'vert': !inlineMenu && isMenuActive}">
+    <nav v-for="item in menu" :key="item.name">
+      <router-link :to="item.to" class="rounded" @click="closeMenu">
+        {{item.name}}
+      </router-link> 
     </nav>
   </div>
-  <div class="burger">
-    <p v-if="burger" class="burger-lines" @click="openMenu">&#9776;</p>
-    <p v-else class="cross" @click="closeMenu">&#10060;</p>
-  </div>
+  <BurgerBtn :burgerShown="burgerShown" @linesClicked="openMenu" @crossClicked="closeMenu"/>
 </template>
 
 <script>
+import BurgerBtn from './BurgerBtn.vue'
+
 export default {
   name: 'NavBar',
-  data () {
+  components: {BurgerBtn},
+  data() {
     return {
       menu: [
         {to: "/", name: "Home"},
@@ -21,18 +23,26 @@ export default {
         {to: "/logIn", name: "Log In"},
         {to: "/registration", name: "Registration"}
       ],
+      inlineMenu: window.matchMedia('(min-width: 768px)').matches,
       isMenuActive: false,
-      burger: true
+      burgerShown: true
     }
   },
+  mounted() {
+    window.addEventListener('resize', () => {
+      this.inlineMenu = window.matchMedia('(min-width: 768px)').matches
+    })
+  },
   methods: {
-    openMenu () {
-      this.burger = false;
-      this.isMenuActive = true;
+    openMenu() {
+      this.isMenuActive = true
+      this.burgerShown = false
     },
-    closeMenu () {
-      this.burger = true;
-      this.isMenuActive = false;
+    closeMenu() {
+      if(!this.inlineMenu) {
+        this.isMenuActive = false
+        this.burgerShown = true
+      }
     }
   }
 }
@@ -42,7 +52,7 @@ export default {
 @import '../variables';
 
 nav a {
-  font-size: 2vw;
+  font-size: calc(3px + 1.79vw);
   letter-spacing: .2vw;
   font-weight: bold;
   color: white;
@@ -61,77 +71,30 @@ nav a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-left: 60px;
-}
-.burger {
-  display: none;
-  position: absolute;
-  right: 3%;
-  top: 28%;
 }
 .vert {
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   position: absolute;
-  right: calc(3.5% + 20px);
+  right: calc(4% + 20px);
   top: 28%;
   z-index: 2;
   border: .1px solid wheat;
 }
-p {
-  margin: 0;
-}
-.burger-lines {
-  color: $toxic-green;
-  background-color: black;
-  font-weight: bold;
-  font-size: 31px;
-  line-height: calc(21px + 1vw);
-}
-.cross {
-  color: red;
-  background-color: black;
-  font-size: 20px;
-}
 
-@media (max-width: 991px) {
-  .horiz {
-    margin-left: 10px;
-  }
-  nav a {
-  font-size: 2.1vw;
-  }
-}
 @media (max-width: 767px) {
-  .horiz {
-    display: none;
-  }
-  .vert {
-    display: flex;
-  }
-  .burger {
-    display: flex;
-  }
   nav a {
-    border: none;
-    font-size: 3.7vw;
-    padding: auto 1.5vw;
     display: block;
     margin: 0 .7vw;
+    padding: auto 1.5vw;
+    border: none;
+    font-size: calc(12px + 1.55vw);
   }
   nav {
     width: 100%;
     background-color: $black-light;
     border-bottom: .1px dotted wheat;
-  }
-}
-@media (max-width: 575px) {
-  .vert {
-    right: calc(4% + 20px);
-  }
-  nav a {
-    font-size: 4.9vw;
   }
 }
 </style>

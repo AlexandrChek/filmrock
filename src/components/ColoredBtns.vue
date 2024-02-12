@@ -24,21 +24,11 @@ export default {
 
 %buttons {
     color: black;
-    width: 12vw;
     text-align: center;
     font-weight: bold;
-    font-size: 20px;
+    font-size: calc(12px + .4vw);
+    padding: 1.5px calc(12px + 1.3vw) 1px;
     cursor: pointer;
-    @media (max-width: 1199px) {
-        font-size: 18.5px;
-    }
-    @media (max-width: 991px) {
-        font-size: 17px;
-    }
-    @media (max-width: 575px) {
-        width: 17vw;
-        font-size: 3.5vw;
-    }
 }
 .trailer-button {
     @extend %buttons;

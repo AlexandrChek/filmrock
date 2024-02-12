@@ -1,111 +1,70 @@
 <template>
-    <div class="d-flex justify-content-center">
-        <form>
-            <div class="mb-3">
-                <label for="userName">User name</label>
-                <InputReg type="text" id="userName" @enterValue="saveUserName"/>
-            </div>
-            <div class="mb-3">
-                <label for="password">Password</label>
-                <InputReg type="password" id="password" @enterValue="savePassword"/>
-            </div>
-            <button class="btn btn-primary mt-2" @click.prevent="logInUser">Log In</button>
-        </form>
-    </div>
-    <ModalInfo v-if="noUserOrPasswordMod" @pressclose="closeNoUserPassMod">
-        Enter both username and password, please!
-    </ModalInfo>
-    <ModalInfo v-if="wrongUserMod" @pressclose="closeWrongUserMod">
-        Wrong username or password. Correct them or register, please!
-    </ModalInfo>
-    <div class="d-flex justify-content-center m-2">
-        <div class="d-flex justify-content-evenly align-items-center go-to-reg">
-            <p>If you have no an account, you should register.</p>
-            <button class="btn btn-primary" id="btn-2" @click="registration">Registration</button>
+    <div class="pt-md-4 pt-2 login-view">
+        <FormLogin @problem="showModal"/>
+        <ModalInfo v-if="modalShown" @pressclose="closeModal">
+            {{ modalMessage }}
+        </ModalInfo>
+        <GoToReg/>
+        <div class="d-flex justify-content-center">
+            <AdvertPlace/>
         </div>
-    </div>
-    <div class="d-flex justify-content-center mt-5 mb-3">
-        <AdvertPlace></AdvertPlace>
     </div>
 </template>
 
 <script>
-import InputReg from '../components/InputReg.vue'
+import FormLogin from '../components/FormLogin.vue'
 import ModalInfo from '../components/ModalInfo.vue'
+import GoToReg from '../components/GoToReg.vue'
 import AdvertPlace from '../components/AdvertPlace.vue'
-import {getDatabase, ref, onValue} from 'firebase/database'
 
 export default {
     name: 'LogIn',
     components: {
-        InputReg,
+        FormLogin,
         ModalInfo,
+        GoToReg,
         AdvertPlace
     },
-    data () {
+    mounted() {
+        this.$store.state.showMainFooter = false
+    },
+    unmounted() {
+        this.$store.state.showMainFooter = true
+    },
+    data() {
         return {
-            userName: '',
-            password: '',
-            noUserOrPasswordMod: false,
-            wrongUserMod: false
+            modalShown: false,
+            modalMessage: ''
         }
     },
     methods: {
-        saveUserName (value) {
-            this.userName = value
-        },
-        savePassword (value) {
-            this.password = value
-        },
-        closeNoUserPassMod () {
-            this.noUserOrPasswordMod = false
-        },
-        closeWrongUserMod () {
-            this.wrongUserMod = false
-        },
-        logInUser () {
-            let user = this.userName
-            let password = this.password
-            if (user && password) {
-                const db = getDatabase()
-                const grossUsersObj = ref(db, 'users/')
-                onValue(grossUsersObj, (snapshot) => {
-                    let netUsersObj = snapshot.val()
-                    let usersArr = Object.values(netUsersObj)
-                    for (let i = 0; i < usersArr.length; i++) {
-                        if (usersArr[i].userName === user && usersArr[i].password === password) {
-                            localStorage.setItem('user', user)
-                            this.$store.state.user = user
-                            this.$router.push('/')
-                        } else {
-                            this.wrongUserMod = true
-                        }
-                    }
-                })
-            } else {
-                this.noUserOrPasswordMod = true
+        showModal(problem) {
+            if(problem === 'wrongUser') {
+                this.modalMessage = 'Wrong username or password. Correct them or register, please!'
+            } else if(problem === 'noUserOrPassword') {
+                this.modalMessage = 'Enter both username and password, please!'
             }
+
+            this.modalShown = true
         },
-        registration () {
-            this.$router.push('/registration')
+        closeModal() {
+            this.modalShown = false
         }
     }
 }
 </script>
 
 <style scoped lang="scss">
-@import '../extends';
-form, .go-to-reg {
-    @extend %reg-block-size;
-}
-label, p {
-    @extend %label-reg;
+@import '../variables';
+
+@mixin view-min-h($footer-f-size) {
+    min-height: calc(100vh - (($main-title-f-size + $footer-f-size) * 1.5 + $login-footer-pad-top + $login-footer-pad-bot));
 }
 
-@media (max-width: 575px) {
-    #btn-2 {
-        width: 35%;
-        font-size: 3.2vw;
+    .login-view {
+        @include view-min-h($second-footer-f-size);
+        @media (max-width: 575px) {
+            @include view-min-h($second-footer-f-size-575);
+        }
     }
-}
 </style>

@@ -1,4 +1,17 @@
-$toxic-green: #1dda2c;
+$toxic-green: rgb(25, 220, 44);
+$light-green: rgb(120, 255, 130);
 $black-light: rgb(44, 44, 44);
 $burgundy: rgb(145, 20, 20);
 $backlight: rgb(255, 253, 230);
+
+$main-title-f-size: calc(13px + 4vw);
+$main-text-f-size: calc(8px + .785vw);
+$search-label-f-size: calc(13px + .25vw);
+$page-number-f-size: calc(17px + .7vw);
+$btn-f-size: calc(12px + .585vw);
+$second-footer-f-size: 25.5px;
+$second-footer-f-size-575: 4.45vw;
+$label-reg-f-size-min-576: calc(14px + .35vw);
+
+$login-footer-pad-top: 2px;
+$login-footer-pad-bot: 14px;

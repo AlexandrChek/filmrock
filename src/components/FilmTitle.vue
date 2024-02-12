@@ -13,17 +13,12 @@ export default {
 <style scoped lang="scss">
 @import '../variables';
 
+$f-size: calc($main-text-f-size * 2);
+
 div {
-    font-size: 3vw;
+    font-size: $f-size;
     color: $toxic-green;
-    @media (max-width: 1199px) {
-        font-size: 3.7vw;
-    }
-    @media (max-width: 991px) {
-        font-size: 3.8vw;
-    }
-    @media (max-width: 575px) {
-        font-size: 5.4vw;
-    }
+    line-height: 1;
+    margin-bottom: calc($f-size / 1.8);
 }
 </style>

@@ -16,24 +16,22 @@
         color: $toxic-green;
         #{$side}: -1vw;
     }
-    @media (max-width: 1199px) {
-        font-size: 27px;
+}
+
+@mixin keyframes($a-name) {
+    @-webkit-keyframes #{$a-name} {
+        @content;
     }
-    @media (max-width: 991px) {
-        font-size: 26px;
-        #{$side}: -1.7vw;
-        &:hover {
-            #{$side}: -1.5vw;
-        }
+    @-moz-keyframes #{$a-name} {
+        @content;
     }
-    @media (max-width: 767px) {
-        font-size: 32px;
-        #{$side}: -2.3vw;
-        &:hover {
-            #{$side}: -2vw;
-        }
+    @keyframes #{$a-name} {
+        @content;
     }
-    @media (max-width: 575px) {
-        font-size: 33px;
-    }
+}
+
+@mixin animation($settings) {
+    -webkit-animation: $settings;
+    -moz-animation: $settings;
+    animation: $settings;
 }

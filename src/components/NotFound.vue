@@ -1,5 +1,7 @@
 <template>
-    <p class="my-3 not-found">There is no such movie in the database.</p>
+    <p class="my-3 not-found">
+      There is no such movie in the database.
+    </p>
 </template>
 
 <script>

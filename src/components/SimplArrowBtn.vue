@@ -1,8 +1,6 @@
 <template>
-    <div class="mx-2">
-        <p>
-            <slot></slot>
-        </p>
+    <div>
+        <slot></slot>
     </div>
 </template>
 
@@ -15,25 +13,15 @@ export default {
 <style scoped lang="scss">
 @import '../variables';
 
-p {
-    height: 58%;
-    margin: 50% 0 10px;
+div {
+    margin: $page-number-f-size 5px 0 5px;
     border: 1px solid wheat;
-    font-size: x-large;
+    font-size: calc($page-number-f-size * 1.15);
     cursor: pointer;
     &:hover {
         color: $toxic-green;
         background-color: $black-light;
         border: 1px solid $toxic-green;
-    }
-    @media (max-width: 991px) {
-        font-size: large;
-    }
-    @media (max-width: 767px) {
-        font-size: 3.25vw;
-    }
-    @media (max-width: 575px) {
-        font-size: 4.5vw;
     }
 }
 </style>
