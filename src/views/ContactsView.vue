@@ -51,19 +51,19 @@ export default {
 @import '../variables';
 @import '../extends';
 
-.header-center {
-  @extend %line-header-center;
-}
-.tel-wrapper {
-  display: flex;
-  justify-content: center;
-  @media (max-width: 1199px) {
-    flex-direction: column;
-    align-items: center;
+  .header-center {
+    @extend %line-header-center;
   }
-}
-.contacts {
-  @extend %contacts-settings;
-  @extend %contacts-settings-2;
-}
+  .tel-wrapper {
+    display: flex;
+    justify-content: center;
+    @media (max-width: 1199px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .contacts {
+    @extend %contacts-settings;
+    @extend %contacts-settings-2;
+  }
 </style>

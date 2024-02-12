@@ -29,7 +29,7 @@
 
 %label-reg {
     color: $toxic-green;
-    font-size: $label-reg-f-size-min-576;
+    font-size: calc(14px + .35vw);
     font-weight: bold;
     @media (max-width: 575px) {
         font-size: calc(6px + 2.05vw);
