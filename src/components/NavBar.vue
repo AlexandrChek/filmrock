@@ -77,8 +77,8 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
-    right: calc(4% + 20px);
-    top: 28%;
+    right: calc(3.3% + 23px);
+    top: 26%;
     z-index: 2;
     border: .1px solid wheat;
   }
@@ -86,10 +86,10 @@ export default {
   @media (max-width: 767px) {
     nav a {
       display: block;
-      margin: 0 .7vw;
-      padding: auto 1.5vw;
+      margin: 0;
+      padding: calc(5px + .2vw) 1.5vw 0;
       border: none;
-      font-size: calc(12px + 1.55vw);
+      font-size: calc(17px + 1.4vw);
     }
     nav {
       width: 100%;

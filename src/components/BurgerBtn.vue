@@ -45,6 +45,6 @@
     .cross {
         color: red;
         background-color: black;
-        font-size: 20px;
+        font-size: 23px;
     }
 </style>
