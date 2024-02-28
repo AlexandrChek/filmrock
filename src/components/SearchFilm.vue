@@ -1,8 +1,8 @@
 <template>
-    <div class="m-1">
+    <div class="mb-1">
         <InputReg type="search" placeholder="matrix" @enterValue="saveValue" ref="title"/>
     </div>
-    <div class="text-end mx-1">
+    <div class="text-end">
         <MyButton @click="search">Search</MyButton>
     </div>
 </template>

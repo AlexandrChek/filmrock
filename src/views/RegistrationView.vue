@@ -1,5 +1,5 @@
 <template>
-    <LineHeader class="header-center">Registration</LineHeader>
+    <LineHeader :left="false">Registration</LineHeader>
     <FormReg
         @nameProblem="showModalWrongName"
         @passwordProblem="showModalPasswordProblem"
@@ -36,9 +36,9 @@ export default {
     },
     methods: {
         showModalWrongName(problem) {
-            if(problem === 'shortUserName') {
+            if (problem === 'shortUserName') {
                 this.modalMessage = 'The length of your user name must be not less than three symbols!'
-            } else if(problem === 'userNameUsed') {
+            } else if (problem === 'userNameUsed') {
                 this.modalMessage = 'This name is already in use by another user. Try another, please!'
             }
 
@@ -46,9 +46,9 @@ export default {
             this.modalShown = true
         },
         showModalPasswordProblem(problem) {
-            if(problem === 'noPassword') {
+            if (problem === 'noPassword') {
                 this.modalMessage = 'Enter your password, please!'
-            }else if(problem === 'passwordMismatch') {
+            }else if (problem === 'passwordMismatch') {
                 this.modalMessage = 'Your passwords in both fields must be identical!'
             }
 
@@ -57,7 +57,7 @@ export default {
         closeModal() {
             this.modalShown = false
 
-            if(this.userNameProblem) {
+            if (this.userNameProblem) {
                 this.$refs.regForm.focusUserName()
                 this.userNameProblem = false
             }
@@ -65,11 +65,3 @@ export default {
     }
 }
 </script>
-
-<style scoped lang="scss">
-@import '../extends';
-
-    .header-center {
-        @extend %line-header-center;
-    }
-</style>

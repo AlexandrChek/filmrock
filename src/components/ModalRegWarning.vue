@@ -28,20 +28,21 @@ export default {
 
 <style scoped lang="scss">
 @import '../extends';
-.modal-warning {
-    @extend %modals;
-}
-p {
-    @extend %modal-p;
-}
-button {
-    width: 27%;
-    padding: 5px 0;
-    @media (max-width: 767px) {
-        width: 29%;
+
+    .modal-warning {
+        @extend %modals;
     }
-    @media (max-width: 575px) {
-        font-size: 14px;
+    p {
+        @extend %modal-p;
     }
-}
+    button {
+        width: 27%;
+        padding: 5px 0;
+        @media (max-width: 767px) {
+            width: 29%;
+        }
+        @media (max-width: 575px) {
+            font-size: 14px;
+        }
+    }
 </style>

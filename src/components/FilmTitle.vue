@@ -13,12 +13,12 @@ export default {
 <style scoped lang="scss">
 @import '../variables';
 
-$f-size: calc($main-text-f-size * 2);
+    $f-size: calc($main-text-f-size * 2);
 
-div {
-    font-size: $f-size;
-    color: $toxic-green;
-    line-height: 1;
-    margin-bottom: calc($f-size / 1.8);
-}
+    div {
+        font-size: $f-size;
+        color: $toxic-green;
+        line-height: 1;
+        margin-bottom: calc($f-size / 1.8);
+    }
 </style>

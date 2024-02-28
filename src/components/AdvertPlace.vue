@@ -14,24 +14,42 @@
 <script>
 export default {
     name: 'AdvertPlace',
+	data() {
+		return {
+			to: [
+				'home',
+				'contacts',
+				'logIn',
+				'registration'
+			]
+		}
+	},
 	mounted() {
-		this.$router.afterEach(
-			this.$nextTick(() => {
-				const timer = setInterval(() => {
-					if(document.querySelector('.animation').offsetWidth) {
-						this.setFontSize()
-						clearInterval(timer)
-					}
-				}, 10)
-			})
-		)
+		window.addEventListener('load', this.setFontSize)
 		window.addEventListener('resize', this.setFontSize)
+
+		this.$router.afterEach((to) => {
+			if (this.to.includes(to.name)) {
+				this.$nextTick(() => {
+					const timer = setInterval(() => {
+						if (document.querySelector('.animation').offsetWidth) {
+							this.setFontSize()
+							clearInterval(timer)
+						}
+					}, 10)
+				})
+			}
+		})
+	},
+	unmounted() {
+		window.removeEventListener('load', this.setFontSize)
+		window.removeEventListener('resize', this.setFontSize)
 	},
 	methods: {
 		setFontSize() {
 			const animation = document.querySelector('.animation')
 			const inscription = document.querySelector('#inscription')
-			inscription.style.fontSize = animation.offsetWidth * 0.064 + 'px'
+			inscription.style.fontSize = animation.offsetWidth * 0.062 + 'px'
 		}
 	}
 }

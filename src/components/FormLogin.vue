@@ -37,18 +37,18 @@ export default {
             this.password = value
         },
         logInUser() {
-            if(this.userName && this.password) {
+            if (this.userName && this.password) {
                 const db = getDatabase()
                 const grossUsersObj = ref(db, 'users/')
                 onValue(grossUsersObj, (snapshot) => {
                     const netUsersObj = snapshot.val()
                     const usersArr = Object.values(netUsersObj)
-                    for(let i = 0; i < usersArr.length; i++) {
-                        if(usersArr[i].userName === this.userName && usersArr[i].password === this.password) {
+                    for (let i = 0; i < usersArr.length; i++) {
+                        if (usersArr[i].userName === this.userName && usersArr[i].password === this.password) {
                             localStorage.setItem('user', this.userName)
                             this.$store.state.user = this.userName
                             this.$router.push('/')
-                        } else if(i === usersArr.length - 1) {
+                        } else if (i === usersArr.length - 1) {
                             this.$emit('problem', 'wrongUser')
                         }
                     }

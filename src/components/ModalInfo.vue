@@ -20,16 +20,17 @@ export default {
 
 <style scoped lang="scss">
 @import '../extends';
-.modal-info {
-    @extend %modals;
-}
-p {
-    @extend %modal-p;
-}
-button {
-    width: 28%;
-    @media (max-width: 991px) {
-        width: 35%;
+
+    .modal-info {
+        @extend %modals;
     }
-}
+    p {
+        @extend %modal-p;
+    }
+    button {
+        width: 28%;
+        @media (max-width: 991px) {
+            width: 35%;
+        }
+    }
 </style>

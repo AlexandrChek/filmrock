@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-center pt-3">
+    <div class="d-flex justify-content-center pt-4">
         <form>
             <div class="mb-3">
                 <label for="userName">User name</label>
@@ -44,7 +44,7 @@ export default {
             this.password2 = value
         },
         checkUserName() {
-            if(this.userName.length < 3) {
+            if (this.userName.length < 3) {
                 this.$emit('nameProblem', 'shortUserName')
             } else {
                 const db = getDatabase()
@@ -52,8 +52,8 @@ export default {
                 onValue(usersObj, (snapshot) => {
                     let finalObj = snapshot.val()
                     let usersArr = Object.values(finalObj)
-                    for(let i = 0; i < usersArr.length; i++) {
-                        if(this.userName === usersArr[i].userName) {
+                    for (let i = 0; i < usersArr.length; i++) {
+                        if (this.userName === usersArr[i].userName) {
                             this.$emit('nameProblem', 'userNameUsed')
                             return
                         }
@@ -62,13 +62,12 @@ export default {
             }
         },
         focusUserName() {
-            const userNameEl = document.querySelector('#userName')
-            userNameEl.focus()
+            document.querySelector('#userName').focus()
         },
         register() {
-            if(!this.password) {
+            if (!this.password) {
                 this.$emit('passwordProblem', 'noPassword')
-            } else if(this.password !== this.password2) {
+            } else if (this.password !== this.password2) {
                 this.$emit('passwordProblem', 'passwordMismatch')
             } else {
                 const db = getDatabase()

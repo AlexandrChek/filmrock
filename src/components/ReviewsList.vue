@@ -36,14 +36,14 @@ export default {
     mounted() {
         const viewsLoader = setInterval(() => {
             this.getReviews()
-            if(this.allReviews.length === this.reviewsLength) {
+            if (this.allReviews.length === this.reviewsLength) {
                 clearInterval(viewsLoader)
             }
         }, 10)
     },
     methods: {
         getReviews() {
-            if(this.reviewsLength <= 15) {
+            if (this.reviewsLength <= 15) {
                 this.reviews = [...this.allReviews]
             } else {
                 this.reviews = this.allReviews.slice(0, 15)

@@ -26,8 +26,8 @@
     div {
         display: none;
         position: absolute;
-        right: 3%;
-        top: 28%;
+        right: 2.1%;
+        top: 15%;
         @media (max-width: 767px) {
             display: flex;
         }
@@ -39,8 +39,8 @@
         color: $toxic-green;
         background-color: black;
         font-weight: bold;
-        font-size: 31px;
-        line-height: calc(21px + 1vw);
+        font-size: calc(22px + 1vw);
+        line-height: 1;
     }
     .cross {
         color: red;

@@ -22,22 +22,22 @@ export default {
 <style scoped lang="scss">
 @import '../variables';
 
-%buttons {
-    color: black;
-    text-align: center;
-    font-weight: bold;
-    font-size: calc(12px + .4vw);
-    padding: 1.5px calc(12px + 1.3vw) 1px;
-    cursor: pointer;
-}
-.trailer-button {
-    @extend %buttons;
-    background-color: orange;
-    border-top-left-radius: 3px;
-}
-.movie-button {
-    @extend %buttons;
-    background-color: $burgundy;
-    border-top-right-radius: 3px;
-}
+    %buttons {
+        color: black;
+        text-align: center;
+        font-weight: bold;
+        font-size: calc(12px + .4vw);
+        padding: 1.5px calc(12px + 1.3vw) 1px;
+        cursor: pointer;
+    }
+    .trailer-button {
+        @extend %buttons;
+        background-color: orange;
+        border-top-left-radius: 3px;
+    }
+    .movie-button {
+        @extend %buttons;
+        background-color: $burgundy;
+        border-top-right-radius: 3px;
+    }
 </style>

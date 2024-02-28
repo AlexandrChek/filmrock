@@ -15,17 +15,17 @@
 <script>
 export default {
     name: 'ModalRate',
-    data () {
+    data() {
         return {
             rating: 0
         }
     },
     methods: {
-        sendRating () {
-            this.$emit('reseivingrating', this.rating)
+        sendRating() {
+            this.$emit('ratingReceived', this.rating)
         },
-        close () {
-            this.$emit('closerating')
+        close() {
+            this.$emit('ratingClosed')
         }
     }
 }
@@ -34,34 +34,34 @@ export default {
 <style scoped lang="scss">
 @import '../extends';
 
-.modal-rating {
-    @extend %modals;
-}
-p {
-    @extend %modal-p;
-    text-align: center;
-}
-.rate-wrapper {
-    text-align: center;
-    color: blue;
-    font-weight: bold;
-}
-input {
-    width: 80%;
-    margin: 1vw 0;
-}
-.rating-value {
-    text-align: center;
-    color: blue;
-    font-weight: 900;
-    font-size: calc(27px + 1.2vw);
-    margin-bottom: 1vw;
-}
-button {
-    width: 29%;
-    padding-inline: 4px;
-    @media (max-width: 767px) {
-        width: 33%;
+    .modal-rating {
+        @extend %modals;
     }
-}
+    p {
+        @extend %modal-p;
+        text-align: center;
+    }
+    .rate-wrapper {
+        text-align: center;
+        color: blue;
+        font-weight: bold;
+    }
+    input {
+        width: 80%;
+        margin: 1vw 0;
+    }
+    .rating-value {
+        text-align: center;
+        color: blue;
+        font-weight: 900;
+        font-size: calc(27px + 1.2vw);
+        margin-bottom: 1vw;
+    }
+    button {
+        width: 29%;
+        padding-inline: 4px;
+        @media (max-width: 767px) {
+            width: 33%;
+        }
+    }
 </style>

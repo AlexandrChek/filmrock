@@ -30,16 +30,16 @@ export default {
 <style scoped lang="scss">
 @import '../variables';
 
-input {
-    font-size: x-large;
-    border: 3px solid black;
-    &:focus {
-        outline: none;
-        border-color: $toxic-green;
-        background-color: $backlight;
+    input {
+        font-size: x-large;
+        border: 3px solid black;
+        &:focus {
+            outline: none;
+            border-color: $toxic-green;
+            background-color: $backlight;
+        }
+        @media (max-width: 575px) {
+            font-size: 21.5px;
+        }
     }
-    @media (max-width: 575px) {
-        font-size: 21.5px;
-    }
-}
 </style>

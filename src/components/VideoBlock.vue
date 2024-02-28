@@ -1,5 +1,5 @@
 <template>
-    <div class="col-lg-11 col-12 p-0">
+    <div class="col-lg-11 col-12">
         <ColoredBtns @clickMovie="onMovie" @clickTrailer="onTrailer"/>
         <div class="wrapper-static" :class="{'wrapper-orange': orangeBack, 'wrapper-burgundy': !orangeBack}">
             <div class="ratio ratio-16x9">
@@ -25,7 +25,7 @@ export default {
     mounted() {
         const urlLoader = setInterval(() => {
             this.url = this.trailerUrl
-            if(this.url) {clearInterval(urlLoader)}
+            if (this.url) {clearInterval(urlLoader)}
         }, 10)
     },
     methods: {

@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-3">
+    <div class="mb-3 pt-md-0 pt-2">
         <SearchFilm @gotTitleForAdwSearch="saveTitle" @searchTitleClicked="searchTitle"></SearchFilm>
         <NotFound v-if="notFound"></NotFound>
         <AdvancedOptions v-if="advancedOptionsBtn" :optionsShown="optionsShown" @click="showOptions"/>
@@ -64,7 +64,7 @@ export default {
     },
     methods: {
         widthControlSearch() {
-            if(window.innerWidth < 768) {
+            if (window.innerWidth < 768) {
                 this.advancedOptionsBtn = true
                 this.setOptionsState()
             } else {
@@ -79,11 +79,11 @@ export default {
             let allSearchedMovies = []
             this.filmsArr.forEach(item => {
                 let title = item.title.toLowerCase()
-                if(title.includes(val.toLowerCase())) {
+                if (title.includes(val.toLowerCase())) {
                     allSearchedMovies.push(item)
                 }
             })
-            if(!allSearchedMovies.length) {
+            if (!allSearchedMovies.length) {
                 this.notFound = true
             } else {
                 sessionStorage.setItem('allSearchedMovies', JSON.stringify(allSearchedMovies))
@@ -91,14 +91,14 @@ export default {
             }
         },
         setOptionsState() {
-            if(this.allowAdwancedOptions) {
+            if (this.allowAdwancedOptions) {
                 this.optionsShown = true
             } else {
                 this.optionsShown = false
             }
         },
         showOptions() {
-            if(!this.allowAdwancedOptions) {
+            if (!this.allowAdwancedOptions) {
                 this.allowAdwancedOptions = true
                 this.setOptionsState()
             } else {
@@ -135,18 +135,18 @@ export default {
         },
         advancedSearch() {
             let searchedFilms = []
-            if(this.title && !this.year && !this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
+            if (this.title && !this.year && !this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return e.title.toLowerCase().includes(this.title.toLowerCase())
                 })
-            } else if(this.title && this.year && !this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
+            } else if (this.title && this.year && !this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.title.toLowerCase().includes(this.title.toLowerCase()) &&
                         e.year == this.year
                     )
                 })
-            } else if(this.title && !this.year && this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
+            } else if (this.title && !this.year && this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.title.toLowerCase().includes(this.title.toLowerCase()) &&
@@ -154,7 +154,7 @@ export default {
                         e.year <= this.yearTo
                     )
                 })
-            } else if(this.title && this.year && !this.yearFrom && this.selectedGenre && !this.selectedCountry) {
+            } else if (this.title && this.year && !this.yearFrom && this.selectedGenre && !this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.title.toLowerCase().includes(this.title.toLowerCase()) &&
@@ -162,7 +162,7 @@ export default {
                         (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre)
                     )
                 })
-            } else if(this.title && !this.year && this.yearFrom && this.selectedGenre && !this.selectedCountry) {
+            } else if (this.title && !this.year && this.yearFrom && this.selectedGenre && !this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.title.toLowerCase().includes(this.title.toLowerCase()) &&
@@ -171,7 +171,7 @@ export default {
                         (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre)
                     )
                 })
-            } else if(this.title && this.year && !this.yearFrom && this.selectedGenre && this.selectedCountry) {
+            } else if (this.title && this.year && !this.yearFrom && this.selectedGenre && this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return(
                         e.title.toLowerCase().includes(this.title.toLowerCase()) &&
@@ -180,7 +180,7 @@ export default {
                         e.country == this.selectedCountry
                     )
                 })
-            } else if(this.title && !this.year && this.yearFrom && this.selectedGenre && this.selectedCountry) {
+            } else if (this.title && !this.year && this.yearFrom && this.selectedGenre && this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.title.toLowerCase().includes(this.title.toLowerCase()) &&
@@ -190,14 +190,14 @@ export default {
                         e.country == this.selectedCountry
                     )
                 })
-            } else if(this.title && !this.year && !this.yearFrom && this.selectedGenre && !this.selectedCountry) {
+            } else if (this.title && !this.year && !this.yearFrom && this.selectedGenre && !this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.title.toLowerCase().includes(this.title.toLowerCase()) &&
                         (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre)
                     )
                 })
-            } else if(this.title && !this.year && !this.yearFrom && this.selectedGenre && this.selectedCountry) {
+            } else if (this.title && !this.year && !this.yearFrom && this.selectedGenre && this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.title.toLowerCase().includes(this.title.toLowerCase()) &&
@@ -205,32 +205,32 @@ export default {
                         e.country == this.selectedCountry
                     )
                 })
-            } else if(this.title && !this.year && !this.yearFrom && !this.selectedGenre && this.selectedCountry) {
+            } else if (this.title && !this.year && !this.yearFrom && !this.selectedGenre && this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.title.toLowerCase().includes(this.title.toLowerCase()) &&
                         e.country == this.selectedCountry
                     )
                 })
-            } else if(!this.title && this.year && !this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
+            } else if (!this.title && this.year && !this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return e.year == this.year
                 })
-            } else if(!this.title && !this.year && this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
+            } else if (!this.title && !this.year && this.yearFrom && !this.selectedGenre && !this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.year >= this.yearFrom &&
                         e.year <= this.yearTo
                     )
                 })
-            } else if(!this.title && this.year && !this.yearFrom && this.selectedGenre && !this.selectedCountry) {
+            } else if (!this.title && this.year && !this.yearFrom && this.selectedGenre && !this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.year == this.year &&
                         (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre)
                     )
                 })
-            } else if(!this.title && !this.year && this.yearFrom && this.selectedGenre && !this.selectedCountry) {
+            } else if (!this.title && !this.year && this.yearFrom && this.selectedGenre && !this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.year >= this.yearFrom &&
@@ -238,7 +238,7 @@ export default {
                         (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre)
                     )
                 })
-            } else if(!this.title && this.year && !this.yearFrom && this.selectedGenre && this.selectedCountry) {
+            } else if (!this.title && this.year && !this.yearFrom && this.selectedGenre && this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.year == this.year &&
@@ -246,7 +246,7 @@ export default {
                         e.country == this.selectedCountry
                     )
                 })
-            } else if(!this.title && !this.year && this.yearFrom && this.selectedGenre && this.selectedCountry) {
+            } else if (!this.title && !this.year && this.yearFrom && this.selectedGenre && this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.year >= this.yearFrom &&
@@ -255,14 +255,14 @@ export default {
                         e.country == this.selectedCountry
                     )
                 })
-            } else if(!this.title && this.year && !this.yearFrom && !this.selectedGenre && this.selectedCountry) {
+            } else if (!this.title && this.year && !this.yearFrom && !this.selectedGenre && this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.year == this.year &&
                         e.country == this.selectedCountry
                     )
                 })
-            } else if(!this.title && !this.year && this.yearFrom && !this.selectedGenre && this.selectedCountry) {
+            } else if (!this.title && !this.year && this.yearFrom && !this.selectedGenre && this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         e.year >= this.yearFrom &&
@@ -270,32 +270,32 @@ export default {
                         e.country == this.selectedCountry
                     )
                 })
-            } else if(!this.title && !this.year && !this.yearFrom && this.selectedGenre && !this.selectedCountry) {
+            } else if (!this.title && !this.year && !this.yearFrom && this.selectedGenre && !this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre)
                 })
-            } else if(!this.title && !this.year && !this.yearFrom && this.selectedGenre && this.selectedCountry) {
+            } else if (!this.title && !this.year && !this.yearFrom && this.selectedGenre && this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return (
                         (e.genre == this.selectedGenre || e.genre2 == this.selectedGenre) &&
                         e.country == this.selectedCountry
                     )
                 })
-            } else if(!this.title && !this.year && !this.yearFrom && !this.selectedGenre && this.selectedCountry) {
+            } else if (!this.title && !this.year && !this.yearFrom && !this.selectedGenre && this.selectedCountry) {
                 searchedFilms = this.filmsArr.filter(e => {
                     return e.country == this.selectedCountry
                 })
             }
 
-            if(this.yearFrom && this.yearTo && this.yearFrom > this.yearTo) {
+            if (this.yearFrom && this.yearTo && this.yearFrom > this.yearTo) {
                 this.dontPush = true
             } else {
                 this.dontPush = false
             }
 
-            if(!searchedFilms.length) {
+            if (!searchedFilms.length) {
                 this.notFound2 = true
-            } else if(!this.dontPush) {
+            } else if (!this.dontPush) {
                 sessionStorage.setItem('allSearchedMovies', JSON.stringify(searchedFilms))
                 this.$router.push('/searchres')
             }

@@ -39,9 +39,9 @@ export default {
     },
     methods: {
         showModal(problem) {
-            if(problem === 'wrongUser') {
+            if (problem === 'wrongUser') {
                 this.modalMessage = 'Wrong username or password. Correct them or register, please!'
-            } else if(problem === 'noUserOrPassword') {
+            } else if (problem === 'noUserOrPassword') {
                 this.modalMessage = 'Enter both username and password, please!'
             }
 

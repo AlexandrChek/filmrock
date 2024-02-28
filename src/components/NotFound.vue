@@ -12,8 +12,8 @@ export default {
 
 <style scoped lang="scss">
 @import '../variables';
-.not-found {
-  font-weight: bold;
-  color: $toxic-green;
-}
+  .not-found {
+    font-weight: bold;
+    color: $toxic-green;
+  }
 </style>

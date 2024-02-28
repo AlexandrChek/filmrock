@@ -1,6 +1,6 @@
 <template>
-    <div class="row d-flex justify-content-center mx-1 my-3">
-        <div class="col-xl-3 col-lg-4 col-sm-4 col-5 p-0 text-center">
+    <div class="row d-flex justify-content-center my-3">
+        <div class="col-xl-3 col-lg-4 col-sm-4 col-5 text-center img-wrapper">
             <img :src="film.src" :alt="film.title" class="img-fluid">
         </div>
         <div class="col-xl-8 col-lg-7 col-sm-8 col-7 px-xl-4">
@@ -51,6 +51,9 @@ export default {
 <style scoped lang="scss">
 @import '../variables';
 
+    .img-wrapper {
+        padding-right: 0;
+    }
     .ratings {
         color: $toxic-green;
         font-weight: bold; 

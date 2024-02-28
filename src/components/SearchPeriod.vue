@@ -55,13 +55,13 @@ export default {
             const from = document.querySelector('#from')
             const to = document.querySelector('#to')
 
-            if(this.year) {
+            if (this.year) {
                 from.disabled = true
                 to.disabled = true
                 this.$emit('yearEntered', this.year)
             } else {
                 this.$emit('yearEntered', 0)
-                if(from.disabled) {
+                if (from.disabled) {
                     from.removeAttribute('disabled')
                     to.removeAttribute('disabled')
                 }
@@ -70,24 +70,24 @@ export default {
         handlePeriod() {
             const year = document.querySelector('#year')
 
-            if(this.from && this.to) {
+            if (this.from && this.to) {
                 year.setAttribute('disabled', true)
-                if(this.from > this.to) {
+                if (this.from > this.to) {
                     this.modalMessage = 'The ending year must be more than starting year.'
                     this.modalShown = true
                 } 
                 this.$emit('periodEntered', this.from, this.to)
-            } else if(!this.from && this.to) {
+            } else if (!this.from && this.to) {
                 this.modalMessage = 'If you enter a period, the starting year must be filled (xxxx).'
                 this.modalShown = true
                 year.setAttribute('disabled', true)
                 this.$emit('periodEntered', 0, 0)
-            } else if(this.from && !this.to) {
+            } else if (this.from && !this.to) {
                 year.setAttribute('disabled', true)
                 this.$emit('periodEntered', this.from, this.currentYear)
             } else {
                 this.$emit('periodEntered', 0, 0)
-                if(year.disabled) {
+                if (year.disabled) {
                     year.removeAttribute('disabled')
                 }
             }

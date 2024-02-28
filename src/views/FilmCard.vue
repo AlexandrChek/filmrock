@@ -9,33 +9,27 @@
             </AdaptiveParagraf>
         </SmallCard>
         <ModalRegWarning v-if="regWarning" @closewarning="closeRegWarning">
-                To rate films you have to log into your account ore register.
+            To rate films you have to log into your account ore register.
         </ModalRegWarning>
-        <ModalRate v-if="showModalRate" @reseivingrating="setRating" @closerating="closeModalRate"/>
-        <div class="row d-flex justify-content-center mx-1 mb-3">
-            <AdaptiveParagraf class="col-lg-11 col-12 m-0 p-0">
+        <ModalRate v-if="showModalRate" @ratingReceived="setRating" @ratingClosed="closeModalRate"/>
+        <div class="row d-flex justify-content-center">
+            <AdaptiveParagraf class="col-lg-11 col-12">
                 <b>Description:</b> &ensp;{{currentFilm.description}}
             </AdaptiveParagraf>
         </div>
-        <div class="row d-flex justify-content-center mx-1 my-2">
+        <div class="row d-flex justify-content-center my-3">
             <VideoBlock :trailerUrl="currentFilm.trailer" :filmUrl="currentFilm.url"/>
         </div>
-        <div class="row d-flex justify-content-center mx-1 mt-4">
-            <div class="col-lg-11 col-12 p-0">
-                <LineHeader>This might interest you:</LineHeader>
-                <MovieLine
-                    :list="shortList"
-                    :position="position"
-                    :rightArrowShown="rightArrowShown"
-                    @leftArrowClicked="moveLeft"
-                    @rightArrowClicked="moveRight"
-                />
+        <div class="row d-flex justify-content-center mb-2">
+            <div class="col-lg-11 col-12">
+                <LineHeader :left="true">This might interest you:</LineHeader>
+                <MovieLine :list="suitableMovies" :shortListLength="shortListLength"/>
             </div>
         </div>
-        <div class="row d-flex justify-content-center mx-1 mt-4">
-            <div class="col-lg-11 col-12 mb-5 p-0">
-                <LineHeader>Reviews</LineHeader>
-                <ReviewForm/>
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-11 col-12 mb-4">
+                <LineHeader :left="true" class="mb-1">Reviews</LineHeader>
+                <ReviewForm @reviewSent="updateReviews"/>
                 <ReviewsList v-if="reviewsLength" :reviewsLength="reviewsLength" :allReviews="allReviews"/>
             </div>
         </div>
@@ -69,13 +63,12 @@ export default {
         ReviewForm,
         ReviewsList
     },
-    data () {
+    data() {
         return {
             currentFilm: {},
             regWarning: false,
             showModalRate: false,
             notRated: true,
-            position: 0,
             shortListLength: 0,
             suitableMovies: [],
             id: this.$route.params.id,
@@ -94,9 +87,9 @@ export default {
                 return film.id == this.id
             })[0]
             
-            while(this.suitableMovies.length < 10) {
-                if(this.currentFilm.relatedTo) {
-                    for(let i = 0; i < filmsArr.length; i++) {
+            while (this.suitableMovies.length < 10) {
+                if (this.currentFilm.relatedTo) {
+                    for (let i = 0; i < filmsArr.length; i++) {
                         if (
                             filmsArr[i].relatedTo === this.currentFilm.relatedTo &&
                             filmsArr[i].id !== this.currentFilm.id
@@ -110,7 +103,7 @@ export default {
                 }
             }
 
-            if(this.currentFilm.reviews) {
+            if (this.currentFilm.reviews) {
                 let unsorted = Object.values(this.currentFilm.reviews)
                 this.allReviews = unsorted.sort((a,b) => {
                     return b.revId - a.revId
@@ -119,7 +112,7 @@ export default {
             }
         })
 
-        if(this.$store.state.user) {this.determineIsFilmRated(db)}
+        if (this.$store.state.user) {this.findIsFilmRated(db)}
 
         this.getShortListLength()
         window.onresize = () => this.getShortListLength()
@@ -129,26 +122,16 @@ export default {
             document.location.reload()
         }
     },
-    computed: {
-        shortList() {
-            let start = this.position
-            let end = start + this.shortListLength
-            return this.suitableMovies.slice(start, end)
-        },
-        rightArrowShown() {
-            return this.position < 10 - this.shortListLength
-        }
-    },
     methods: {
-        determineIsFilmRated(db) {
+        findIsFilmRated(db) {
             const user = this.$store.state.user
             const grossUserObj = ref(db, 'users/' + user)
             onValue(grossUserObj, (snapshot) => {
                 let netUserObj = snapshot.val()
-                if(netUserObj.ratings) {
+                if (netUserObj.ratings) {
                     let ratedFilms = Object.keys(netUserObj.ratings)
-                    for(let i = 0; i < ratedFilms.length; i++) {
-                        if(ratedFilms[i] === this.id) {
+                    for (let i = 0; i < ratedFilms.length; i++) {
+                        if (ratedFilms[i] === this.id) {
                             this.notRated = false
                             return
                         }
@@ -157,7 +140,7 @@ export default {
             })
         },
         getSuitablesByGenre(filmsArr) {
-            for(let i = 0; i < filmsArr.length; i++) {
+            for (let i = 0; i < filmsArr.length; i++) {
                 if (
                     filmsArr[i].id != this.id &&
                     !this.suitableMovies.includes(filmsArr[i]) &&
@@ -175,7 +158,7 @@ export default {
                     this.suitableMovies.push(filmsArr[i])
                 }
             }
-            for(let i = 0; i < filmsArr.length; i++) {
+            for (let i = 0; i < filmsArr.length; i++) {
                 if (
                     filmsArr[i].id != this.id &&
                     !this.suitableMovies.includes(filmsArr[i]) &&
@@ -193,6 +176,7 @@ export default {
         },
         getShortListLength() {
             let windowWidth = window.innerWidth
+
             if (windowWidth >= 992) {
                 this.shortListLength = 5
             } else if (windowWidth < 992 && windowWidth >= 768) {
@@ -204,7 +188,7 @@ export default {
             }
         },
         rateFilm() {
-            if(this.$store.state.user) {
+            if (this.$store.state.user) {
                 this.showModalRate = true
             } else {
                 this.regWarning = true
@@ -225,20 +209,20 @@ export default {
             const id = this.id
             const user = this.$store.state.user
 
-            if(oldNumberOfRatings) {
+            if (oldNumberOfRatings) {
                 currentRating = ((oldNumberOfRatings * oldRating + currentRating) / currentNumberOfRatings).toFixed(1)
             }
             set(ref(db, 'films/' + id + '/rating'), currentRating)
             set(ref(db, 'films/' + id + '/numberOfRatings'), currentNumberOfRatings)
             set(ref(db, 'users/' + user + '/ratings/' + id), true)
+            
             this.showModalRate = false
             this.$router.push('/' + id)
         },
-        moveLeft() {
-            this.position--
-        },
-        moveRight() {
-            this.position++
+        updateReviews() {
+            if (this.reviewsLength > 1) {
+                document.location.reload()
+            }
         }
     }
 }
@@ -247,7 +231,7 @@ export default {
 <style scoped lang="scss">
 @import '../variables';
 
-.rated {
-    color: $toxic-green;
-}
+    .rated {
+        color: $toxic-green;
+    }
 </style>

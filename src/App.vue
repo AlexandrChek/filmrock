@@ -17,9 +17,9 @@
 </script>
 
 <style>
-body {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  background-color: black;
-  color: wheat;
-}
+  body {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    background-color: black;
+    color: wheat;
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <LineHeader class="header-center">Contacts</LineHeader>
+  <LineHeader :left="false">Contacts</LineHeader>
   <div class="mt-sm-5 mt-4 mb-3 tel-wrapper">
     <p class="m-0 contacts">
       Telephone: +38(066)9072641
@@ -48,12 +48,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../variables';
 @import '../extends';
 
-  .header-center {
-    @extend %line-header-center;
-  }
   .tel-wrapper {
     display: flex;
     justify-content: center;

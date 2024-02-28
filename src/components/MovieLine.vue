@@ -1,35 +1,52 @@
 <template>
-    <div class="d-inline-flex align-items-center justify-content-center w-100">
-        <ArrowLeftBtn @click="goLeft" v-if="position"/>
+    <div class="d-inline-flex justify-content-center position-relative w-100 py-1">
+        <OvalArrowBtn :rightArrow="false" @click="goLeft" v-if="position"/>
         <div class="d-inline-flex justify-content-center">
-            <router-link v-for="film in list" :to="'/' + film.id" :key="film.id" class="d-inline-flex movie-item">
-                <div class="w-100">
-                    <img :src="film.src" :alt="film.title" class="img-fluid w-100">
-                    <div class="title-small">{{film.title}}</div>
-                    <div class="genres">
-                        {{film.genre}}, {{film.genre2}}
-                    </div>
+            <router-link v-for="film in shortList" :to="'/' + film.id" :key="film.id" class="movie-item">
+                <img :src="film.src" :alt="film.title" class="img-fluid">
+                <div class="title-small">{{film.title}}</div>
+                <div class="genres">
+                    {{film.genre}}, {{film.genre2}}
                 </div>
             </router-link>
         </div>
-        <ArrowRightBtn @click="goRight" v-if="rightArrowShown"/>
+        <OvalArrowBtn :rightArrow="true" @click="goRight" v-if="rightArrowShown"/>
     </div>
 </template>
 
 <script>
-import ArrowRightBtn from './ArrowRightBtn.vue'
-import ArrowLeftBtn from './ArrowLeftBtn.vue'
+import OvalArrowBtn from './OvalArrowBtn.vue'
 
 export default {
     name: 'MovieLine',
-    props: ['list', 'position', 'rightArrowShown'],
-    components: {ArrowRightBtn, ArrowLeftBtn},
+    props: ['list', 'shortListLength'],
+    components: {OvalArrowBtn},
+    data() {
+        return { position: 0 }
+    },
+    watch: {
+        shortListLength(val) {
+            if (this.position > 10 - val) {
+                this.position--
+            }
+        }
+    },
+    computed: {
+        shortList() {
+            let start = this.position
+            let end = start + this.shortListLength
+            return this.list.slice(start, end)
+        },
+        rightArrowShown() {
+            return this.position < 10 - this.shortListLength
+        }
+    },
     methods: {
         goLeft() {
-            this.$emit('leftArrowClicked')
+            this.position--
         },
         goRight() {
-            this.$emit('rightArrowClicked')
+            this.position++
         }
     }
 }
@@ -37,46 +54,35 @@ export default {
 
 <style scoped lang="scss">
 @import '../variables';
+@import '../mixins';
 
-.movie-item {
-    box-sizing: content-box;
-    margin-left: .35vw;
-    text-decoration: none;
-    width: 100%;
-    animation: appearance .3s linear;
-    &:hover {
-        background-color: $black-light;
-    }
-    @media (max-width: 767px) {
-        margin-left: .78vw;
-    }
-}
-.title-small {
-    font-size: 17.5px;
-    font-weight: bold;
-    color: $toxic-green;
-    margin-left: .5vw;
-    @media (max-width: 991px) {
-        font-size: 15.5px;
-    }
-}
-.genres {
-    color: wheat;
-    margin-left: .5vw;
-    word-spacing: 3px;
-    @media (max-width: 1199px) {
-        font-size: 15px;
-    }
-    @media (max-width: 767px) {
-        font-size: 14px;
-    }
-    @media (max-width: 575px) {
-        font-size: 13.2px;
-    }
-}
+    $title-f-size: calc(13px + .45vw);
 
-@keyframes appearance {
-    0% {scale: 0;}
-    100% {scale: 1;}
-}
+    .movie-item {
+        margin-left: calc(3.5px + .25vw);
+        text-decoration: none;
+        width: 100%;
+        animation: appearance .3s linear;
+        &:hover {
+            background-color: $black-light;
+        }
+    }
+    .title-small {
+        max-width: 300px;
+        font-size: calc(13px + .45vw);
+        font-weight: bold;
+        line-height: 1.15;
+        color: $toxic-green;
+        padding-top: 2px;
+    }
+    .genres {
+        font-size: calc($title-f-size * 0.8);
+        color: wheat;
+        word-spacing: 3px;
+    }
+
+    @include keyframes(appearance) {
+        0% {scale: 0;}
+        100% {scale: 1;}
+    }
 </style>
