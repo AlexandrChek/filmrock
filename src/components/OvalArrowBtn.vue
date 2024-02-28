@@ -16,7 +16,7 @@ export default {
 @import '../variables';
 @import '../mixins';
 
-    $top-padding: calc(12px + .3vw);
+    $top-padding: calc(11px + .3vw);
     $f-size: 33px;
 
     @mixin arrow-btn($side) {
@@ -28,7 +28,7 @@ export default {
         font-size: $f-size;
         line-height: 1;
         font-weight: bold;
-        padding: $top-padding calc(3px + .2vw) calc($top-padding - 3px);
+        padding: $top-padding calc(3px + .2vw) calc($top-padding - 2px);
         position: absolute;
         top: calc(50% - ($f-size / 2 + $top-padding));
         #{$side}: .2vw;
