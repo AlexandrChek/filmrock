@@ -28,10 +28,13 @@ export default {
         font-size: $f-size;
         line-height: 1;
         font-weight: bold;
-        padding: $top-padding calc(3px + .2vw) calc($top-padding - 1.5px);
+        padding: $top-padding calc(3px + .2vw);
         position: absolute;
         top: calc(50% - ($f-size / 2 + $top-padding));
         #{$side}: .2vw;
+        @media (hover: hover) and (pointer: fine) {
+            padding-bottom: calc($top-padding - 3px);
+        }
         &:hover {
             opacity: .8;
             color: $toxic-green;
