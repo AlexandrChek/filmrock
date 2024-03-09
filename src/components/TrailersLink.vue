@@ -15,6 +15,7 @@ export default {
 
 <style scoped lang="scss">
 @import '../variables';
+@import '../extends';
 
     $let-spacing: calc(1.7px + .055vw);
 
@@ -25,15 +26,8 @@ export default {
         letter-spacing: $let-spacing;
         color: white;
         a {
-            color: $toxic-green;
             padding-left: $let-spacing;
-        }
-        a:hover {
-            border-radius: 5px;
-            text-decoration: none;
-            color: black;
-            background-color: $light-green;
-            box-shadow: 0 0 12px 3px $light-green;
+            @extend %link;
         }
     }
 </style>

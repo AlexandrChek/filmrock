@@ -1,7 +1,7 @@
 <template>
     <div class="mb-3 pt-md-0 pt-2">
-        <SearchFilm @gotTitleForAdwSearch="saveTitle" @searchTitleClicked="searchTitle"></SearchFilm>
-        <NotFound v-if="notFound"></NotFound>
+        <SearchFilm :filmsArr="filmsArr" @gotTitleForAdwSearch="saveTitle" @notFound="showNotFound"/>
+        <NotFound v-if="notFound"/>
         <AdvancedOptions v-if="advancedOptionsBtn" :optionsShown="optionsShown" @click="showOptions"/>
         <div v-if="optionsShown" class="mt-4 mb-3 period-genre-country"> 
             <SearchPeriod @yearEntered="saveYear" @periodEntered="savePeriod"/>
@@ -16,7 +16,7 @@
         </div>
         <div v-if="optionsShown">
             <MyButton @click="advancedSearch">Advanced search</MyButton>
-            <NotFound v-if="notFound2"></NotFound>
+            <NotFound v-if="notFound2"/>
         </div>
     </div>
 </template>
@@ -28,10 +28,10 @@ import MySelect from './MySelect.vue'
 import AdvancedOptions from './AdvancedOptions.vue'
 import SearchFilm from './SearchFilm.vue'
 import SearchPeriod from './SearchPeriod.vue'
+import {getDatabase, ref, onValue} from 'firebase/database'
 
 export default {
     name: 'SearchBlock',
-    props: ['filmsArr'],
     components: {
         MyButton,
         NotFound,
@@ -42,6 +42,7 @@ export default {
     },
     data() {
         return {
+            filmsArr: [],
             title: '',
             notFound: false,
             notFound2: false,
@@ -61,6 +62,8 @@ export default {
     mounted() {
         this.widthControlSearch()
         window.onresize = () => this.widthControlSearch()
+
+        document.addEventListener('DOMContentLoaded', this.getFilmsArr())
     },
     methods: {
         widthControlSearch() {
@@ -72,23 +75,19 @@ export default {
                 this.optionsShown = true
             }
         },
+        getFilmsArr() {
+            const db = getDatabase()
+            const filmsObj = ref(db, 'films/')
+            onValue(filmsObj, (snapshot) => {
+                let finalObj = snapshot.val()
+                this.filmsArr = Object.values(finalObj)
+            })
+        },
         saveTitle(val) {
             this.title = val
         },
-        searchTitle(val) {
-            let allSearchedMovies = []
-            this.filmsArr.forEach(item => {
-                let title = item.title.toLowerCase()
-                if (title.includes(val.toLowerCase())) {
-                    allSearchedMovies.push(item)
-                }
-            })
-            if (!allSearchedMovies.length) {
-                this.notFound = true
-            } else {
-                sessionStorage.setItem('allSearchedMovies', JSON.stringify(allSearchedMovies))
-                this.$router.push('/searchres')
-            }
+        showNotFound() {
+            this.notFound = true
         },
         setOptionsState() {
             if (this.allowAdwancedOptions) {

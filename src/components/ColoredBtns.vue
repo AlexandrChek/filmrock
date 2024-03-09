@@ -10,10 +10,10 @@ export default {
     name: 'ColoredBtns',
     methods: {
         onMovie() {
-            this.$emit('clickMovie')
+            this.$emit('movieClicked')
         },
         onTrailer() {
-            this.$emit('clickTrailer')
+            this.$emit('trailerClicked')
         }
     }
 }
@@ -26,7 +26,7 @@ export default {
         color: black;
         text-align: center;
         font-weight: bold;
-        font-size: calc(12px + .4vw);
+        font-size: $colored-btn-f-size;
         padding: 1.5px calc(12px + 1.3vw) 1px;
         cursor: pointer;
     }

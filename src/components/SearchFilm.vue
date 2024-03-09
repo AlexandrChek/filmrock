@@ -17,6 +17,7 @@ export default {
         InputReg,
         MyButton
     },
+    props: ['filmsArr'],
     data() {
         return {
             searchedValue: ''
@@ -24,7 +25,7 @@ export default {
     },
     emits: [
         'gotTitleForAdwSearch',
-        'searchTitleClicked'
+        'notFound'
     ],
     methods: {
         saveValue(val) {
@@ -32,8 +33,21 @@ export default {
             this.$emit('gotTitleForAdwSearch', val)
         },
         search() {
-            this.$emit('searchTitleClicked', this.searchedValue)
             this.$refs.title.cleanValue()
+
+            let allSearchedMovies = []
+            this.filmsArr.forEach(item => {
+                let title = item.title.toLowerCase()
+                if (title.includes(this.searchedValue.toLowerCase())) {
+                    allSearchedMovies.push(item)
+                }
+            })
+            if (!allSearchedMovies.length) {
+                this.$emit('notFound')
+            } else {
+                sessionStorage.setItem('allSearchedMovies', JSON.stringify(allSearchedMovies))
+                this.$router.push('/searchres')
+            }
         }
     }
 }

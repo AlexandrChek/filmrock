@@ -66,6 +66,19 @@ export default {
                 this.selectPages()
             }
         }
+
+        if (this.$store.state.pageNum > 1) {
+            this.changePage(this.$store.state.pageNum)
+        }
+    },
+    beforeRouteLeave(to, from, next) {
+        if (Number(to.path.slice(1)) && this.currentPage > 1) {
+            this.$store.state.pageNum = this.currentPage
+            next()
+        } else {
+            this.$store.state.pageNum = 1
+            next()
+        }
     },
     methods: {
         selectSearchedMovies() {

@@ -24,7 +24,7 @@
                 Lasting: &ensp;{{film.lasting}}
             </AdaptiveParagraf>
             <AdaptiveParagraf class="m-0 ratings">
-                Rating: &ensp;{{film.rating || 0}}
+                Rating: &ensp;{{rating}}
             </AdaptiveParagraf>
             <AdaptiveParagraf class="ratings">
                 Number of ratings: &ensp;{{film.numberOfRatings || 0}}
@@ -44,6 +44,17 @@ export default {
     components: {
         FilmTitle,
         AdaptiveParagraf
+    },
+    data() {
+        return {rating: 0}
+    },
+    mounted() {
+        const timer = setInterval(() => {
+            if (this.film.rating) {
+                this.rating = this.film.rating.toFixed(1)
+                clearInterval(timer)
+            }
+        }, 10)
     }
 }
 </script>

@@ -1,5 +1,16 @@
 @import 'variables';
 
+%link {
+    color: $toxic-green;
+    &:hover {
+        border-radius: 5px;
+        text-decoration: none;
+        color: black;
+        background-color: $light-green;
+        box-shadow: 0 0 12px 3px $light-green;
+    }
+}
+
 %reg-block-size {
     width: 28%;
     @media (max-width: 1399px) {

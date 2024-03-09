@@ -1,32 +1,30 @@
 <template>
-    <div class="col-lg-11 col-12">
-        <ColoredBtns @clickMovie="onMovie" @clickTrailer="onTrailer"/>
-        <div class="wrapper-static" :class="{'wrapper-orange': orangeBack, 'wrapper-burgundy': !orangeBack}">
-            <div class="ratio ratio-16x9">
-                <iframe :src="url" allowfullscreen></iframe>
-            </div>
+    <ColoredBtns @movieClicked="onMovie" @trailerClicked="onTrailer"/>
+    <div class="p-1" :class="{'back-orange': orangeBack, 'back-burgundy': !orangeBack}">
+        <VideoFrame v-if="orangeBack" :url="trailerUrl"/>
+        <div v-else>
+            <VideoFrame v-if="filmUrl" :url="filmUrl"/>
+            <p v-else>
+                There is no such film on YouTube. We suggest using an
+                <a :href="altUrl" target="_blank">alternative source</a>
+            </p>
         </div>
     </div>
 </template>
 
 <script>
 import ColoredBtns from './ColoredBtns.vue'
+import VideoFrame from './VideoFrame.vue'
 
 export default {
     name: 'VideoBlock',
-    components: {ColoredBtns},
-    props: ['trailerUrl', 'filmUrl'],
-    data() {
-        return {
-            orangeBack: true,
-            url: ''
-        }
+    components: {
+        ColoredBtns,
+        VideoFrame
     },
-    mounted() {
-        const urlLoader = setInterval(() => {
-            this.url = this.trailerUrl
-            if (this.url) {clearInterval(urlLoader)}
-        }, 10)
+    props: ['trailerUrl', 'filmUrl', 'altUrl'],
+    data() {
+        return {orangeBack: true}
     },
     methods: {
         onMovie() {
@@ -43,14 +41,25 @@ export default {
 
 <style scoped lang="scss">
 @import '../variables';
+@import '../extends';
 
-    .wrapper-static {
-        padding: 4px;
-    }
-    .wrapper-orange {
+    .back-orange {
         background-color: orange;
     }
-    .wrapper-burgundy {
+    .back-burgundy {
         background-color: $burgundy;
+    }
+    p {
+        text-align: center;
+        font-weight: bold;
+        font-size: $colored-btn-f-size;
+        margin: 5vh 0;
+    }
+    a {
+        @extend %link;
+        padding: 0 calc($colored-btn-f-size / 5);
+        @media (max-width: 575px) {
+            display: block;
+        }
     }
 </style>

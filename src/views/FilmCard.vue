@@ -18,7 +18,9 @@
             </AdaptiveParagraf>
         </div>
         <div class="row d-flex justify-content-center my-3">
-            <VideoBlock :trailerUrl="currentFilm.trailer" :filmUrl="currentFilm.url"/>
+            <div class="col-lg-11 col-12">
+                <VideoBlock :trailerUrl="currentFilm.trailer" :filmUrl="currentFilm.url" :altUrl="currentFilm.url_alt"/>
+            </div>
         </div>
         <div class="row d-flex justify-content-center mb-2">
             <div class="col-lg-11 col-12">
@@ -78,21 +80,25 @@ export default {
     },
     mounted() {
         const db = getDatabase()
-        const filmsObj = ref(db, 'films/')
 
+        const grossFilmObj = ref(db, 'films/' + this.id)
+        onValue(grossFilmObj, (snapshot) => {
+            this.currentFilm = snapshot.val()
+        })
+
+        if (this.$store.state.user) {this.findIsFilmRated(db)}
+
+        const filmsObj = ref(db, 'films/')
         onValue(filmsObj, (snapshot) => {
-            let finalObj = snapshot.val()
-            let filmsArr = Object.values(finalObj)
-            this.currentFilm = filmsArr.filter(film => {
-                return film.id == this.id
-            })[0]
-            
+            let netFilmsObj = snapshot.val()
+            let filmsArr = Object.values(netFilmsObj)
+
             while (this.suitableMovies.length < 10) {
                 if (this.currentFilm.relatedTo) {
                     for (let i = 0; i < filmsArr.length; i++) {
                         if (
                             filmsArr[i].relatedTo === this.currentFilm.relatedTo &&
-                            filmsArr[i].id !== this.currentFilm.id
+                            filmsArr[i].id != this.id
                         ) {
                             this.suitableMovies.push(filmsArr[i])
                         }
@@ -111,8 +117,6 @@ export default {
                 this.reviewsLength = this.allReviews.length
             }
         })
-
-        if (this.$store.state.user) {this.findIsFilmRated(db)}
 
         this.getShortListLength()
         window.onresize = () => this.getShortListLength()
@@ -168,8 +172,7 @@ export default {
                         filmsArr[i].genre === this.currentFilm.genre2 ||
                         filmsArr[i].genre2 === this.currentFilm.genre
                     )
-                    )
-                {
+                ) {
                     this.suitableMovies.push(filmsArr[i])
                 }
             }
@@ -210,7 +213,7 @@ export default {
             const user = this.$store.state.user
 
             if (oldNumberOfRatings) {
-                currentRating = ((oldNumberOfRatings * oldRating + currentRating) / currentNumberOfRatings).toFixed(1)
+                currentRating = (oldNumberOfRatings * oldRating + currentRating) / currentNumberOfRatings
             }
             set(ref(db, 'films/' + id + '/rating'), currentRating)
             set(ref(db, 'films/' + id + '/numberOfRatings'), currentNumberOfRatings)

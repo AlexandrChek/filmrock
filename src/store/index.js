@@ -3,7 +3,8 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     user: '',
-    showMainFooter: true
+    showMainFooter: true,
+    pageNum: 1
   },
   getters: {
   },

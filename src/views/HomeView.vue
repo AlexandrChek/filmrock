@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-12 d-flex flex-column justify-content-between">
-        <SearchBlock :filmsArr="filmsArr"/>
+        <SearchBlock/>
         <AdvertPlace v-if="animationLeft"/>
       </div>
       <div class="col-lg-9 col-md-8 col-sm-12 px-0 movie-lines">
@@ -25,7 +25,7 @@ import AdvertPlace from '../components/AdvertPlace.vue'
 import LineHeader from '../components/LineHeader.vue'
 import MovieLine from '../components/MovieLine.vue'
 import TrailersLink from '../components/TrailersLink.vue'
-import {getDatabase, ref, onValue} from 'firebase/database'
+import {getDatabase, ref, query, orderByChild, limitToLast, onValue} from 'firebase/database'
 
 export default {
   name: 'HomeView',
@@ -38,7 +38,6 @@ export default {
   },
   data() {
     return {
-      filmsArr: [],
       newMovies: [],
       topMovies: [],
       shortListLength: 0,
@@ -47,60 +46,29 @@ export default {
   },
   created() {
     const db = getDatabase()
-    const filmsObj = ref(db, 'films/')
-
-    onValue(filmsObj, (snapshot) => {
-      let finalObj = snapshot.val()
-      this.filmsArr = Object.values(finalObj)
-      this.getNewMovies()
-      this.getTopMovies()
-    })
+    this.getNewMovies(db)
+    this.getTopMovies(db)
 
     this.homeWidthControl()
     window.addEventListener('resize', this.homeWidthControl)
   },
   methods: {
-    getNewMovies() {
-      let sortedByYear = this.filmsArr.sort((a,b) => {
-        return b.year - a.year
-      }).slice(0, 10)
-      let newYears = []
-      sortedByYear.forEach(item => {newYears.push(item.year)})
-      let uniqueYears = [...new Set(newYears)]
-
-      if (uniqueYears.length === 1) {
-        this.newMovies = sortedByYear.sort((a,b) => {
-          return b.id - a.id
-        })
-      } else {
-        uniqueYears.forEach(year => {
-          let yearItems = []
-          sortedByYear.forEach(item => {
-            if (item.year === year) {
-              yearItems.push(item)
-            }
-          })
-          let sortedYearItems = yearItems.sort((a,b) => {
-            return b.id - a.id
-          })
-          if (!this.newMovies.length) {
-            this.newMovies = [...sortedYearItems]
-          } else {
-            this.newMovies = [...this.newMovies, ...sortedYearItems]
-          }
-        })
-      }
-    },
-    getTopMovies() {
-      let ratedFilms = []
-      this.filmsArr.forEach(item => {
-        if (item.rating) {
-          ratedFilms.push(item)
-        }
+    getNewMovies(db) {
+      const filmsObj = query(ref(db, 'films/'), orderByChild('year'), limitToLast(10))
+      onValue(filmsObj, (snapshot) => {
+        let newObj = snapshot.val()
+        this.newMovies = Object.values(newObj).reverse()
       })
-      this.topMovies = ratedFilms.sort((a,b) => {
-        return b.rating - a.rating
-      }).slice(0, 10)
+    },
+    getTopMovies(db) {
+      const filmsObj = query(ref(db, 'films/'), orderByChild('rating'), limitToLast(10))
+      onValue(filmsObj, (snapshot) => {
+        let topObj = snapshot.val()
+        let topArr = Object.values(topObj)
+        this.topMovies = topArr.sort((a, b) => {
+          return b.rating - a.rating
+        })
+      })
     },
     homeWidthControl() {
       let windowWidth = window.innerWidth

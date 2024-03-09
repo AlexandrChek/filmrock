@@ -14,7 +14,7 @@ const firebaseConfig = {
     appId: "1:222371431552:web:e528a11e853c482ed19265",
     databaseURL: "https://filmrock-585e2-default-rtdb.europe-west1.firebasedatabase.app/"
   };
-const firebaseApp = initializeApp(firebaseConfig);
-export const database = getDatabase(firebaseApp);
+const firebaseApp = initializeApp(firebaseConfig)
+export const database = getDatabase(firebaseApp)
 
 createApp(App).use(store).use(router).mount('#app')
