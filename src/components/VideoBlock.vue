@@ -4,10 +4,12 @@
         <VideoFrame v-if="orangeBack" :url="trailerUrl"/>
         <div v-else>
             <VideoFrame v-if="filmUrl" :url="filmUrl"/>
-            <p v-else>
-                There is no such film on YouTube. We suggest using an <br v-if="mw575"/>
-                <a :href="altUrl" target="_blank">alternative source</a>
-            </p>
+            <div v-else class="alt-url">
+                <p>There is no such film on YouTube.</p>
+                <p>We suggest using an
+                    <a :href="altUrl" target="_blank">alternative source</a>
+                </p>
+            </div>
         </div>
     </div>
 </template>
@@ -24,14 +26,7 @@ export default {
     },
     props: ['trailerUrl', 'filmUrl', 'altUrl'],
     data() {
-        return {
-            orangeBack: true,
-            mw575: false
-        }
-    },
-    mounted() {
-        this.linkWidthControl()
-        window.onresize = () => {this.linkWidthControl()}
+        return {orangeBack: true}
     },
     methods: {
         onMovie() {
@@ -41,13 +36,6 @@ export default {
         onTrailer() {
             this.orangeBack = true
             this.url = this.trailerUrl
-        },
-        linkWidthControl() {
-            if (window.matchMedia('(max-width: 575px)').matches) {
-                this.mw575 = true
-            } else {
-                this.mw575 = false
-            }
         }
     }
 }
@@ -63,11 +51,18 @@ export default {
     .back-burgundy {
         background-color: $burgundy;
     }
+    .alt-url {
+        margin: 5vh 0;
+        @media (min-width: 576px) {
+            display: flex;
+            justify-content: center;
+        }
+    }
     p {
         text-align: center;
         font-weight: bold;
         font-size: $colored-btn-f-size;
-        margin: 5vh 0;
+        margin: 0;
     }
     a {
         @extend %link;
