@@ -5,7 +5,7 @@
         <div v-else>
             <VideoFrame v-if="filmUrl" :url="filmUrl"/>
             <p v-else>
-                There is no such film on YouTube. We suggest using an
+                There is no such film on YouTube. We suggest using an <br v-if="mw575"/>
                 <a :href="altUrl" target="_blank">alternative source</a>
             </p>
         </div>
@@ -24,7 +24,14 @@ export default {
     },
     props: ['trailerUrl', 'filmUrl', 'altUrl'],
     data() {
-        return {orangeBack: true}
+        return {
+            orangeBack: true,
+            mw575: false
+        }
+    },
+    mounted() {
+        this.linkWidthControl()
+        window.onresize = () => {this.linkWidthControl()}
     },
     methods: {
         onMovie() {
@@ -34,6 +41,13 @@ export default {
         onTrailer() {
             this.orangeBack = true
             this.url = this.trailerUrl
+        },
+        linkWidthControl() {
+            if (window.matchMedia('(max-width: 575px)').matches) {
+                this.mw575 = true
+            } else {
+                this.mw575 = false
+            }
         }
     }
 }
@@ -58,8 +72,5 @@ export default {
     a {
         @extend %link;
         padding: 0 calc($colored-btn-f-size / 5);
-        @media (max-width: 575px) {
-            display: block;
-        }
     }
 </style>
