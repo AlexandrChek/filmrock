@@ -88,7 +88,7 @@ export default {
 
     textarea {
         display: block;
-        width: 50%;
+        width: 100%;
         border: 3px solid black;
         &:focus {
             outline: none;
@@ -96,8 +96,8 @@ export default {
             border-radius: 2px;
             background-color: $backlight;
         }
-        @media (max-width: 767px) {
-            width: 100%;
+        @media (min-width: 768px) {
+            width: 50%;
         }
     }
     .send-btn {

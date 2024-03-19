@@ -24,9 +24,9 @@ export default {
         margin: 0;
         font-family: URW Chancery L, cursive;
         letter-spacing: .17vw;
-        font-size: $f-size;
-        @media (max-width: 575px) {
-            font-size: $f-size-575;
+        font-size: $f-size-575;
+        @media (min-width: 576px) {
+            font-size: $f-size;
         }
     }
 

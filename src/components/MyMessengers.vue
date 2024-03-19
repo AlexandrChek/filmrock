@@ -35,12 +35,13 @@ export default {
         margin-right: 5px;
     }
     img {
-        margin: 5px;
+        width: 7.8vw;
+        margin: 4px;
         max-height: 41px;
         border-radius: 9px;
-        @media (max-width: 575px) {
-            margin: 4px;
-            width: 7.8vw;
+        @media (min-width: 576px) {
+            margin: 5px;
+            width: auto;
         }
     }
 </style>

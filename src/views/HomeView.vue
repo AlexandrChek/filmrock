@@ -73,12 +73,12 @@ export default {
     homeWidthControl() {
       let windowWidth = window.innerWidth
 
-      if (windowWidth >= 992) {
-          this.shortListLength = 4
-      } else if (windowWidth < 992 && windowWidth >= 576) {
-          this.shortListLength = 3
+      if (windowWidth < 576) {
+        this.shortListLength = 2
+      } else if (windowWidth < 992) {
+        this.shortListLength = 3
       } else {
-          this.shortListLength = 2
+        this.shortListLength = 4
       }
 
       if (windowWidth < 768) {

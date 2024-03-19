@@ -58,10 +58,10 @@ export default {
         margin-bottom: 1vw;
     }
     button {
-        width: 29%;
+        width: 33%;
         padding-inline: 4px;
-        @media (max-width: 767px) {
-            width: 33%;
+        @media (min-width: 768px) {
+            width: 29%;
         }
     }
 </style>

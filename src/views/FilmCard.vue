@@ -17,12 +17,12 @@
                 <b>Description:</b> &ensp;{{currentFilm.description}}
             </AdaptiveParagraf>
         </div>
-        <div class="row d-flex justify-content-center my-3">
+        <div class="row d-flex justify-content-center mt-3 mb-4">
             <div class="col-lg-11 col-12">
                 <VideoBlock :trailerUrl="currentFilm.trailer" :filmUrl="currentFilm.url" :altUrl="currentFilm.url_alt"/>
             </div>
         </div>
-        <div class="row d-flex justify-content-center mb-2">
+        <div class="row d-flex justify-content-center mb-3">
             <div class="col-lg-11 col-12">
                 <LineHeader :left="true">This might interest you:</LineHeader>
                 <MovieLine :list="suitableMovies" :shortListLength="shortListLength"/>
@@ -84,9 +84,11 @@ export default {
         const grossFilmObj = ref(db, 'films/' + this.id)
         onValue(grossFilmObj, (snapshot) => {
             this.currentFilm = snapshot.val()
-        })
 
-        if (this.$store.state.user) {this.findIsFilmRated(db)}
+            if (this.$store.state.user && this.currentFilm.rating) {
+                this.findIsFilmRated(db)
+            }
+        })
 
         const filmsObj = ref(db, 'films/')
         onValue(filmsObj, (snapshot) => {
@@ -128,17 +130,15 @@ export default {
     },
     methods: {
         findIsFilmRated(db) {
-            const user = this.$store.state.user
-            const grossUserObj = ref(db, 'users/' + user)
-            onValue(grossUserObj, (snapshot) => {
-                let netUserObj = snapshot.val()
-                if (netUserObj.ratings) {
-                    let ratedFilms = Object.keys(netUserObj.ratings)
-                    for (let i = 0; i < ratedFilms.length; i++) {
-                        if (ratedFilms[i] === this.id) {
-                            this.notRated = false
-                            return
-                        }
+            const userName = this.$store.state.user
+            const refUser = ref(db, 'users/' + userName)
+            onValue(refUser, (snapshot) => {
+                const user = snapshot.val()
+                const ratedFilms = Object.keys(user.ratings)
+                for (let i = 0; i < ratedFilms.length; i++) {
+                    if (ratedFilms[i] === this.id) {
+                        this.notRated = false
+                        return
                     }
                 }
             })
@@ -180,14 +180,14 @@ export default {
         getShortListLength() {
             let windowWidth = window.innerWidth
 
-            if (windowWidth >= 992) {
-                this.shortListLength = 5
-            } else if (windowWidth < 992 && windowWidth >= 768) {
-                this.shortListLength = 4
-            } else if (windowWidth < 768 && windowWidth >= 576) {
-                this.shortListLength = 3
-            } else {
+            if (windowWidth < 576) {
                 this.shortListLength = 2
+            } else if (windowWidth < 768) {
+                this.shortListLength = 3
+            } else if (windowWidth < 992) {
+                this.shortListLength = 4
+            } else {
+                this.shortListLength = 5
             }
         },
         rateFilm() {

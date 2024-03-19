@@ -28,9 +28,9 @@ export default {
         @extend %modal-p;
     }
     button {
-        width: 28%;
-        @media (max-width: 991px) {
-            width: 35%;
+        width: 35%;
+        @media (min-width: 992px) {
+            width: 28%;
         }
     }
 </style>

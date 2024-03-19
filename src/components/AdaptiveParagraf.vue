@@ -13,11 +13,11 @@ export default {
 
     p {
         font-size: $main-text-f-size;
-        letter-spacing: .07vw;
+        letter-spacing: .12vw;
         margin-bottom: calc($main-text-f-size / 1.8);
         line-height: 1.3;
-        @media (max-width: 575px) {
-            letter-spacing: .12vw;
+        @media (min-width: 576px) {
+            letter-spacing: normal;
         }
     }
 </style>

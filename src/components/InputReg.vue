@@ -31,15 +31,15 @@ export default {
 @import '../variables';
 
     input {
-        font-size: x-large;
+        font-size: 21.5px;
         border: 3px solid black;
         &:focus {
             outline: none;
             border-color: $toxic-green;
             background-color: $backlight;
         }
-        @media (max-width: 575px) {
-            font-size: 21.5px;
+        @media (min-width: 576px) {
+            font-size: 24px;
         }
     }
 </style>

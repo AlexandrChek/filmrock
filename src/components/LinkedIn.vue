@@ -19,10 +19,11 @@
 
     div {
         display: flex;
-        justify-content: center;
-        @media (max-width: 680px) {
-            flex-direction: column;
-            align-items: center;
+        flex-direction: column;
+        align-items: center;
+        @media (min-width: 680px) {
+            flex-direction: row;
+            justify-content: center;
         }
     }
     p {

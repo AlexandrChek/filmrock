@@ -4,7 +4,7 @@
             <div v-if="n === currentPage" id="arrow-up">&#9650;</div>
             <div v-else id="void">.</div>
         </div>
-        <div :class="{'current-number': n === currentPage}">{{n}}</div>
+        <div class="numbers" :class="{'current-number': n === currentPage}">{{n}}</div>
     </div>
 </template>
 
@@ -27,7 +27,11 @@ export default {
     .number-wrapper {
         margin: 0 10px;
         font-size: $page-number-f-size;
+        text-align: center;
         cursor: pointer;
+    }
+    .numbers {
+        line-height: 1;
     }
     #arrow-up, .current-number {
         color: $toxic-green;

@@ -24,12 +24,12 @@
 @import '../variables';
 
     div {
-        display: none;
+        display: flex;
         position: absolute;
         right: 2.1%;
         top: 15%;
-        @media (max-width: 767px) {
-            display: flex;
+        @media (min-width: 768px) {
+            display: none;
         }
     }
     p {

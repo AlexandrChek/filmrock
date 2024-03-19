@@ -21,7 +21,7 @@
 
 <script>
 import InputReg from './InputReg.vue'
-import { getDatabase, ref, set, onValue } from "firebase/database"
+import { getDatabase, ref, get, set } from "firebase/database"
 
 export default {
     name: 'FormReg',
@@ -48,15 +48,16 @@ export default {
                 this.$emit('nameProblem', 'shortUserName')
             } else {
                 const db = getDatabase()
-                const usersObj = ref(db, 'users/')
-                onValue(usersObj, (snapshot) => {
+                get(ref(db, 'users/'))
+                .then((snapshot) => {
                     let finalObj = snapshot.val()
-                    let usersArr = Object.values(finalObj)
-                    for (let i = 0; i < usersArr.length; i++) {
-                        if (this.userName === usersArr[i].userName) {
-                            this.$emit('nameProblem', 'userNameUsed')
-                            return
-                        }
+                    let usersArr = Object.keys(finalObj)
+                    let isNameUsed = usersArr.find(e => {
+                        return e === this.userName
+                    })
+
+                    if (isNameUsed) {
+                        this.$emit('nameProblem', 'userNameUsed')
                     }
                 })
             }
@@ -71,11 +72,9 @@ export default {
                 this.$emit('passwordProblem', 'passwordMismatch')
             } else {
                 const db = getDatabase()
-                let userName = this.userName
-                let password = this.password
-                set(ref(db, 'users/' + userName), {userName, password})
-                localStorage.setItem('user', userName)
-                this.$store.state.user = userName
+                set(ref(db, 'users/' + this.userName), {password: this.password})
+                localStorage.setItem('user', this.userName)
+                this.$store.state.user = this.userName
                 this.$router.push('/')
             }
         }
@@ -94,10 +93,10 @@ export default {
         @extend %label-reg;
     }
     .prompt {
-        font-size: 13px;
+        font-size: calc(10px + .3vw);
         color: $toxic-green;
-        @media (max-width: 575px) {
-            font-size: calc(10px + .3vw);
+        @media (min-width: 576px) {
+            font-size: 13px;
         }
     }
 </style>

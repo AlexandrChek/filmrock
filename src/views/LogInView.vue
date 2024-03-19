@@ -62,9 +62,9 @@ export default {
 }
 
     .login-view {
-        @include view-min-h($second-footer-f-size);
-        @media (max-width: 575px) {
-            @include view-min-h($second-footer-f-size-575);
+        @include view-min-h($second-footer-f-size-575);
+        @media (min-width: 576px) {
+            @include view-min-h($second-footer-f-size);
         }
     }
 </style>

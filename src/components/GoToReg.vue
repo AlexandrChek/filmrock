@@ -24,9 +24,9 @@
 
     .go-to-reg {
         @extend %reg-block-size;
-        margin: 0 auto 48px auto;
-        @media (max-width: 767px) {
-            margin: 0 auto;
+        margin: 0 auto;
+        @media (min-width: 768px) {
+            margin: 0 auto 48px auto;
         }
     }
     p {

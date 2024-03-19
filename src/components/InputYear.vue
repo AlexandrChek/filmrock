@@ -21,9 +21,10 @@
 
     input {
         padding: 1px 0 0 4px;
-        width: calc(60px + 1.1vw);
         font-size: $search-label-f-size;
-        border-radius: 2px;
+        width: calc(60px + 1.1vw);
+        height: calc($search-label-f-size * 1.55);
+        border-radius: 3px;
         border: none;
         &:focus {
             outline: 3px solid $toxic-green;

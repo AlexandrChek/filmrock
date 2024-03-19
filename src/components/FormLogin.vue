@@ -18,7 +18,7 @@
 
 <script>
 import InputReg from './InputReg.vue'
-import {getDatabase, ref, onValue} from 'firebase/database'
+import {getDatabase, ref, get} from 'firebase/database'
 
 export default {
     name: 'FormLogin',
@@ -39,18 +39,20 @@ export default {
         logInUser() {
             if (this.userName && this.password) {
                 const db = getDatabase()
-                const grossUsersObj = ref(db, 'users/')
-                onValue(grossUsersObj, (snapshot) => {
-                    const netUsersObj = snapshot.val()
-                    const usersArr = Object.values(netUsersObj)
-                    for (let i = 0; i < usersArr.length; i++) {
-                        if (usersArr[i].userName === this.userName && usersArr[i].password === this.password) {
-                            localStorage.setItem('user', this.userName)
-                            this.$store.state.user = this.userName
-                            this.$router.push('/')
-                        } else if (i === usersArr.length - 1) {
-                            this.$emit('problem', 'wrongUser')
-                        }
+                get(ref(db, 'users/' + this.userName))
+                .then((snapshot) => {
+                    const user = snapshot.val()
+                    if (user.password === this.password) {
+                        localStorage.setItem('user', this.userName)
+                        this.$store.state.user = this.userName
+                        this.$router.push('/')
+                    } else {
+                        this.$emit('problem', 'wrongUser')
+                    }
+                })
+                .catch((error) => {
+                    if (error) {
+                        this.$emit('problem', 'wrongUser')
                     }
                 })
             } else {

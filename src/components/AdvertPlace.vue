@@ -26,30 +26,33 @@ export default {
 	},
 	mounted() {
 		window.addEventListener('load', this.setFontSize)
-		window.addEventListener('resize', this.setFontSize)
+		window.addEventListener('resize', () => {
+			if (this.$route.path === '/' && (window.innerWidth === 767 || 768)) {
+				this.resetFontSize()
+			} else {this.setFontSize()}
+		})
 
 		this.$router.afterEach((to) => {
 			if (this.to.includes(to.name)) {
-				this.$nextTick(() => {
-					const timer = setInterval(() => {
-						if (document.querySelector('.animation').offsetWidth) {
-							this.setFontSize()
-							clearInterval(timer)
-						}
-					}, 10)
-				})
+				this.resetFontSize()
 			}
 		})
-	},
-	unmounted() {
-		window.removeEventListener('load', this.setFontSize)
-		window.removeEventListener('resize', this.setFontSize)
 	},
 	methods: {
 		setFontSize() {
 			const animation = document.querySelector('.animation')
 			const inscription = document.querySelector('#inscription')
 			inscription.style.fontSize = animation.offsetWidth * 0.062 + 'px'
+		},
+		resetFontSize() {
+			this.$nextTick(() => {
+				const timer = setInterval(() => {
+					if (document.querySelector('.animation').offsetWidth) {
+						this.setFontSize()
+						clearInterval(timer)
+					}
+				}, 10)
+			})
 		}
 	}
 }
@@ -60,8 +63,9 @@ export default {
 
 	.animation {
 		position: relative;
-		@media (max-width: 767px) {
-			margin-top: 50px;
+		margin-top: 50px;
+		@media (min-width: 768px) {
+			margin-top: 0;
 		}
 	}
 	.planet {
@@ -71,12 +75,12 @@ export default {
 	}
 	#planet {
 		border-radius: 100%;
-		width: calc(12.5px + .585vw);
-		transform-origin: 240% 90% 0;
+		width: calc(17px + .8vw);
+		transform-origin: 240% 170% 0;
 		@include animation(rotation 14s linear infinite);
-		@media (max-width: 767px) {
-			width: calc(17px + .8vw);
-			transform-origin: 240% 170% 0;
+		@media (min-width: 768px) {
+			width: calc(12.5px + .585vw);
+			transform-origin: 240% 90% 0;
 		}
 	}
 	.star {

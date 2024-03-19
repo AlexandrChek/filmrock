@@ -51,20 +51,36 @@ export default {
 <style scoped lang="scss">
 @import '../variables';
 
+  nav {
+    width: 100%;
+    background-color: $black-light;
+    border-bottom: .5px dotted wheat;
+    @media (min-width: 768px) {
+      width: auto;
+      background-color: transparent;
+      border: none;
+    }
+  }
   nav a {
-    font-size: calc(3px + 1.79vw);
+    display: block;
+    padding: calc(5px + .2vw) 1.5vw 0;
+    font-size: calc(17px + 1.4vw);
     letter-spacing: .2vw;
     font-weight: bold;
     color: white;
     text-decoration: none;
-    border: .5px solid wheat;
-    margin: .7vw;
-    padding: 2px 7px;
     &:hover {
       background-color: $black-light;
     }
     &.router-link-exact-active {
       color: $toxic-green;
+    }
+    @media (min-width: 768px) {
+      display: inline;
+      padding: 2px 7px;
+      margin: .7vw;
+      font-size: calc(3px + 1.79vw);
+      border: .5px solid wheat;
     }
   }
   .horiz {
@@ -81,20 +97,5 @@ export default {
     top: 26%;
     z-index: 2;
     border: .1px solid wheat;
-  }
-
-  @media (max-width: 767px) {
-    nav a {
-      display: block;
-      margin: 0;
-      padding: calc(5px + .2vw) 1.5vw 0;
-      border: none;
-      font-size: calc(17px + 1.4vw);
-    }
-    nav {
-      width: 100%;
-      background-color: $black-light;
-      border-bottom: .1px dotted wheat;
-    }
   }
 </style>

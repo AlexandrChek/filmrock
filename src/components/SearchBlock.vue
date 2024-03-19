@@ -308,7 +308,7 @@ export default {
         margin-bottom: 15px;
     }
 
-    @media (max-width: 767px) and (min-width: 576px) {
+    @media (min-width: 576px) and (max-width: 767px) {
         .period-genre-country {
             display: flex;
         }

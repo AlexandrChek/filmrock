@@ -1,10 +1,15 @@
 <template>
     <div class="d-flex flex-column big-wrapper">
-        <router-link v-for="film in searchedMovies" :to="'/' + film.id" :key="film.id" class="movie-item">
+        <router-link
+            v-for="film in searchedMovies"
+            :to="'/' + film.id"
+            :key="film.id"
+            class="container-fluid movie-item"
+        >
             <SmallCard :film="film"/>
         </router-link>
     </div>
-    <div v-if="pagination" class="d-flex justify-content-center w-100">
+    <div v-if="pagination" class="d-flex justify-content-center w-100 mb-3">
         <div class="d-inline-flex justify-content-center">
             <SimplArrowBtn v-if="currentPage > 1" @click="scrollLeft">
                 &ensp; &#171; &ensp;
@@ -54,11 +59,7 @@ export default {
             this.selectSearchedMovies()
             this.numberOfPages = Math.ceil(this.allSearchedMovies.length / 10)
 
-            let i = 1
-            while (i <= this.numberOfPages) {
-                this.allPages.push(i)
-                i++
-            }
+            this.allPages = [...Array(this.numberOfPages).keys()].map(i => i + 1)
 
             if (this.numberOfPages <= 5) {
                 this.pages = [...this.allPages]
@@ -138,9 +139,6 @@ export default {
         min-height: calc(100vh - ($main-title-f-size * 3));
         @media (hover: none) and (pointer: coarse) {
             overflow-y: scroll;
-        }
-        @media (max-width: 991px) {
-            margin: 0 3vw;
         }
     }
     .movie-item {

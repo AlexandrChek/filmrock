@@ -36,13 +36,14 @@ export default {
         @extend %modal-p;
     }
     button {
-        width: 27%;
+        width: 29%;
         padding: 5px 0;
-        @media (max-width: 767px) {
-            width: 29%;
+        font-size: 14px;
+        @media (min-width: 576px) {
+            font-size: 1rem;
         }
-        @media (max-width: 575px) {
-            font-size: 14px;
+        @media (min-width: 768px) {
+            width: 27%;
         }
     }
 </style>

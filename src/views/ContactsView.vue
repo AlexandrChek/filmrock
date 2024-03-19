@@ -53,9 +53,10 @@ export default {
   .tel-wrapper {
     display: flex;
     justify-content: center;
-    @media (max-width: 1199px) {
-      flex-direction: column;
-      align-items: center;
+    align-items: center;
+    flex-direction: column;
+    @media (min-width: 1200px) {
+      flex-direction: row;
     }
   }
   .contacts {

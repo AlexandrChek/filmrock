@@ -42,21 +42,11 @@ export default {
         padding: 0 7px;
         cursor: pointer;
     }
-
-    $btn-letters-width: calc($btn-f-size / 1.5 * 6);
-
     .exit-btn {
-        margin: 3px 9px;
-        width: calc($btn-letters-width * 1.05 + 24px);
-        @media (max-width: 1399px) {
-            width: calc($btn-letters-width + 25.5px);
-        }
-        @media (max-width: 1199px) {
-            width: calc($btn-letters-width + 23.5px);
-        }   
-        @media (max-width: 575px) {
-            margin: 2px;
-            width: calc($btn-letters-width + 1.2vw + 23.5px);
+        margin: 2px 3px;
+        @media (min-width: 768px) {
+            margin: 4px 8px;
+            width: calc(($btn-f-size / 1.5 * 6 + 1.5px) + ($btn-horiz-padding * 2));
         }
     }
 </style>

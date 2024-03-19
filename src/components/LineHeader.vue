@@ -23,9 +23,9 @@ export default {
         color: $burgundy;
     }
     .left-alignment {
-        padding-left: 20px;
-        @media (max-width: 575px) {
-            padding-left: 12px;
+        padding-left: 12px;
+        @media (min-width: 576px) {
+            padding-left: 20px;
         }
     }
     .center-alignment {

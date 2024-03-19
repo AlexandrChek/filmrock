@@ -105,7 +105,7 @@ export default {
 
     .period-wrapper {
         margin-bottom: 17px;
-        @media (max-width: 767px) and (min-width: 576px) {
+        @media (min-width: 576px) and (max-width: 767px) {
             margin: 0;
         }
     }

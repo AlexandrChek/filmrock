@@ -12,18 +12,9 @@
 }
 
 %reg-block-size {
-    width: 28%;
-    @media (max-width: 1399px) {
-        width: 39%;
-    }
-    @media (max-width: 991px) {
-        width: 50%;
-    }
-    @media (max-width: 767px) {
-        width: 63%;
-    }
-    @media (max-width: 575px) {
-        width: 75%;
+    width: 75%;
+    @media (min-width: 576px) {
+        width: 435px;
     }
 }
 
@@ -35,10 +26,10 @@
 
 %label-reg {
     color: $toxic-green;
-    font-size: calc(14px + .35vw);
+    font-size: calc(6px + 2.05vw);
     font-weight: bold;
-    @media (max-width: 575px) {
-        font-size: calc(6px + 2.05vw);
+    @media (min-width: 576px) {
+        font-size: calc(14px + .35vw);
     }
 }
 
@@ -65,18 +56,18 @@ $modal-left: calc((100vw - $modal-width) / 2);
 }
 
 %contacts-settings {
-    font-size: 30px;
+    font-size: 5.2vw;
     font-weight: bold;
     color: $toxic-green;
-    @media (max-width: 575px) {
-      font-size: 5.2vw;
+    @media (min-width: 576px) {
+        font-size: 30px;
     }
-  }
+}
 
-  %contacts-settings-2 {
-    letter-spacing: 5px;
+%contacts-settings-2 {
+    letter-spacing: calc(1.5px + .5vw);
     text-align: center;
-    @media (max-width: 575px) {
-        letter-spacing: calc(1.5px + .5vw);
+    @media (min-width: 576px) {
+        letter-spacing: 5px;
     }
-  }
+}
