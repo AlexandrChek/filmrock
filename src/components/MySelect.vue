@@ -3,7 +3,7 @@
         <label class="left-label"><slot></slot></label>
         <div class="select-field" tabindex="0" @focus="reportFocus">
             <span>{{ selectedItem }}</span>
-            <div class="arrow">&#9207;</div>
+            <div class="arrow">&#9660;</div>
             <div class="items">
                 <label class="radio-item" v-for="item in values" :key="item" @click.self="transmitValue(item)">
                     <input type="radio" class="d-none" :value="item" v-model="selectedItem">
@@ -57,8 +57,9 @@ export default {
         height: 100%;
         line-height: $year-height;
         text-align: center;
-        font-size: calc($search-label-f-size * 0.7);
+        font-size: calc($search-label-f-size * 0.55);
         color: black;
+        padding-top: 1px;
         background-color: $gray-back;
         border-radius: 0 3px 3px 0;
         float: right;
