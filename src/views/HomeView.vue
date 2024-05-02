@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row mt-1">
       <div class="col-lg-3 col-md-4 col-sm-12 d-flex flex-column justify-content-between">
         <SearchBlock/>
         <AdvertPlace v-if="animationLeft"/>
@@ -94,6 +94,5 @@ export default {
 <style scoped>
   .movie-lines {
     border: .1px solid wheat;
-    margin-top: 2px;
   }
 </style>

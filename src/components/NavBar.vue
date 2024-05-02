@@ -1,12 +1,12 @@
 <template>
   <div v-if="inlineMenu || isMenuActive" :class="{'horiz': inlineMenu, 'vert': !inlineMenu && isMenuActive}">
     <nav v-for="item in menu" :key="item.name">
-      <router-link :to="item.to" class="rounded" @click="closeMenu">
+      <router-link :to="item.to" @click="closeMenu">
         {{item.name}}
       </router-link> 
     </nav>
   </div>
-  <BurgerBtn :burgerShown="burgerShown" @linesClicked="openMenu" @crossClicked="closeMenu"/>
+  <BurgerBtn @burgerClicked="isMenuActive = !isMenuActive" ref="burger"/>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ import BurgerBtn from './BurgerBtn.vue'
 
 export default {
   name: 'NavBar',
-  components: {BurgerBtn},
+  components: { BurgerBtn },
   data() {
     return {
       menu: [
@@ -24,8 +24,7 @@ export default {
         {to: "/registration", name: "Registration"}
       ],
       inlineMenu: window.matchMedia('(min-width: 768px)').matches,
-      isMenuActive: false,
-      burgerShown: true
+      isMenuActive: false
     }
   },
   mounted() {
@@ -34,15 +33,9 @@ export default {
     })
   },
   methods: {
-    openMenu() {
-      this.isMenuActive = true
-      this.burgerShown = false
-    },
     closeMenu() {
-      if (!this.inlineMenu) {
-        this.isMenuActive = false
-        this.burgerShown = true
-      }
+      this.isMenuActive = false
+      this.$refs.burger.showLines()
     }
   }
 }
@@ -81,6 +74,7 @@ export default {
       margin: .7vw;
       font-size: calc(3px + 1.79vw);
       border: .5px solid wheat;
+      border-radius: 7px;
     }
   }
   .horiz {
@@ -93,8 +87,8 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
-    right: calc(3.3% + 23px);
-    top: 26%;
+    right: calc($burger-width + 12px);
+    top: calc($burger-top - 2px);
     z-index: 2;
     border: .1px solid wheat;
   }

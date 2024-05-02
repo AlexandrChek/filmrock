@@ -3,16 +3,21 @@ $light-green: rgb(120, 255, 130);
 $black-light: rgb(44, 44, 44);
 $burgundy: rgb(145, 20, 20);
 $backlight: rgb(255, 253, 230);
+$gray-back: rgb(205, 205, 205);
+
+$input-focus-shadow: 0 0 0 3px $toxic-green;
 
 $main-title-f-size: calc(13.2px + 4vw);
 $main-text-f-size: calc(8px + .785vw);
-$search-label-f-size: calc(13px + .25vw);
+$search-label-f-size: calc(14px + .3vw);
 $page-number-f-size: calc(17px + .7vw);
 $btn-f-size: calc(12px + .585vw);
 $colored-btn-f-size: calc(12px + .4vw);
 $second-footer-f-size: 25.5px;
 $second-footer-f-size-575: 4.45vw;
 
+$burger-top: calc($main-title-f-size * 0.3);
+$burger-width: calc($main-title-f-size * 1.15);
+$year-height: calc($search-label-f-size * 1.5);
 $login-footer-pad-top: 3px;
 $login-footer-pad-bot: 14px;
-$btn-horiz-padding: clamp(9px, calc($btn-f-size / 1.5), 12px);

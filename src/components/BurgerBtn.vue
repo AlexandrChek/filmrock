@@ -1,50 +1,80 @@
 <template>
     <div>
-        <p v-if="burgerShown" class="burger-lines" @click="hideLines">&#9776;</p>
-        <p v-else class="cross" @click="showLines">&#10060;</p>
+        <input type="checkbox" id="burger-check" @change="showHideMenu">
+        <label for="burger-check"></label>
     </div>
 </template>
 
 <script>
     export default {
         name: 'BurgerBtn',
-        props: ['burgerShown'],
         methods: {
-            hideLines() {
-                this.$emit('linesClicked')
+            showHideMenu() {
+                this.$emit('burgerClicked')
             },
+            //show lines from parent
             showLines() {
-                this.$emit('crossClicked')
+                document.querySelector('#burger-check').checked = false
             }
         }
-    } 
+    }
 </script>
 
 <style scoped lang="scss">
 @import '../variables';
 
+    $height: calc($main-title-f-size - $burger-top);
+    $second-line-top: calc(($height - 3.5px) / 2);
+
     div {
-        display: flex;
-        position: absolute;
-        right: 2.1%;
-        top: 15%;
+        position: relative;
         @media (min-width: 768px) {
             display: none;
         }
     }
-    p {
-        margin: 0;
+    #burger-check {
+        position: absolute;
+        display: none;
     }
-    .burger-lines {
-        color: $toxic-green;
-        background-color: black;
-        font-weight: bold;
-        font-size: calc(22px + 1vw);
-        line-height: 1;
+    label {
+        position: relative;
+        top: $burger-top;
+        display: block;
+        width: $burger-width;
+        height: $height;
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            border: none;
+            width: 100%;
+            height: 3.5px;
+            background-color: $toxic-green;
+        }
+        &::before {
+            top: 0;
+            box-shadow: 0 $second-line-top 0 0 $toxic-green;
+            transition: box-shadow .3s .15s, top .3s .15s, transform .3s;
+        }
+        &::after {
+            bottom: 0;
+            transition: bottom .3s .15s, transform .3s;
+        }
     }
-    .cross {
-        color: red;
-        background-color: black;
-        font-size: 23px;
+
+    @mixin transformation($top-bottom, $angle) {
+        #{$top-bottom}: $second-line-top;
+        transform: rotate(#{$angle}deg);
+        background-color: red;
+        transition: #{$top-bottom} .3s, transform .3s .15s;
+    }
+
+    #burger-check:checked + label::before {
+        @include transformation(top, 45);
+        box-shadow: none;
+    }
+    #burger-check:checked + label::after {
+        @include transformation(bottom, -45);
     }
 </style>

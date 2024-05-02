@@ -23,7 +23,8 @@ export default {
         line-height: 1;
         letter-spacing: .2vw;
         word-spacing: 1.5px;
-        padding: 10px $btn-horiz-padding 12.5px;
+        white-space: nowrap;
+        padding: 10px clamp(9px, calc($btn-f-size / 1.5), 12px) 12.5px;
         border-radius: 7px;
         border: 2px solid $dark-burgundy;
         box-shadow: inset 0px -1.5px 3px 3px $dark-burgundy;

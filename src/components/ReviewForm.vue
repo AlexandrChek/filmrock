@@ -85,22 +85,21 @@ export default {
 
 <style scoped lang="scss">
 @import '../variables';
+@import '../extends';
 
     textarea {
         display: block;
         width: 100%;
-        border: 3px solid black;
+        font-size: $btn-f-size;
+        line-height: 1.35;
+        padding: 0 3px 2px;
+        @extend %input-settings;
         &:focus {
-            outline: none;
-            border-color: $toxic-green;
             border-radius: 2px;
-            background-color: $backlight;
+            height: calc($btn-f-size * 5 * 1.35 + 5px);
         }
         @media (min-width: 768px) {
             width: 50%;
         }
-    }
-    .send-btn {
-        margin-left: 3px;
     }
 </style>

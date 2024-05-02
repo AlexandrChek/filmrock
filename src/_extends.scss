@@ -14,14 +14,13 @@
 %reg-block-size {
     width: 75%;
     @media (min-width: 576px) {
-        width: 435px;
+        width: 430px;
     }
 }
 
 %label-search {
     font-size: $search-label-f-size;
     margin-right: calc(9px + .11vw);
-    padding-top: 3px;
 }
 
 %label-reg {
@@ -30,6 +29,15 @@
     font-weight: bold;
     @media (min-width: 576px) {
         font-size: calc(14px + .35vw);
+    }
+}
+
+%input-settings {
+    border: none;
+    outline: none;
+    &:focus {
+        background-color: $backlight;
+        box-shadow: $input-focus-shadow;
     }
 }
 
@@ -43,7 +51,7 @@ $modal-left: calc((100vw - $modal-width) / 2);
     left: $modal-left;
     z-index: 2;
     padding: 20px;
-    background-color: rgb(205, 205, 205);
+    background-color: $gray-back;
     box-shadow: inset 0px -3px 4px 4px rgb(75, 35, 35);
 }
 

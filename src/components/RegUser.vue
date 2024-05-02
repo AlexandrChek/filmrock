@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex flex-column justify-content-center user-wrapper" @click="getExitButton">
         <img src="../assets/user.png" alt="User" class="d-block mx-auto rounded-circle">
-        <p class="text-center m-0 user">{{$store.state.user}}</p>
+        <p class="m-0 user">{{$store.state.user}}</p>
     </div>
     <LogOut v-if="showExitBlock" @logOutBtnClicked="closeExitBlock"/>
 </template>
@@ -48,6 +48,7 @@ export default {
     .user {
         font-size: calc(8px + .755vw);
         line-height: 1.25;
+        text-align: center;
         color: white;
     }
 </style>

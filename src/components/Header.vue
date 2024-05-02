@@ -7,7 +7,7 @@
             <div class="col-md-1 col-5 px-0 d-flex justify-content-center position-relative">
                 <RegUser v-if="$store.state.user"/>
             </div>
-            <div class="col-md-7 col-2 d-flex justify-content-center">
+            <div class="col-md-7 col-2 menu-col">
                 <NavBar/>
             </div>
         </div>
@@ -35,8 +35,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .sticky-top {
         background-color: black;
+    }
+    .menu-col {
+        display: flex;
+        justify-content: right;
+        @media (min-width: 768px) {
+            justify-content: center;
+        }
     }
 </style>

@@ -117,20 +117,28 @@ export default {
             this.filmsArr.forEach(item => {
                 grossGenres.push(item.genre, item.genre2)
             })
-            this.genres = ['', ...new Set(grossGenres)]
+            this.genres = ['All', ...new Set(grossGenres)]
         },
         saveGenre(val) {
-            this.selectedGenre = val
+            if (val === 'All') {
+                this.selectedGenre = ''
+            } else {
+                this.selectedGenre = val
+            }
         },
         getCountries() {
             let grossCountries = []
             this.filmsArr.forEach(item => {
                 grossCountries.push(item.country)
             })
-            this.countries = ['', ...new Set(grossCountries)]
+            this.countries = ['All', ...new Set(grossCountries)]
         },
         saveCountry(val) {
-            this.selectedCountry = val
+            if (val === 'All') {
+                this.selectedCountry = ''
+            } else {
+                this.selectedCountry = val
+            }
         },
         advancedSearch() {
             let searchedFilms = []

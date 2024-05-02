@@ -18,17 +18,33 @@
 
 <style scoped lang="scss">
 @import '../variables';
+@import '../extends';
+
+    $year-padding-top: calc($search-label-f-size / 8);
 
     input {
-        padding: 1px 0 0 4px;
         font-size: $search-label-f-size;
-        width: calc(60px + 1.1vw);
-        height: calc($search-label-f-size * 1.55);
+        width: calc($search-label-f-size * 3 + 7px);
+        height: $year-height;
+        line-height: calc($year-height - $year-padding-top);
+        padding: $year-padding-top 0 0 3px;
         border-radius: 3px;
-        border: none;
-        &:focus {
-            outline: 3px solid $toxic-green;
-            background-color: $backlight;
+        @extend %input-settings;
+        -moz-appearance: textfield;
+        &::-webkit-inner-spin-button {
+            display: none;
+        }
+    }
+    
+    @media (hover: hover) and (pointer: fine) {
+        input {
+            width: calc($search-label-f-size * 3 + 15px);
+            &:focus::-webkit-inner-spin-button {
+                display: block;
+            }
+            &:focus {
+                -moz-appearance: auto;
+            }
         }
     }
 </style>

@@ -29,17 +29,15 @@ export default {
 
 <style scoped lang="scss">
 @import '../variables';
+@import '../extends';
 
     input {
-        font-size: 21.5px;
-        border: 3px solid black;
-        &:focus {
-            outline: none;
-            border-color: $toxic-green;
-            background-color: $backlight;
-        }
+        font-size: calc(16px + 2vw);
+        line-height: 1;
+        padding: 1px 3px 3px;
+        @extend %input-settings;
         @media (min-width: 576px) {
-            font-size: 24px;
+            font-size: calc(24.5px + .34vw);
         }
     }
 </style>

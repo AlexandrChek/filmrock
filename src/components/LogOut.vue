@@ -1,8 +1,7 @@
 <template>
-    <div class="rounded exit-block">
-        <div class="d-flex justify-content-end">
-            <p class="rounded cross" @click="removeButton">&#10060;</p>
-        </div>
+    <div class="exit-block">
+        <span class="cross" @click="removeButton">&#10060;</span>
+        <br/>
         <MyButton @click="logOut" class="exit-btn">Log out</MyButton>
     </div>
 </template>
@@ -28,25 +27,29 @@ export default {
 <style scoped lang="scss">
 @import '../variables';
 
+    $rounding: 7px;
+
     .exit-block {
         border: 1px solid wheat;
         background-color: black;
+        border-radius: $rounding;
         z-index: 3;
         position: absolute;
         top: calc(24px + 4.25vw);
     }
     .cross {
+        float: right;
         font-size: calc(11.5px + .4vw);
         color: red;
         border: 1px solid red;
-        padding: 0 7px;
+        border-radius: $rounding;
+        padding: 0 $rounding;
         cursor: pointer;
     }
     .exit-btn {
-        margin: 2px 3px;
+        margin: 14px 3px 2px 3px;
         @media (min-width: 768px) {
-            margin: 4px 8px;
-            width: calc(($btn-f-size / 1.5 * 6 + 1.5px) + ($btn-horiz-padding * 2));
+            margin: 16px 8px 4px 8px;
         }
     }
 </style>
