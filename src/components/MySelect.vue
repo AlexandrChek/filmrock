@@ -37,7 +37,7 @@ export default {
 @import '../variables';
 @import '../extends';
 
-    $top-phone: max(55px, calc($main-title-f-size * 1.5));
+    $top-phone: max(52px, calc($main-title-f-size * 1.5));
 
     .left-label {
         @extend %label-search;
