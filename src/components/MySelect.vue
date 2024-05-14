@@ -37,7 +37,7 @@ export default {
 @import '../variables';
 @import '../extends';
 
-    $top-phone: max(50px, calc($main-title-f-size * 1.5));
+    $top-phone: max(55px, calc($main-title-f-size * 1.5));
 
     .left-label {
         @extend %label-search;
@@ -73,14 +73,14 @@ export default {
         top: $top-phone;
         z-index: 3;
         width: min(100vw, 370px);
-        max-height: calc(100vh - ($top-phone * 3));
+        max-height: calc(100vh - ($top-phone * 2));
         overflow-y: scroll;
         padding-bottom: 3px;
         background-color: $gray-back;
         border-radius: 10px;
         font-size: calc($search-label-f-size * 2);
         @media (min-width: 576px) and (max-width: 768px) and (orientation: landscape) {
-            max-height: calc(100vh - ($main-title-f-size * 1.5));
+            max-height: calc(100vh - $top-phone);
         }
     }
     .radio-item {
