@@ -28,7 +28,7 @@ import MySelect from './MySelect.vue'
 import AdvancedOptions from './AdvancedOptions.vue'
 import SearchFilm from './SearchFilm.vue'
 import SearchPeriod from './SearchPeriod.vue'
-import {getDatabase, ref, onValue} from 'firebase/database'
+import { getDatabase, ref, onValue } from 'firebase/database'
 
 export default {
     name: 'SearchBlock',

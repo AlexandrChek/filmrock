@@ -68,15 +68,18 @@ export default {
         display: none;
         position: fixed;
         left: calc((100vw - min(100vw, 370px)) / 2);
-        top: calc($main-title-f-size * 1.5);
+        top: max(50px, calc($main-title-f-size * 1.5));
         z-index: 3;
         width: min(100vw, 370px);
-        max-height: calc(100vh - ($main-title-f-size * 1.5));
+        max-height: calc(100vh - 100px);
         overflow-y: scroll;
-        padding: 1.5vh 0;
+        padding-bottom: 3px;
         background-color: $gray-back;
         border-radius: 10px;
         font-size: calc($search-label-f-size * 2);
+        @media (min-width: 576px) and (max-width: 768px) and (orientation: landscape) {
+            max-height: calc(100vh - ($main-title-f-size * 1.5));
+        }
     }
     .radio-item {
         display: block;
@@ -88,7 +91,7 @@ export default {
         }
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 576px) and (orientation: portrait), (min-width: 768px) {
         .select-field {
             position: relative;
             cursor: pointer;
