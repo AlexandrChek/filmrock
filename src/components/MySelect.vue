@@ -37,6 +37,8 @@ export default {
 @import '../variables';
 @import '../extends';
 
+    $top-phone: max(50px, calc($main-title-f-size * 1.5));
+
     .left-label {
         @extend %label-search;
     }
@@ -68,10 +70,10 @@ export default {
         display: none;
         position: fixed;
         left: calc((100vw - min(100vw, 370px)) / 2);
-        top: max(50px, calc($main-title-f-size * 1.5));
+        top: $top-phone;
         z-index: 3;
         width: min(100vw, 370px);
-        max-height: calc(100vh - 100px);
+        max-height: calc(100vh - ($top-phone * 3));
         overflow-y: scroll;
         padding-bottom: 3px;
         background-color: $gray-back;
