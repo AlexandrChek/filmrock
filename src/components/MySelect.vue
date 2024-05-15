@@ -77,7 +77,7 @@ export default {
         overflow-y: scroll;
         padding-bottom: 3px;
         background-color: $gray-back;
-        border-radius: 10px;
+        border-radius: 17px;
         font-size: calc($search-label-f-size * 2);
         @media (min-width: 576px) and (max-width: 768px) and (orientation: landscape) {
             max-height: calc(100vh - $top-phone);
