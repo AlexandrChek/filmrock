@@ -46,7 +46,7 @@ $modal-left: calc((100vw - $modal-width) / 2);
 
 %modals {
     position: fixed;
-    top: 40vh;
+    top: calc(var(--vh, 1vh) * 40);
     width: $modal-width;
     left: $modal-left;
     z-index: 2;

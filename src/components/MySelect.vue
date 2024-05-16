@@ -23,8 +23,6 @@ export default {
     },
     methods: {
         reportFocus() {
-            const vh = window.innerHeight
-            document.querySelector('.items').style.setProperty('--vh', `${vh}px`)
             this.$emit('focused')
         },
         transmitValue(item) {
@@ -38,6 +36,11 @@ export default {
 <style scoped lang="scss">
 @import '../variables';
 @import '../extends';
+
+    @mixin items-vertical-settings($top) {
+        top: $top;
+        max-height: calc(var(--vh) * 100 - $top);
+    }
 
     .left-label {
         @extend %label-search;
@@ -70,18 +73,16 @@ export default {
         display: none;
         position: fixed;
         left: calc((100vw - min(100vw, 370px)) / 2);
-        top: 52px;
+        @include items-vertical-settings(52px);
         z-index: 3;
         width: min(100vw, 370px);
-        max-height: calc(var(--vh) - 52px);
         overflow-y: scroll;
         padding-bottom: 3px;
         background-color: $gray-back;
         border-radius: 17px;
         font-size: calc($search-label-f-size * 2);
         @media (min-width: 576px) and (max-width: 768px) and (orientation: landscape) {
-            top: calc($main-title-f-size * 1.5);
-            max-height: calc(var(--vh) - ($main-title-f-size * 1.5));
+            @include items-vertical-settings(calc($main-title-f-size * 1.5));
         }
     }
     .radio-item {
@@ -111,6 +112,7 @@ export default {
             left: 0;
             top: calc(100% + 2px);
             width: 100%;
+            max-height: none;
             padding: 0;
             overflow-y: auto;
             background-color: $backlight;

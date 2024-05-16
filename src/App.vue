@@ -12,6 +12,18 @@
     components: {
       MyHeader,
       MyFooter
+    },
+    mounted() {
+      if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+        window.addEventListener('load', this.setHeightUnit)
+        window.addEventListener('resize', this.setHeightUnit)
+      }
+    },
+    methods: {
+      setHeightUnit() {
+        const vh = window.innerHeight / 100
+        document.documentElement.style.setProperty('--vh', `${vh}px`)
+      }
     }
   }
 </script>
